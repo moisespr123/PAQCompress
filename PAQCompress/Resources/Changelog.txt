@@ -1,0 +1,39 @@
+PAQCompress v3.0PCE by Moises Cardona
+===========================================================
+PAQCompress is a Program that compresses files using the PAQ 
+version PAQ8 Compression technology. This program can also
+extract archives created by this program.
+
+The program features a nice and simple Grafical User Interface (GUI).
+
+About PAQ:
+============================================================
+PAQ is a series of data compression archivers that have evolved
+through collaborative development to top rankings on several benchmarks 
+measuring compression ratio (although at the expense of speed and memory usage).
+PAQ is free software distributed under the GNU General Public License.
+
+PAQCompress Version History:
+============================================================
+PAQCompress Version 3.0PCE:
+-Can compress to PAQ8PX, PAQ8PF, PAQ8PXPRE, FP8, PAQ8KX and PAQ8o10t.
+-Can extract PAQ8PX, PAQ8PF, PAQ8PXPRE, FP8, PAQ8KX and PAQ8o10t archives.
+-No more .bat file creation when executing compression and extraction. Actions are done on-the-fly.
+-Pressing "Cancel" on any dialog will not erase the current selected file/folder from the textbox.
+-Integrated Changelog on the software
+
+PAQCompress Version 2.0PCE:
+-Updated some software texts
+
+PAQCompress Version 2.0:
+-Feature: Added "Open File" Dialog to Compress and Extract
+-Feature: Added "Open Folder" Dialog to Compress
+-Feature: Added Save Archive to Destination"
+-Feature: Added "Save File" Dialog to Compress
+-Feature: Added Save to "Same Destination as input file" to Compress.
+-Change: Deleted the "Note:" on Compress
+-Change: Add Compression Levels names on Compress.
+-Change: Edited the About Section
+
+PAQCompress Version 1.0
+-Initial Release
