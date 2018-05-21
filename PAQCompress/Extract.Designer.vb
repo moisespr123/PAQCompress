@@ -38,11 +38,11 @@ Partial Class Extract
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.RadioButton6 = New System.Windows.Forms.RadioButton()
-        Me.SuspendLayout()
+        Me.SuspendLayout
         '
         'Label1
         '
-        Me.Label1.AutoSize = True
+        Me.Label1.AutoSize = true
         Me.Label1.Location = New System.Drawing.Point(12, 9)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(103, 13)
@@ -63,7 +63,7 @@ Partial Class Extract
         Me.Button1.Size = New System.Drawing.Size(285, 23)
         Me.Button1.TabIndex = 2
         Me.Button1.Text = "Extract"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.UseVisualStyleBackColor = true
         '
         'OpenFileDialog1
         '
@@ -76,66 +76,66 @@ Partial Class Extract
         Me.Button2.Size = New System.Drawing.Size(75, 23)
         Me.Button2.TabIndex = 3
         Me.Button2.Text = "Open File"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.Button2.UseVisualStyleBackColor = true
         '
         'RadioButton1
         '
-        Me.RadioButton1.AutoSize = True
+        Me.RadioButton1.AutoSize = true
         Me.RadioButton1.Location = New System.Drawing.Point(15, 25)
         Me.RadioButton1.Name = "RadioButton1"
         Me.RadioButton1.Size = New System.Drawing.Size(67, 17)
         Me.RadioButton1.TabIndex = 4
-        Me.RadioButton1.TabStop = True
+        Me.RadioButton1.TabStop = true
         Me.RadioButton1.Text = "PAQ8PX"
-        Me.RadioButton1.UseVisualStyleBackColor = True
+        Me.RadioButton1.UseVisualStyleBackColor = true
         '
         'RadioButton2
         '
-        Me.RadioButton2.AutoSize = True
-        Me.RadioButton2.Location = New System.Drawing.Point(123, 25)
+        Me.RadioButton2.AutoSize = true
+        Me.RadioButton2.Location = New System.Drawing.Point(109, 25)
         Me.RadioButton2.Name = "RadioButton2"
         Me.RadioButton2.Size = New System.Drawing.Size(67, 17)
         Me.RadioButton2.TabIndex = 5
-        Me.RadioButton2.TabStop = True
+        Me.RadioButton2.TabStop = true
         Me.RadioButton2.Text = "PAQ8KX"
-        Me.RadioButton2.UseVisualStyleBackColor = True
+        Me.RadioButton2.UseVisualStyleBackColor = true
         '
         'RadioButton3
         '
-        Me.RadioButton3.AutoSize = True
+        Me.RadioButton3.AutoSize = true
         Me.RadioButton3.Location = New System.Drawing.Point(16, 48)
         Me.RadioButton3.Name = "RadioButton3"
         Me.RadioButton3.Size = New System.Drawing.Size(66, 17)
         Me.RadioButton3.TabIndex = 6
-        Me.RadioButton3.TabStop = True
+        Me.RadioButton3.TabStop = true
         Me.RadioButton3.Text = "PAQ8PF"
-        Me.RadioButton3.UseVisualStyleBackColor = True
+        Me.RadioButton3.UseVisualStyleBackColor = true
         '
         'RadioButton4
         '
-        Me.RadioButton4.AutoSize = True
-        Me.RadioButton4.Location = New System.Drawing.Point(123, 48)
+        Me.RadioButton4.AutoSize = true
+        Me.RadioButton4.Location = New System.Drawing.Point(109, 48)
         Me.RadioButton4.Name = "RadioButton4"
         Me.RadioButton4.Size = New System.Drawing.Size(89, 17)
         Me.RadioButton4.TabIndex = 7
-        Me.RadioButton4.TabStop = True
+        Me.RadioButton4.TabStop = true
         Me.RadioButton4.Text = "PAQ8PXPRE"
-        Me.RadioButton4.UseVisualStyleBackColor = True
+        Me.RadioButton4.UseVisualStyleBackColor = true
         '
         'RadioButton5
         '
-        Me.RadioButton5.AutoSize = True
+        Me.RadioButton5.AutoSize = true
         Me.RadioButton5.Location = New System.Drawing.Point(16, 71)
         Me.RadioButton5.Name = "RadioButton5"
         Me.RadioButton5.Size = New System.Drawing.Size(70, 17)
         Me.RadioButton5.TabIndex = 8
-        Me.RadioButton5.TabStop = True
+        Me.RadioButton5.TabStop = true
         Me.RadioButton5.Text = "paq8o10t"
-        Me.RadioButton5.UseVisualStyleBackColor = True
+        Me.RadioButton5.UseVisualStyleBackColor = true
         '
         'Label2
         '
-        Me.Label2.AutoSize = True
+        Me.Label2.AutoSize = true
         Me.Label2.Location = New System.Drawing.Point(13, 99)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(133, 13)
@@ -144,7 +144,7 @@ Partial Class Extract
         '
         'Label3
         '
-        Me.Label3.AutoSize = True
+        Me.Label3.AutoSize = true
         Me.Label3.Location = New System.Drawing.Point(15, 142)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(201, 13)
@@ -158,7 +158,7 @@ Partial Class Extract
         Me.Button3.Size = New System.Drawing.Size(75, 23)
         Me.Button3.TabIndex = 12
         Me.Button3.Text = "Browse"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.Button3.UseVisualStyleBackColor = true
         '
         'TextBox2
         '
@@ -169,20 +169,20 @@ Partial Class Extract
         '
         'RadioButton6
         '
-        Me.RadioButton6.AutoSize = True
-        Me.RadioButton6.Location = New System.Drawing.Point(123, 71)
+        Me.RadioButton6.AutoSize = true
+        Me.RadioButton6.Location = New System.Drawing.Point(109, 71)
         Me.RadioButton6.Name = "RadioButton6"
         Me.RadioButton6.Size = New System.Drawing.Size(44, 17)
         Me.RadioButton6.TabIndex = 13
-        Me.RadioButton6.TabStop = True
+        Me.RadioButton6.TabStop = true
         Me.RadioButton6.Text = "FP8"
-        Me.RadioButton6.UseVisualStyleBackColor = True
+        Me.RadioButton6.UseVisualStyleBackColor = true
         '
         'Extract
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(336, 220)
+        Me.ClientSize = New System.Drawing.Size(313, 220)
         Me.Controls.Add(Me.RadioButton6)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.TextBox2)
@@ -199,10 +199,10 @@ Partial Class Extract
         Me.Controls.Add(Me.Label1)
         Me.Name = "Extract"
         Me.Text = "Extract"
-        Me.ResumeLayout(False)
-        Me.PerformLayout()
+        Me.ResumeLayout(false)
+        Me.PerformLayout
 
-    End Sub
+End Sub
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
     Friend WithEvents Button1 As System.Windows.Forms.Button
