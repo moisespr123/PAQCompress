@@ -33,22 +33,6 @@
         If RadioButton2.Checked = True Then PAQ8KXExtract.ShowDialog()
     End Sub
 
-    Private Sub RadioButton4_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButton4.CheckedChanged
-        If RadioButton4.Checked = True Then
-            My.Computer.FileSystem.DeleteFile("Data\PAQEV.pcsf")
-            My.Computer.FileSystem.WriteAllText("Data\PAQEV.pcsf", "paq8pxpre.exe", False)
-            MsgBox("You choose PAQ8PXPRE")
-        End If
-    End Sub
-
-    Private Sub RadioButton5_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButton5.CheckedChanged
-        If RadioButton5.Checked = True Then
-            My.Computer.FileSystem.DeleteFile("Data\PAQEV.pcsf")
-            My.Computer.FileSystem.WriteAllText("Data\PAQEV.pcsf", "paq8o10t.exe", False)
-            MsgBox("You choose PAQ8o10t")
-        End If
-    End Sub
-
     Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
         FolderBrowserDialog1.ShowNewFolderButton = True
         FolderBrowserDialog1.ShowDialog()
