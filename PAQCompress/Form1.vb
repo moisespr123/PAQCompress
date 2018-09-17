@@ -1,10 +1,10 @@
 ﻿Public Class Form1
 
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Compress.ShowDialog()
     End Sub
 
-    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Extract.ShowDialog()
     End Sub
 
@@ -13,7 +13,7 @@
         If My.Computer.FileSystem.FileExists("Data\PAQEV.pcsf") = False Then My.Computer.FileSystem.WriteAllText("Data\PAQEV.pcsf", "paq8pf_beta3.exe", False)
     End Sub
 
-    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         About.ShowDialog()
     End Sub
 End Class
