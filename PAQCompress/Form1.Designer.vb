@@ -34,11 +34,11 @@ Partial Class Form1
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.PAQSeries = New System.Windows.Forms.ComboBox()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.PAQVersion = New System.Windows.Forms.ComboBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
+        Me.CompressionLevel = New System.Windows.Forms.ComboBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox3.SuspendLayout()
@@ -144,13 +144,13 @@ Partial Class Form1
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(9, 162)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(97, 13)
+        Me.Label1.Size = New System.Drawing.Size(243, 13)
         Me.Label1.TabIndex = 10
-        Me.Label1.Text = "Step 3: Parameters"
+        Me.Label1.Text = "Step 3: PAQ version and Compression Parameters"
         '
         'GroupBox4
         '
-        Me.GroupBox4.Controls.Add(Me.ComboBox1)
+        Me.GroupBox4.Controls.Add(Me.PAQSeries)
         Me.GroupBox4.Location = New System.Drawing.Point(12, 178)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(141, 47)
@@ -158,17 +158,19 @@ Partial Class Form1
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Series:"
         '
-        'ComboBox1
+        'PAQSeries
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(6, 19)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(116, 21)
-        Me.ComboBox1.TabIndex = 0
+        Me.PAQSeries.FormattingEnabled = True
+        Me.PAQSeries.Items.AddRange(New Object() {"FP8", "PAQ8KX", "PAQ8o10t", "PAQ8PF", "PAQ8PX", "PAQ8PXPRE"})
+        Me.PAQSeries.Location = New System.Drawing.Point(6, 19)
+        Me.PAQSeries.Name = "PAQSeries"
+        Me.PAQSeries.Size = New System.Drawing.Size(116, 21)
+        Me.PAQSeries.Sorted = True
+        Me.PAQSeries.TabIndex = 0
         '
         'GroupBox5
         '
-        Me.GroupBox5.Controls.Add(Me.ComboBox2)
+        Me.GroupBox5.Controls.Add(Me.PAQVersion)
         Me.GroupBox5.Location = New System.Drawing.Point(157, 178)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(141, 47)
@@ -176,17 +178,17 @@ Partial Class Form1
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Version:"
         '
-        'ComboBox2
+        'PAQVersion
         '
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(6, 19)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(116, 21)
-        Me.ComboBox2.TabIndex = 0
+        Me.PAQVersion.FormattingEnabled = True
+        Me.PAQVersion.Location = New System.Drawing.Point(6, 19)
+        Me.PAQVersion.Name = "PAQVersion"
+        Me.PAQVersion.Size = New System.Drawing.Size(116, 21)
+        Me.PAQVersion.TabIndex = 0
         '
         'GroupBox1
         '
-        Me.GroupBox1.Controls.Add(Me.ComboBox3)
+        Me.GroupBox1.Controls.Add(Me.CompressionLevel)
         Me.GroupBox1.Location = New System.Drawing.Point(304, 178)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(141, 47)
@@ -194,13 +196,13 @@ Partial Class Form1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Compression Level:"
         '
-        'ComboBox3
+        'CompressionLevel
         '
-        Me.ComboBox3.FormattingEnabled = True
-        Me.ComboBox3.Location = New System.Drawing.Point(6, 19)
-        Me.ComboBox3.Name = "ComboBox3"
-        Me.ComboBox3.Size = New System.Drawing.Size(116, 21)
-        Me.ComboBox3.TabIndex = 0
+        Me.CompressionLevel.FormattingEnabled = True
+        Me.CompressionLevel.Location = New System.Drawing.Point(6, 19)
+        Me.CompressionLevel.Name = "CompressionLevel"
+        Me.CompressionLevel.Size = New System.Drawing.Size(116, 21)
+        Me.CompressionLevel.TabIndex = 0
         '
         'GroupBox2
         '
@@ -263,11 +265,11 @@ End Sub
     Friend WithEvents RadioButton2 As RadioButton
     Friend WithEvents Label1 As Label
     Friend WithEvents GroupBox4 As GroupBox
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents PAQSeries As ComboBox
     Friend WithEvents GroupBox5 As GroupBox
-    Friend WithEvents ComboBox2 As ComboBox
+    Friend WithEvents PAQVersion As ComboBox
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents ComboBox3 As ComboBox
+    Friend WithEvents CompressionLevel As ComboBox
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents Button1 As Button
 End Class
