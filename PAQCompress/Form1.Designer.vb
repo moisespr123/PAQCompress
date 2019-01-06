@@ -43,10 +43,19 @@ Partial Class Form1
         Me.StartButton = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Log = New System.Windows.Forms.RichTextBox()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox3 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox4 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox5 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox6 = New System.Windows.Forms.CheckBox()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label4
@@ -208,18 +217,27 @@ Partial Class Form1
         '
         'GroupBox2
         '
+        Me.GroupBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox2.Controls.Add(Me.CheckBox6)
+        Me.GroupBox2.Controls.Add(Me.CheckBox5)
+        Me.GroupBox2.Controls.Add(Me.CheckBox4)
+        Me.GroupBox2.Controls.Add(Me.CheckBox3)
+        Me.GroupBox2.Controls.Add(Me.CheckBox2)
+        Me.GroupBox2.Controls.Add(Me.CheckBox1)
         Me.GroupBox2.Location = New System.Drawing.Point(12, 231)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(433, 59)
+        Me.GroupBox2.Size = New System.Drawing.Size(562, 94)
         Me.GroupBox2.TabIndex = 15
         Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Additional Options:"
+        Me.GroupBox2.Text = "PAQ8PX Additional Options:"
         '
         'StartButton
         '
-        Me.StartButton.Location = New System.Drawing.Point(12, 296)
+        Me.StartButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.StartButton.Location = New System.Drawing.Point(12, 331)
         Me.StartButton.Name = "StartButton"
-        Me.StartButton.Size = New System.Drawing.Size(506, 53)
+        Me.StartButton.Size = New System.Drawing.Size(562, 53)
         Me.StartButton.TabIndex = 16
         Me.StartButton.Text = "Start"
         Me.StartButton.UseVisualStyleBackColor = True
@@ -235,17 +253,102 @@ Partial Class Form1
         '
         'Log
         '
+        Me.Log.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Log.Location = New System.Drawing.Point(580, 25)
         Me.Log.Name = "Log"
-        Me.Log.Size = New System.Drawing.Size(455, 324)
+        Me.Log.Size = New System.Drawing.Size(460, 300)
         Me.Log.TabIndex = 18
         Me.Log.Text = ""
+        '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(6, 19)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(227, 17)
+        Me.CheckBox1.TabIndex = 0
+        Me.CheckBox1.Text = "Brute-force detection of DEFLATE streams"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
+        'CheckBox2
+        '
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.Location = New System.Drawing.Point(6, 42)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(138, 17)
+        Me.CheckBox2.TabIndex = 1
+        Me.CheckBox2.Text = "Pre-train x86/x64 model"
+        Me.CheckBox2.UseVisualStyleBackColor = True
+        '
+        'CheckBox3
+        '
+        Me.CheckBox3.AutoSize = True
+        Me.CheckBox3.Location = New System.Drawing.Point(6, 65)
+        Me.CheckBox3.Name = "CheckBox3"
+        Me.CheckBox3.Size = New System.Drawing.Size(261, 17)
+        Me.CheckBox3.TabIndex = 2
+        Me.CheckBox3.Text = "Pre-train main model  with word and expression list"
+        Me.CheckBox3.UseVisualStyleBackColor = True
+        '
+        'CheckBox4
+        '
+        Me.CheckBox4.AutoSize = True
+        Me.CheckBox4.Location = New System.Drawing.Point(268, 19)
+        Me.CheckBox4.Name = "CheckBox4"
+        Me.CheckBox4.Size = New System.Drawing.Size(128, 17)
+        Me.CheckBox4.TabIndex = 3
+        Me.CheckBox4.Text = "adaptive learning rate"
+        Me.CheckBox4.UseVisualStyleBackColor = True
+        '
+        'CheckBox5
+        '
+        Me.CheckBox5.AutoSize = True
+        Me.CheckBox5.Location = New System.Drawing.Point(268, 42)
+        Me.CheckBox5.Name = "CheckBox5"
+        Me.CheckBox5.Size = New System.Drawing.Size(285, 17)
+        Me.CheckBox5.TabIndex = 4
+        Me.CheckBox5.Text = "Skip the color transform, just reorder the RGB channels"
+        Me.CheckBox5.UseVisualStyleBackColor = True
+        '
+        'CheckBox6
+        '
+        Me.CheckBox6.AutoSize = True
+        Me.CheckBox6.Location = New System.Drawing.Point(268, 65)
+        Me.CheckBox6.Name = "CheckBox6"
+        Me.CheckBox6.Size = New System.Drawing.Size(239, 17)
+        Me.CheckBox6.TabIndex = 5
+        Me.CheckBox6.Text = "Bypass modeling and mixing on long matches"
+        Me.CheckBox6.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button1.Location = New System.Drawing.Point(832, 331)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(208, 53)
+        Me.Button1.TabIndex = 19
+        Me.Button1.Text = "Save Log"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Button2
+        '
+        Me.Button2.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.Button2.Location = New System.Drawing.Point(580, 331)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(241, 53)
+        Me.Button2.TabIndex = 20
+        Me.Button2.Text = "Clear Log"
+        Me.Button2.UseVisualStyleBackColor = True
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1052, 361)
+        Me.ClientSize = New System.Drawing.Size(1052, 394)
+        Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Log)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.StartButton)
@@ -270,6 +373,8 @@ Partial Class Form1
         Me.GroupBox4.ResumeLayout(False)
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout
 
@@ -295,4 +400,12 @@ End Sub
     Friend WithEvents StartButton As Button
     Friend WithEvents Label2 As Label
     Friend WithEvents Log As RichTextBox
+    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents CheckBox6 As CheckBox
+    Friend WithEvents CheckBox5 As CheckBox
+    Friend WithEvents CheckBox4 As CheckBox
+    Friend WithEvents CheckBox3 As CheckBox
+    Friend WithEvents CheckBox2 As CheckBox
+    Friend WithEvents Button1 As Button
+    Friend WithEvents Button2 As Button
 End Class
