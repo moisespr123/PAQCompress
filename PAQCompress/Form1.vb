@@ -129,17 +129,9 @@
             process.StartInfo.UseShellExecute = False
             process.StartInfo.RedirectStandardOutput = True
             process.StartInfo.RedirectStandardError = True
-            process.StartInfo.CreateNoWindow = False
-            AddHandler process.OutputDataReceived, New DataReceivedEventHandler(Sub(sender, e)
-                                                                                    If Not e.Data = Nothing Then
-                                                                                        UpdateLog(e.Data)
-                                                                                    End If
-                                                                                End Sub)
-            AddHandler process.ErrorDataReceived, New DataReceivedEventHandler(Sub(sender, e)
-                                                                                   If Not e.Data = Nothing Then
-                                                                                       UpdateLog(e.Data)
-                                                                                   End If
-                                                                               End Sub)
+            process.StartInfo.CreateNoWindow = True
+            AddHandler process.OutputDataReceived, New DataReceivedEventHandler(AddressOf UpdateLogEventHandler)
+            AddHandler process.ErrorDataReceived, New DataReceivedEventHandler(AddressOf UpdateLogEventHandler)
             process.Start()
             process.BeginOutputReadLine()
             process.BeginErrorReadLine()
@@ -148,6 +140,11 @@
         End Using
     End Sub
 
+    Private Sub UpdateLogEventHandler(sender As Object, e As DataReceivedEventArgs)
+        If Not e.Data = Nothing Then
+            UpdateLog(e.Data)
+        End If
+    End Sub
     Private Delegate Sub UpdateLogInvoker(message As String)
     Private Sub UpdateLog(message As String)
         If Log.InvokeRequired Then
