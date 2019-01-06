@@ -14,6 +14,9 @@
         ElseIf PAQSeries.SelectedItem = "PAQ8PF" Then
             PAQVersion.Items.AddRange({"beta1", "beta2", "beta3"})
             PAQVersion.Enabled = True
+        ElseIf PAQSeries.SelectedItem = "FP8" Then
+            PAQVersion.Items.AddRange({"v1", "v2", "v3", "v4", "v5", "v6"})
+            PAQVersion.Enabled = True
         End If
     End Sub
 End Class
