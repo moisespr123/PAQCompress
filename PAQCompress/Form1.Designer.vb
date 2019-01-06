@@ -23,11 +23,11 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.InputLocation = New System.Windows.Forms.TextBox()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Button7 = New System.Windows.Forms.Button()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.OutputLocation = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.RadioButton1 = New System.Windows.Forms.RadioButton()
@@ -40,7 +40,9 @@ Partial Class Form1
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.CompressionLevel = New System.Windows.Forms.ComboBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.StartButton = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Log = New System.Windows.Forms.RichTextBox()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -56,12 +58,12 @@ Partial Class Form1
         Me.Label4.TabIndex = 3
         Me.Label4.Text = "Step 1: Browse for a file or folder to compress:"
         '
-        'TextBox1
+        'InputLocation
         '
-        Me.TextBox1.Location = New System.Drawing.Point(12, 78)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(286, 20)
-        Me.TextBox1.TabIndex = 4
+        Me.InputLocation.Location = New System.Drawing.Point(12, 78)
+        Me.InputLocation.Name = "InputLocation"
+        Me.InputLocation.Size = New System.Drawing.Size(286, 20)
+        Me.InputLocation.TabIndex = 4
         '
         'Button4
         '
@@ -90,12 +92,12 @@ Partial Class Form1
         Me.Button7.Text = "Browse file"
         Me.Button7.UseVisualStyleBackColor = True
         '
-        'TextBox2
+        'OutputLocation
         '
-        Me.TextBox2.Location = New System.Drawing.Point(12, 128)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(286, 20)
-        Me.TextBox2.TabIndex = 8
+        Me.OutputLocation.Location = New System.Drawing.Point(12, 128)
+        Me.OutputLocation.Name = "OutputLocation"
+        Me.OutputLocation.Size = New System.Drawing.Size(286, 20)
+        Me.OutputLocation.TabIndex = 8
         '
         'Label5
         '
@@ -213,21 +215,40 @@ Partial Class Form1
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Additional Options:"
         '
-        'Button1
+        'StartButton
         '
-        Me.Button1.Location = New System.Drawing.Point(12, 296)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(506, 53)
-        Me.Button1.TabIndex = 16
-        Me.Button1.Text = "Start"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.StartButton.Location = New System.Drawing.Point(12, 296)
+        Me.StartButton.Name = "StartButton"
+        Me.StartButton.Size = New System.Drawing.Size(506, 53)
+        Me.StartButton.TabIndex = 16
+        Me.StartButton.Text = "Start"
+        Me.StartButton.UseVisualStyleBackColor = True
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(577, 9)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(28, 13)
+        Me.Label2.TabIndex = 17
+        Me.Label2.Text = "Log:"
+        '
+        'Log
+        '
+        Me.Log.Location = New System.Drawing.Point(580, 25)
+        Me.Log.Name = "Log"
+        Me.Log.Size = New System.Drawing.Size(455, 324)
+        Me.Log.TabIndex = 18
+        Me.Log.Text = ""
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(538, 361)
-        Me.Controls.Add(Me.Button1)
+        Me.ClientSize = New System.Drawing.Size(1052, 361)
+        Me.Controls.Add(Me.Log)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.StartButton)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.GroupBox5)
@@ -235,11 +256,11 @@ Partial Class Form1
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.Button7)
-        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.OutputLocation)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.Button4)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.InputLocation)
         Me.Controls.Add(Me.Label4)
         Me.MaximizeBox = False
         Me.Name = "Form1"
@@ -254,11 +275,11 @@ Partial Class Form1
 
 End Sub
     Friend WithEvents Label4 As Label
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents InputLocation As TextBox
     Friend WithEvents Button4 As Button
     Friend WithEvents Button5 As Button
     Friend WithEvents Button7 As Button
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents OutputLocation As TextBox
     Friend WithEvents Label5 As Label
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents RadioButton1 As RadioButton
@@ -271,5 +292,7 @@ End Sub
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents CompressionLevel As ComboBox
     Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents Button1 As Button
+    Friend WithEvents StartButton As Button
+    Friend WithEvents Label2 As Label
+    Friend WithEvents Log As RichTextBox
 End Class
