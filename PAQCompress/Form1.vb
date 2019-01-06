@@ -17,6 +17,15 @@
         ElseIf PAQSeries.SelectedItem = "FP8" Then
             PAQVersion.Items.AddRange({"v1", "v2", "v3", "v4", "v5", "v6"})
             PAQVersion.Enabled = True
+        ElseIf PAQSeries.SelectedItem = "PAQ8PX" Then
+            PAQVersion.Items.AddRange({"v42", "v44", "v45", "v46", "v47", "v48", "v49", "v51", "v52", "v53", "v54", "v57", "v58",
+                                      "v60", "v60_Intel_SSE2", "v61_Intel_SSE2", "v64", "v64_Intel_SSE2", "v65", "v66", "v66_Intel_SSE2",
+                                      "v67", "v67_Intel_SSE2", "v68", "v68_Intel_SSE2", "v68e", "v68p3", "v69", "v69_Intel_SSE2"})
+            PAQVersion.Enabled = True
         End If
+    End Sub
+
+    Private Sub PAQVersion_SelectedIndexChanged(sender As Object, e As EventArgs) Handles PAQVersion.SelectedIndexChanged
+
     End Sub
 End Class
