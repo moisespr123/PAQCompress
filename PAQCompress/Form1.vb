@@ -5,8 +5,9 @@
 
     Private Sub PAQSeries_SelectedIndexChanged(sender As Object, e As EventArgs) Handles PAQSeries.SelectedIndexChanged
         PAQVersion.Items.Clear()
-        CompressionLevel.Items.Clear()
         PAQVersion.Text = String.Empty
+        CompressionLevel.Items.Clear()
+        CompressionLevel.Text = String.Empty
         If PAQSeries.SelectedItem Is "PAQ8o10t" Or PAQSeries.SelectedItem Is "PAQ8PXPRE" Then
             CompressionLevel.Items.AddRange({"1", "2", "3", "4", "5", "6", "7", "8"})
             PAQVersion.Enabled = False
@@ -33,7 +34,17 @@
         If PAQSeries.SelectedItem Is "PAQ8PX" Then
             If PAQVersion.SelectedIndex > 28 Then
                 CompressionLevel.Items.Add("9")
+            Else
+                CheckCompressionLevelAndChange()
             End If
+        Else
+            CheckCompressionLevelAndChange()
+        End If
+    End Sub
+    Private Sub CheckCompressionLevelAndChange()
+        If CompressionLevel.Text = "9" Then
+            CompressionLevel.Text = "8"
+            CompressionLevel.SelectedItem = "8"
         End If
     End Sub
 

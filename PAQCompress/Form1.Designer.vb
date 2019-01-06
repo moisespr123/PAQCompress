@@ -40,15 +40,15 @@ Partial Class Form1
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.CompressionLevel = New System.Windows.Forms.ComboBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.f_flag = New System.Windows.Forms.CheckBox()
+        Me.s_flag = New System.Windows.Forms.CheckBox()
+        Me.a_flag = New System.Windows.Forms.CheckBox()
+        Me.t_flag = New System.Windows.Forms.CheckBox()
+        Me.e_flag = New System.Windows.Forms.CheckBox()
+        Me.b_flag = New System.Windows.Forms.CheckBox()
         Me.StartButton = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Log = New System.Windows.Forms.RichTextBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox3 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox4 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox5 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox6 = New System.Windows.Forms.CheckBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.GroupBox3.SuspendLayout()
@@ -219,18 +219,78 @@ Partial Class Form1
         '
         Me.GroupBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.GroupBox2.Controls.Add(Me.CheckBox6)
-        Me.GroupBox2.Controls.Add(Me.CheckBox5)
-        Me.GroupBox2.Controls.Add(Me.CheckBox4)
-        Me.GroupBox2.Controls.Add(Me.CheckBox3)
-        Me.GroupBox2.Controls.Add(Me.CheckBox2)
-        Me.GroupBox2.Controls.Add(Me.CheckBox1)
+        Me.GroupBox2.Controls.Add(Me.f_flag)
+        Me.GroupBox2.Controls.Add(Me.s_flag)
+        Me.GroupBox2.Controls.Add(Me.a_flag)
+        Me.GroupBox2.Controls.Add(Me.t_flag)
+        Me.GroupBox2.Controls.Add(Me.e_flag)
+        Me.GroupBox2.Controls.Add(Me.b_flag)
         Me.GroupBox2.Location = New System.Drawing.Point(12, 231)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(562, 94)
         Me.GroupBox2.TabIndex = 15
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "PAQ8PX Additional Options:"
+        '
+        'f_flag
+        '
+        Me.f_flag.AutoSize = True
+        Me.f_flag.Location = New System.Drawing.Point(268, 65)
+        Me.f_flag.Name = "f_flag"
+        Me.f_flag.Size = New System.Drawing.Size(239, 17)
+        Me.f_flag.TabIndex = 5
+        Me.f_flag.Text = "Bypass modeling and mixing on long matches"
+        Me.f_flag.UseVisualStyleBackColor = True
+        '
+        's_flag
+        '
+        Me.s_flag.AutoSize = True
+        Me.s_flag.Location = New System.Drawing.Point(268, 42)
+        Me.s_flag.Name = "s_flag"
+        Me.s_flag.Size = New System.Drawing.Size(285, 17)
+        Me.s_flag.TabIndex = 4
+        Me.s_flag.Text = "Skip the color transform, just reorder the RGB channels"
+        Me.s_flag.UseVisualStyleBackColor = True
+        '
+        'a_flag
+        '
+        Me.a_flag.AutoSize = True
+        Me.a_flag.Location = New System.Drawing.Point(268, 19)
+        Me.a_flag.Name = "a_flag"
+        Me.a_flag.Size = New System.Drawing.Size(129, 17)
+        Me.a_flag.TabIndex = 3
+        Me.a_flag.Text = "Adaptive learning rate"
+        Me.a_flag.UseVisualStyleBackColor = True
+        '
+        't_flag
+        '
+        Me.t_flag.AutoSize = True
+        Me.t_flag.Location = New System.Drawing.Point(6, 65)
+        Me.t_flag.Name = "t_flag"
+        Me.t_flag.Size = New System.Drawing.Size(261, 17)
+        Me.t_flag.TabIndex = 2
+        Me.t_flag.Text = "Pre-train main model  with word and expression list"
+        Me.t_flag.UseVisualStyleBackColor = True
+        '
+        'e_flag
+        '
+        Me.e_flag.AutoSize = True
+        Me.e_flag.Location = New System.Drawing.Point(6, 42)
+        Me.e_flag.Name = "e_flag"
+        Me.e_flag.Size = New System.Drawing.Size(138, 17)
+        Me.e_flag.TabIndex = 1
+        Me.e_flag.Text = "Pre-train x86/x64 model"
+        Me.e_flag.UseVisualStyleBackColor = True
+        '
+        'b_flag
+        '
+        Me.b_flag.AutoSize = True
+        Me.b_flag.Location = New System.Drawing.Point(6, 19)
+        Me.b_flag.Name = "b_flag"
+        Me.b_flag.Size = New System.Drawing.Size(227, 17)
+        Me.b_flag.TabIndex = 0
+        Me.b_flag.Text = "Brute-force detection of DEFLATE streams"
+        Me.b_flag.UseVisualStyleBackColor = True
         '
         'StartButton
         '
@@ -261,66 +321,6 @@ Partial Class Form1
         Me.Log.Size = New System.Drawing.Size(460, 300)
         Me.Log.TabIndex = 18
         Me.Log.Text = ""
-        '
-        'CheckBox1
-        '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(6, 19)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(227, 17)
-        Me.CheckBox1.TabIndex = 0
-        Me.CheckBox1.Text = "Brute-force detection of DEFLATE streams"
-        Me.CheckBox1.UseVisualStyleBackColor = True
-        '
-        'CheckBox2
-        '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Location = New System.Drawing.Point(6, 42)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(138, 17)
-        Me.CheckBox2.TabIndex = 1
-        Me.CheckBox2.Text = "Pre-train x86/x64 model"
-        Me.CheckBox2.UseVisualStyleBackColor = True
-        '
-        'CheckBox3
-        '
-        Me.CheckBox3.AutoSize = True
-        Me.CheckBox3.Location = New System.Drawing.Point(6, 65)
-        Me.CheckBox3.Name = "CheckBox3"
-        Me.CheckBox3.Size = New System.Drawing.Size(261, 17)
-        Me.CheckBox3.TabIndex = 2
-        Me.CheckBox3.Text = "Pre-train main model  with word and expression list"
-        Me.CheckBox3.UseVisualStyleBackColor = True
-        '
-        'CheckBox4
-        '
-        Me.CheckBox4.AutoSize = True
-        Me.CheckBox4.Location = New System.Drawing.Point(268, 19)
-        Me.CheckBox4.Name = "CheckBox4"
-        Me.CheckBox4.Size = New System.Drawing.Size(128, 17)
-        Me.CheckBox4.TabIndex = 3
-        Me.CheckBox4.Text = "adaptive learning rate"
-        Me.CheckBox4.UseVisualStyleBackColor = True
-        '
-        'CheckBox5
-        '
-        Me.CheckBox5.AutoSize = True
-        Me.CheckBox5.Location = New System.Drawing.Point(268, 42)
-        Me.CheckBox5.Name = "CheckBox5"
-        Me.CheckBox5.Size = New System.Drawing.Size(285, 17)
-        Me.CheckBox5.TabIndex = 4
-        Me.CheckBox5.Text = "Skip the color transform, just reorder the RGB channels"
-        Me.CheckBox5.UseVisualStyleBackColor = True
-        '
-        'CheckBox6
-        '
-        Me.CheckBox6.AutoSize = True
-        Me.CheckBox6.Location = New System.Drawing.Point(268, 65)
-        Me.CheckBox6.Name = "CheckBox6"
-        Me.CheckBox6.Size = New System.Drawing.Size(239, 17)
-        Me.CheckBox6.TabIndex = 5
-        Me.CheckBox6.Text = "Bypass modeling and mixing on long matches"
-        Me.CheckBox6.UseVisualStyleBackColor = True
         '
         'Button1
         '
@@ -400,12 +400,12 @@ End Sub
     Friend WithEvents StartButton As Button
     Friend WithEvents Label2 As Label
     Friend WithEvents Log As RichTextBox
-    Friend WithEvents CheckBox1 As CheckBox
-    Friend WithEvents CheckBox6 As CheckBox
-    Friend WithEvents CheckBox5 As CheckBox
-    Friend WithEvents CheckBox4 As CheckBox
-    Friend WithEvents CheckBox3 As CheckBox
-    Friend WithEvents CheckBox2 As CheckBox
+    Friend WithEvents b_flag As CheckBox
+    Friend WithEvents f_flag As CheckBox
+    Friend WithEvents s_flag As CheckBox
+    Friend WithEvents a_flag As CheckBox
+    Friend WithEvents t_flag As CheckBox
+    Friend WithEvents e_flag As CheckBox
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
 End Class
