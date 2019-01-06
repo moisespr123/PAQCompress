@@ -30,7 +30,7 @@ Partial Class Form1
         Me.OutputLocation = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.RadioButton1 = New System.Windows.Forms.RadioButton()
+        Me.CompressRButton = New System.Windows.Forms.RadioButton()
         Me.RadioButton2 = New System.Windows.Forms.RadioButton()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
@@ -119,7 +119,7 @@ Partial Class Form1
         '
         'GroupBox3
         '
-        Me.GroupBox3.Controls.Add(Me.RadioButton1)
+        Me.GroupBox3.Controls.Add(Me.CompressRButton)
         Me.GroupBox3.Controls.Add(Me.RadioButton2)
         Me.GroupBox3.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox3.Name = "GroupBox3"
@@ -128,16 +128,16 @@ Partial Class Form1
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Action"
         '
-        'RadioButton1
+        'CompressRButton
         '
-        Me.RadioButton1.AutoSize = True
-        Me.RadioButton1.Location = New System.Drawing.Point(6, 19)
-        Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(71, 17)
-        Me.RadioButton1.TabIndex = 10
-        Me.RadioButton1.TabStop = True
-        Me.RadioButton1.Text = "Compress"
-        Me.RadioButton1.UseVisualStyleBackColor = True
+        Me.CompressRButton.AutoSize = True
+        Me.CompressRButton.Location = New System.Drawing.Point(6, 19)
+        Me.CompressRButton.Name = "CompressRButton"
+        Me.CompressRButton.Size = New System.Drawing.Size(71, 17)
+        Me.CompressRButton.TabIndex = 10
+        Me.CompressRButton.TabStop = True
+        Me.CompressRButton.Text = "Compress"
+        Me.CompressRButton.UseVisualStyleBackColor = True
         '
         'RadioButton2
         '
@@ -387,7 +387,7 @@ End Sub
     Friend WithEvents OutputLocation As TextBox
     Friend WithEvents Label5 As Label
     Friend WithEvents GroupBox3 As GroupBox
-    Friend WithEvents RadioButton1 As RadioButton
+    Friend WithEvents CompressRButton As RadioButton
     Friend WithEvents RadioButton2 As RadioButton
     Friend WithEvents Label1 As Label
     Friend WithEvents GroupBox4 As GroupBox

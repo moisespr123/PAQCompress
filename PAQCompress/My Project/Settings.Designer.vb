@@ -53,6 +53,138 @@ Namespace My
                 Return defaultInstance
             End Get
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property CompressChecked() As Boolean
+            Get
+                Return CType(Me("CompressChecked"),Boolean)
+            End Get
+            Set
+                Me("CompressChecked") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property ExtractChecked() As Boolean
+            Get
+                Return CType(Me("ExtractChecked"),Boolean)
+            End Get
+            Set
+                Me("ExtractChecked") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("PAQ8PX")>  _
+        Public Property PAQSeries() As String
+            Get
+                Return CType(Me("PAQSeries"),String)
+            End Get
+            Set
+                Me("PAQSeries") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("v174")>  _
+        Public Property PAQVersion() As String
+            Get
+                Return CType(Me("PAQVersion"),String)
+            End Get
+            Set
+                Me("PAQVersion") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("9")>  _
+        Public Property CompressionLevel() As String
+            Get
+                Return CType(Me("CompressionLevel"),String)
+            End Get
+            Set
+                Me("CompressionLevel") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property b_flag() As Boolean
+            Get
+                Return CType(Me("b_flag"),Boolean)
+            End Get
+            Set
+                Me("b_flag") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property e_flag() As Boolean
+            Get
+                Return CType(Me("e_flag"),Boolean)
+            End Get
+            Set
+                Me("e_flag") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property t_flag() As Boolean
+            Get
+                Return CType(Me("t_flag"),Boolean)
+            End Get
+            Set
+                Me("t_flag") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property a_flag() As Boolean
+            Get
+                Return CType(Me("a_flag"),Boolean)
+            End Get
+            Set
+                Me("a_flag") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property s_flag() As Boolean
+            Get
+                Return CType(Me("s_flag"),Boolean)
+            End Get
+            Set
+                Me("s_flag") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property f_flag() As Boolean
+            Get
+                Return CType(Me("f_flag"),Boolean)
+            End Get
+            Set
+                Me("f_flag") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
