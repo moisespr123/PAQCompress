@@ -292,7 +292,6 @@
             Dim result As DialogResult = FolderBrowserDialog2.ShowDialog
             If result = DialogResult.OK Then
                 OutputLocation.Text = FolderBrowserDialog2.SelectedPath
-                AdjustOutputFilename()
             End If
         End If
     End Sub
