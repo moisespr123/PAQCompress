@@ -31,7 +31,7 @@ Partial Class Form1
         Me.Label5 = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.CompressRButton = New System.Windows.Forms.RadioButton()
-        Me.RadioButton2 = New System.Windows.Forms.RadioButton()
+        Me.ExtractRButton = New System.Windows.Forms.RadioButton()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.PAQSeries = New System.Windows.Forms.ComboBox()
@@ -120,7 +120,7 @@ Partial Class Form1
         'GroupBox3
         '
         Me.GroupBox3.Controls.Add(Me.CompressRButton)
-        Me.GroupBox3.Controls.Add(Me.RadioButton2)
+        Me.GroupBox3.Controls.Add(Me.ExtractRButton)
         Me.GroupBox3.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(160, 47)
@@ -139,16 +139,16 @@ Partial Class Form1
         Me.CompressRButton.Text = "Compress"
         Me.CompressRButton.UseVisualStyleBackColor = True
         '
-        'RadioButton2
+        'ExtractRButton
         '
-        Me.RadioButton2.AutoSize = True
-        Me.RadioButton2.Location = New System.Drawing.Point(83, 19)
-        Me.RadioButton2.Name = "RadioButton2"
-        Me.RadioButton2.Size = New System.Drawing.Size(58, 17)
-        Me.RadioButton2.TabIndex = 11
-        Me.RadioButton2.TabStop = True
-        Me.RadioButton2.Text = "Extract"
-        Me.RadioButton2.UseVisualStyleBackColor = True
+        Me.ExtractRButton.AutoSize = True
+        Me.ExtractRButton.Location = New System.Drawing.Point(83, 19)
+        Me.ExtractRButton.Name = "ExtractRButton"
+        Me.ExtractRButton.Size = New System.Drawing.Size(58, 17)
+        Me.ExtractRButton.TabIndex = 11
+        Me.ExtractRButton.TabStop = True
+        Me.ExtractRButton.Text = "Extract"
+        Me.ExtractRButton.UseVisualStyleBackColor = True
         '
         'Label1
         '
@@ -388,7 +388,7 @@ End Sub
     Friend WithEvents Label5 As Label
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents CompressRButton As RadioButton
-    Friend WithEvents RadioButton2 As RadioButton
+    Friend WithEvents ExtractRButton As RadioButton
     Friend WithEvents Label1 As Label
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents PAQSeries As ComboBox

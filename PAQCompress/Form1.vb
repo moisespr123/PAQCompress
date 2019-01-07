@@ -4,6 +4,8 @@
         PAQSeries.SelectedItem = My.Settings.PAQSeries
         PAQVersion.SelectedItem = My.Settings.PAQVersion
         CompressionLevel.SelectedItem = My.Settings.CompressionLevel
+        CompressRButton.Checked = My.Settings.CompressChecked
+        ExtractRButton.Checked = My.Settings.ExtractChecked
         b_flag.Checked = My.Settings.b_flag
         e_flag.Checked = My.Settings.e_flag
         t_flag.Checked = My.Settings.t_flag
@@ -37,6 +39,8 @@
             PAQVersion.Enabled = True
         End If
         EnableDisableFlags()
+        My.Settings.PAQSeries = PAQSeries.SelectedItem
+        My.Settings.Save()
     End Sub
 
     Private Sub PAQVersion_SelectedIndexChanged(sender As Object, e As EventArgs) Handles PAQVersion.SelectedIndexChanged
@@ -52,6 +56,8 @@
             CheckCompressionLevelAndChange()
         End If
         EnableDisableFlags()
+        My.Settings.PAQVersion = PAQVersion.SelectedItem
+        My.Settings.Save()
     End Sub
     Private Sub CheckCompressionLevelAndChange()
         If CompressionLevel.Text = "9" Then
@@ -157,5 +163,50 @@
                 Log.ScrollToCaret()
             End If
         End If
+    End Sub
+
+    Private Sub CompressRButton_CheckedChanged(sender As Object, e As EventArgs) Handles CompressRButton.CheckedChanged
+        My.Settings.CompressChecked = CompressRButton.Checked
+        My.Settings.Save()
+    End Sub
+
+    Private Sub ExtractRButton_CheckedChanged(sender As Object, e As EventArgs) Handles ExtractRButton.CheckedChanged
+        My.Settings.ExtractChecked = ExtractRButton.Checked
+        My.Settings.Save()
+    End Sub
+
+    Private Sub b_flag_CheckedChanged(sender As Object, e As EventArgs) Handles b_flag.CheckedChanged
+        My.Settings.b_flag = b_flag.Checked
+        My.Settings.Save()
+    End Sub
+
+    Private Sub e_flag_CheckedChanged(sender As Object, e As EventArgs) Handles e_flag.CheckedChanged
+        My.Settings.e_flag = e_flag.Checked
+        My.Settings.Save()
+    End Sub
+
+    Private Sub t_flag_CheckedChanged(sender As Object, e As EventArgs) Handles t_flag.CheckedChanged
+        My.Settings.t_flag = t_flag.Checked
+        My.Settings.Save()
+    End Sub
+
+    Private Sub a_flag_CheckedChanged(sender As Object, e As EventArgs) Handles a_flag.CheckedChanged
+        My.Settings.a_flag = a_flag.Checked
+        My.Settings.Save()
+    End Sub
+
+    Private Sub s_flag_CheckedChanged(sender As Object, e As EventArgs) Handles s_flag.CheckedChanged
+        My.Settings.s_flag = s_flag.Checked
+        My.Settings.Save()
+    End Sub
+
+    Private Sub f_flag_CheckedChanged(sender As Object, e As EventArgs) Handles f_flag.CheckedChanged
+        My.Settings.f_flag = s_flag.Checked
+        My.Settings.Save()
+    End Sub
+
+    Private Sub CompressionLevel_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CompressionLevel.SelectedIndexChanged
+        My.Settings.CompressionLevel = CompressionLevel.SelectedItem
+        My.Settings.Save()
     End Sub
 End Class
