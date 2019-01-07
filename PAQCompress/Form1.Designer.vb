@@ -54,6 +54,7 @@ Partial Class Form1
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.FolderBrowserDialog2 = New System.Windows.Forms.FolderBrowserDialog()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -101,7 +102,7 @@ Partial Class Form1
         Me.BrowseOutput.Name = "BrowseOutput"
         Me.BrowseOutput.Size = New System.Drawing.Size(104, 23)
         Me.BrowseOutput.TabIndex = 6
-        Me.BrowseOutput.Text = "Browse file"
+        Me.BrowseOutput.Text = "Browse"
         Me.BrowseOutput.UseVisualStyleBackColor = True
         '
         'OutputLocation
@@ -418,4 +419,5 @@ End Sub
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
     Friend WithEvents SaveFileDialog1 As SaveFileDialog
+    Friend WithEvents FolderBrowserDialog2 As FolderBrowserDialog
 End Class
