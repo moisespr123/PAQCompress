@@ -107,21 +107,23 @@
     Private Sub StartButton_Click(sender As Object, e As EventArgs) Handles StartButton.Click
         Dim CompressorToUse As String = String.Empty
         Dim CompressionParameters As String = String.Empty
-
         If CompressionLevel.Items.Contains(CompressionLevel.Text) Then
-            If PAQSeries.SelectedItem Is "PAQ8KX" Then
-                If PAQVersion.Items.Contains(PAQVersion.Text) Then
-                    CompressorToUse = "Executables/PAQ8KX/paq8kx_" + PAQVersion.Text + ".exe"
-                    If CompressRButton.Checked Then
-                        CompressionParameters = "-" + CompressionLevel.Text + " """ + OutputLocation.Text + """ """ + InputLocation.Text + """"
+            If PAQSeries.SelectedItem IsNot "PAQ8PX" Then
+                If PAQSeries.SelectedItem IsNot "PAQ8o10t" And PAQSeries.SelectedItem IsNot "PAQ8PXPRE" Then
+                    If PAQVersion.Items.Contains(PAQVersion.Text) Then
+                        CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQSeries.Text.ToLower + "_" + PAQVersion.Text + ".exe"
                     Else
-                        CompressionParameters = "-d """ + InputLocation.Text + """ """ + OutputLocation.Text + """"
+                        MessageBox.Show("Select an item from the version dropdown")
                     End If
                 Else
-                    MessageBox.Show("Select an item from the version dropdown")
+                    CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQSeries.Text.ToLower + ".exe"
                 End If
-            End If
-            If PAQSeries.SelectedItem Is "PAQ8PX" Then
+                If CompressRButton.Checked Then
+                    CompressionParameters = "-" + CompressionLevel.Text + " """ + OutputLocation.Text + """ """ + InputLocation.Text + """"
+                Else
+                    CompressionParameters = "-d """ + InputLocation.Text + """ """ + OutputLocation.Text + """"
+                End If
+            ElseIf PAQSeries.SelectedItem Is "PAQ8PX" Then
                 If PAQVersion.Items.Contains(PAQVersion.Text) Then
                     CompressorToUse = "Executables/PAQ8PX/paq8px_" + PAQVersion.Text + ".exe"
                     If CompressRButton.Checked Then
