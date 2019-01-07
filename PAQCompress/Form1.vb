@@ -40,6 +40,7 @@
         End If
         If PAQVersion.Enabled Then PAQVersion.SelectedItem = PAQVersion.Items(PAQVersion.Items.Count - 1)
         EnableDisableFlags()
+        AdjustOutputFilename()
         My.Settings.PAQSeries = PAQSeries.SelectedItem.ToString()
         My.Settings.Save()
     End Sub
@@ -57,8 +58,18 @@
             CheckCompressionLevelAndChange()
         End If
         EnableDisableFlags()
+        AdjustOutputFilename()
         My.Settings.PAQVersion = PAQVersion.SelectedItem.ToString()
         My.Settings.Save()
+    End Sub
+    Private Sub AdjustOutputFilename()
+        If Not String.IsNullOrWhiteSpace(OutputLocation.Text) Then
+            If PAQVersion.Enabled Then
+                OutputLocation.Text = IO.Path.GetDirectoryName(OutputLocation.Text) + "\" + IO.Path.GetFileNameWithoutExtension(OutputLocation.Text) + "." + PAQSeries.SelectedItem.ToString.ToLower + "_" + PAQVersion.SelectedItem.ToString()
+            Else
+                OutputLocation.Text = IO.Path.GetDirectoryName(OutputLocation.Text) + "\" + IO.Path.GetFileNameWithoutExtension(OutputLocation.Text) + "." + PAQSeries.SelectedItem.ToString.ToLower
+            End If
+        End If
     End Sub
     Private Sub CheckCompressionLevelAndChange()
         If CompressionLevel.Text = "9" Then
@@ -114,7 +125,18 @@
                 If PAQVersion.Items.Contains(PAQVersion.Text) Then
                     CompressorToUse = "Executables/PAQ8PX/paq8px_" + PAQVersion.Text + ".exe"
                     If CompressRButton.Checked Then
-                        CompressionParameters = "-" + CompressionLevel.Text + " """ + InputLocation.Text + """ """ + OutputLocation.Text + """"
+                        If PAQVersion.SelectedIndex > 28 Then
+                            Dim CompressionFlags As String = "-" + CompressionLevel.Text
+                            If b_flag.Checked Then CompressionFlags += "b"
+                            If e_flag.Checked Then CompressionFlags += "e"
+                            If t_flag.Checked Then CompressionFlags += "t"
+                            If a_flag.Checked Then CompressionFlags += "a"
+                            If s_flag.Checked Then CompressionFlags += "s"
+                            If f_flag.Checked Then CompressionFlags += "f"
+                            CompressionParameters = CompressionFlags + " """ + InputLocation.Text + """ """ + OutputLocation.Text + """"
+                        Else
+                            CompressionParameters = "-" + CompressionLevel.Text + " """ + InputLocation.Text + """ """ + OutputLocation.Text + """"
+                        End If
                     Else
                         CompressionParameters = "-d """ + InputLocation.Text + """ """ + OutputLocation.Text + """"
 
@@ -223,6 +245,26 @@
         Dim result As DialogResult = OpenFileDialog1.ShowDialog
         If result = DialogResult.OK Then
             InputLocation.Text = OpenFileDialog1.FileName
+        End If
+    End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        Dim result As DialogResult = FolderBrowserDialog1.ShowDialog
+        If result = DialogResult.OK Then
+            InputLocation.Text = FolderBrowserDialog1.SelectedPath
+        End If
+    End Sub
+
+    Private Sub BrowseOutput_Click(sender As Object, e As EventArgs) Handles BrowseOutput.Click
+        If CompressRButton.Checked Then
+            SaveFileDialog1.Filter = "PAQ file|*.paq"
+            SaveFileDialog1.Title = "Browse for a file to compress"
+            If Not String.IsNullOrWhiteSpace(InputLocation.Text) Then SaveFileDialog1.FileName = IO.Path.GetFileName(OutputLocation.Text)
+            Dim result As DialogResult = SaveFileDialog1.ShowDialog
+            If result = DialogResult.OK Then
+                OutputLocation.Text = SaveFileDialog1.FileName
+                AdjustOutputFilename()
+            End If
         End If
     End Sub
 End Class
