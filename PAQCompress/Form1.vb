@@ -115,6 +115,9 @@
                     CompressorToUse = "Executables/PAQ8PX/paq8px_" + PAQVersion.Text + ".exe"
                     If CompressRButton.Checked Then
                         CompressionParameters = "-" + CompressionLevel.Text + " """ + InputLocation.Text + """ """ + OutputLocation.Text + """"
+                    Else
+                        CompressionParameters = "-d """ + InputLocation.Text + """ """ + OutputLocation.Text + """"
+
                     End If
                 Else
                     MessageBox.Show("Select an item from the version dropdown")
@@ -211,5 +214,15 @@
     Private Sub CompressionLevel_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CompressionLevel.SelectedIndexChanged
         My.Settings.CompressionLevel = CompressionLevel.SelectedItem.ToString()
         My.Settings.Save()
+    End Sub
+
+    Private Sub BrowseFile_Click(sender As Object, e As EventArgs) Handles BrowseFile.Click
+        OpenFileDialog1.Filter = "All Files|*.*"
+        OpenFileDialog1.Title = "Browse for a file to compress"
+        If Not String.IsNullOrWhiteSpace(InputLocation.Text) Then OpenFileDialog1.FileName = IO.Path.GetFileName(InputLocation.Text)
+        Dim result As DialogResult = OpenFileDialog1.ShowDialog
+        If result = DialogResult.OK Then
+            InputLocation.Text = OpenFileDialog1.FileName
+        End If
     End Sub
 End Class

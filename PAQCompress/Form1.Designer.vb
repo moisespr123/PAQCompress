@@ -24,7 +24,7 @@ Partial Class Form1
     Private Sub InitializeComponent()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.InputLocation = New System.Windows.Forms.TextBox()
-        Me.Button4 = New System.Windows.Forms.Button()
+        Me.BrowseFile = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.BrowseOutput = New System.Windows.Forms.Button()
         Me.OutputLocation = New System.Windows.Forms.TextBox()
@@ -51,6 +51,8 @@ Partial Class Form1
         Me.Log = New System.Windows.Forms.RichTextBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -74,14 +76,14 @@ Partial Class Form1
         Me.InputLocation.Size = New System.Drawing.Size(286, 20)
         Me.InputLocation.TabIndex = 4
         '
-        'Button4
+        'BrowseFile
         '
-        Me.Button4.Location = New System.Drawing.Point(304, 76)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(104, 23)
-        Me.Button4.TabIndex = 2
-        Me.Button4.Text = "Browse file"
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.BrowseFile.Location = New System.Drawing.Point(304, 76)
+        Me.BrowseFile.Name = "BrowseFile"
+        Me.BrowseFile.Size = New System.Drawing.Size(104, 23)
+        Me.BrowseFile.TabIndex = 2
+        Me.BrowseFile.Text = "Browse file"
+        Me.BrowseFile.UseVisualStyleBackColor = True
         '
         'Button5
         '
@@ -362,7 +364,7 @@ Partial Class Form1
         Me.Controls.Add(Me.OutputLocation)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Button5)
-        Me.Controls.Add(Me.Button4)
+        Me.Controls.Add(Me.BrowseFile)
         Me.Controls.Add(Me.InputLocation)
         Me.Controls.Add(Me.Label4)
         Me.MaximizeBox = False
@@ -381,7 +383,7 @@ Partial Class Form1
 End Sub
     Friend WithEvents Label4 As Label
     Friend WithEvents InputLocation As TextBox
-    Friend WithEvents Button4 As Button
+    Friend WithEvents BrowseFile As Button
     Friend WithEvents Button5 As Button
     Friend WithEvents BrowseOutput As Button
     Friend WithEvents OutputLocation As TextBox
@@ -408,4 +410,6 @@ End Sub
     Friend WithEvents e_flag As CheckBox
     Friend WithEvents Button1 As Button
     Friend WithEvents Button2 As Button
+    Friend WithEvents OpenFileDialog1 As OpenFileDialog
+    Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
 End Class
