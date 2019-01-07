@@ -71,6 +71,15 @@
             End If
         End If
     End Sub
+
+    Private Sub GetDirectoriesAndFiles(ByVal BaseFolder As IO.DirectoryInfo, ByVal TextFile As IO.StreamWriter)
+        For Each FI As IO.FileInfo In BaseFolder.GetFiles()
+            TextFile.WriteLine(FI.FullName)
+        Next
+        For Each subF As IO.DirectoryInfo In BaseFolder.GetDirectories()
+            GetDirectoriesAndFiles(subF, TextFile)
+        Next
+    End Sub
     Private Sub CheckCompressionLevelAndChange()
         If CompressionLevel.Text = "9" Then
             CompressionLevel.Text = "8"
@@ -135,9 +144,17 @@
                             If a_flag.Checked Then CompressionFlags += "a"
                             If s_flag.Checked Then CompressionFlags += "s"
                             If f_flag.Checked Then CompressionFlags += "f"
-                            CompressionParameters = CompressionFlags + " """ + InputLocation.Text + """ """ + OutputLocation.Text + """"
+                            If My.Computer.FileSystem.DirectoryExists(InputLocation.Text) Then
+                                Dim textFile As String = IO.Path.GetDirectoryName(OutputLocation.Text) + "\" + IO.Path.GetFileNameWithoutExtension(OutputLocation.Text) + ".txt"
+                                Dim textFileStream As New IO.StreamWriter(textFile, False)
+                                GetDirectoriesAndFiles(New IO.DirectoryInfo(InputLocation.Text), textFileStream)
+                                textFileStream.Close()
+                                CompressionParameters = CompressionFlags + " ""@" + textFile + """ """ + OutputLocation.Text + """"
+                            Else
+                                CompressionParameters = CompressionFlags + " """ + InputLocation.Text + """ """ + OutputLocation.Text + """"
+                            End If
                         Else
-                            CompressionParameters = "-" + CompressionLevel.Text + " """ + InputLocation.Text + """ """ + OutputLocation.Text + """"
+                            CompressionParameters = "-" + CompressionLevel.Text + " """ + OutputLocation.Text + """ """ + InputLocation.Text + """"
                         End If
                     Else
                         CompressionParameters = "-d """ + InputLocation.Text + """ """ + OutputLocation.Text + """"
