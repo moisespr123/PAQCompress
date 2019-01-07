@@ -38,8 +38,9 @@
                                       "v67", "v67_Intel_SSE2", "v68", "v68_Intel_SSE2", "v68e", "v68p3", "v69", "v69_Intel_SSE2", "v174"})
             PAQVersion.Enabled = True
         End If
+        If PAQVersion.Enabled Then PAQVersion.SelectedItem = PAQVersion.Items(PAQVersion.Items.Count - 1)
         EnableDisableFlags()
-        My.Settings.PAQSeries = PAQSeries.SelectedItem
+        My.Settings.PAQSeries = PAQSeries.SelectedItem.ToString()
         My.Settings.Save()
     End Sub
 
@@ -56,7 +57,7 @@
             CheckCompressionLevelAndChange()
         End If
         EnableDisableFlags()
-        My.Settings.PAQVersion = PAQVersion.SelectedItem
+        My.Settings.PAQVersion = PAQVersion.SelectedItem.ToString()
         My.Settings.Save()
     End Sub
     Private Sub CheckCompressionLevelAndChange()
@@ -102,6 +103,8 @@
                     CompressorToUse = "Executables/PAQ8KX/paq8kx_" + PAQVersion.Text + ".exe"
                     If CompressRButton.Checked Then
                         CompressionParameters = "-" + CompressionLevel.Text + " """ + OutputLocation.Text + """ """ + InputLocation.Text + """"
+                    Else
+                        CompressionParameters = "-d """ + InputLocation.Text + """ """ + OutputLocation.Text + """"
                     End If
                 Else
                     MessageBox.Show("Select an item from the version dropdown")
@@ -114,7 +117,7 @@
                         CompressionParameters = "-" + CompressionLevel.Text + " """ + InputLocation.Text + """ """ + OutputLocation.Text + """"
                     End If
                 Else
-                        MessageBox.Show("Select an item from the version dropdown")
+                    MessageBox.Show("Select an item from the version dropdown")
                 End If
             End If
         End If
@@ -206,7 +209,7 @@
     End Sub
 
     Private Sub CompressionLevel_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CompressionLevel.SelectedIndexChanged
-        My.Settings.CompressionLevel = CompressionLevel.SelectedItem
+        My.Settings.CompressionLevel = CompressionLevel.SelectedItem.ToString()
         My.Settings.Save()
     End Sub
 End Class

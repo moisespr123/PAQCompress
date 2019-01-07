@@ -26,7 +26,7 @@ Partial Class Form1
         Me.InputLocation = New System.Windows.Forms.TextBox()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
-        Me.Button7 = New System.Windows.Forms.Button()
+        Me.BrowseOutput = New System.Windows.Forms.Button()
         Me.OutputLocation = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
@@ -92,14 +92,14 @@ Partial Class Form1
         Me.Button5.Text = "Browse folder"
         Me.Button5.UseVisualStyleBackColor = True
         '
-        'Button7
+        'BrowseOutput
         '
-        Me.Button7.Location = New System.Drawing.Point(304, 126)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(104, 23)
-        Me.Button7.TabIndex = 6
-        Me.Button7.Text = "Browse file"
-        Me.Button7.UseVisualStyleBackColor = True
+        Me.BrowseOutput.Location = New System.Drawing.Point(304, 126)
+        Me.BrowseOutput.Name = "BrowseOutput"
+        Me.BrowseOutput.Size = New System.Drawing.Size(104, 23)
+        Me.BrowseOutput.TabIndex = 6
+        Me.BrowseOutput.Text = "Browse file"
+        Me.BrowseOutput.UseVisualStyleBackColor = True
         '
         'OutputLocation
         '
@@ -358,7 +358,7 @@ Partial Class Form1
         Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.GroupBox3)
-        Me.Controls.Add(Me.Button7)
+        Me.Controls.Add(Me.BrowseOutput)
         Me.Controls.Add(Me.OutputLocation)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Button5)
@@ -383,7 +383,7 @@ End Sub
     Friend WithEvents InputLocation As TextBox
     Friend WithEvents Button4 As Button
     Friend WithEvents Button5 As Button
-    Friend WithEvents Button7 As Button
+    Friend WithEvents BrowseOutput As Button
     Friend WithEvents OutputLocation As TextBox
     Friend WithEvents Label5 As Label
     Friend WithEvents GroupBox3 As GroupBox
