@@ -15,6 +15,30 @@
         EnableDisableFlags()
     End Sub
 
+    Private Sub AdjustPAQVersion(Extension As String)
+        Dim split_extension As String() = Extension.Split({"_"}, StringSplitOptions.RemoveEmptyEntries)
+        If split_extension.Count >= 2 Then
+            For Each item As String In PAQSeries.Items
+                If item.ToLower = split_extension(0).Remove(0, 1) Then
+                    PAQSeries.SelectedItem = item
+                End If
+            Next
+            For Each item As String In PAQVersion.Items
+                If item.ToLower = split_extension(1) Then
+                    PAQVersion.SelectedItem = item
+                End If
+            Next
+        ElseIf Extension.Contains(".paq8px") Then
+            PAQSeries.SelectedItem = "PAQ8PX"
+            Dim split_paq8px_version As String() = Extension.Split({".paq8px"}, StringSplitOptions.RemoveEmptyEntries)
+            Dim paq_version As String = "v" + split_paq8px_version(0)
+            For Each item As String In PAQVersion.Items
+                If item.ToLower = paq_version Then
+                    PAQVersion.SelectedItem = item
+                End If
+            Next
+        End If
+    End Sub
     Private Sub PAQSeries_SelectedIndexChanged(sender As Object, e As EventArgs) Handles PAQSeries.SelectedIndexChanged
         PAQVersion.Items.Clear()
         PAQVersion.Text = String.Empty
@@ -38,7 +62,13 @@
                                       "v67", "v67_Intel_SSE2", "v68", "v68_Intel_SSE2", "v68e", "v68p3", "v69", "v69_Intel_SSE2", "v174"})
             PAQVersion.Enabled = True
         End If
-        If PAQVersion.Enabled Then PAQVersion.SelectedItem = PAQVersion.Items(PAQVersion.Items.Count - 1)
+        If PAQVersion.Enabled Then
+            If PAQVersion.Items.Contains(My.Settings.PAQVersion) Then
+                PAQVersion.SelectedItem = My.Settings.PAQVersion
+            Else
+                PAQVersion.SelectedItem = PAQVersion.Items(PAQVersion.Items.Count - 1)
+            End If
+        End If
         EnableDisableFlags()
         AdjustOutputFilename()
         My.Settings.PAQSeries = PAQSeries.SelectedItem.ToString()
@@ -65,19 +95,24 @@
     Private Sub AdjustOutputFilename()
         If Not String.IsNullOrWhiteSpace(OutputLocation.Text) Then
             If PAQVersion.Enabled Then
-                OutputLocation.Text = IO.Path.GetDirectoryName(OutputLocation.Text) + "\" + IO.Path.GetFileNameWithoutExtension(OutputLocation.Text) + "." + PAQSeries.SelectedItem.ToString.ToLower + "_" + PAQVersion.SelectedItem.ToString()
+                If PAQSeries.SelectedItem Is "PAQ8PX" And PAQVersion.SelectedIndex > 28 Then
+                    OutputLocation.Text = IO.Path.GetDirectoryName(OutputLocation.Text) + "\" + IO.Path.GetFileNameWithoutExtension(OutputLocation.Text) + "." + PAQSeries.SelectedItem.ToString.ToLower + PAQVersion.SelectedItem.ToString().Remove(0, 1)
+                Else
+                    OutputLocation.Text = IO.Path.GetDirectoryName(OutputLocation.Text) + "\" + IO.Path.GetFileNameWithoutExtension(OutputLocation.Text) + "." + PAQSeries.SelectedItem.ToString.ToLower + "_" + PAQVersion.SelectedItem.ToString()
+                End If
+
             Else
                 OutputLocation.Text = IO.Path.GetDirectoryName(OutputLocation.Text) + "\" + IO.Path.GetFileNameWithoutExtension(OutputLocation.Text) + "." + PAQSeries.SelectedItem.ToString.ToLower
             End If
         End If
     End Sub
 
-    Private Sub GetDirectoriesAndFiles(ByVal BaseFolder As IO.DirectoryInfo, ByVal TextFile As IO.StreamWriter)
+    Private Sub GetDirectoriesAndFiles(ByVal OrigLocation As String, ByVal BaseFolder As IO.DirectoryInfo, ByVal TextFile As IO.StreamWriter)
         For Each FI As IO.FileInfo In BaseFolder.GetFiles()
-            TextFile.WriteLine(FI.FullName)
+            TextFile.WriteLine(FI.FullName.Remove(0, OrigLocation.Count + 1))
         Next
         For Each subF As IO.DirectoryInfo In BaseFolder.GetDirectories()
-            GetDirectoriesAndFiles(subF, TextFile)
+            GetDirectoriesAndFiles(OrigLocation, subF, TextFile)
         Next
     End Sub
     Private Sub CheckCompressionLevelAndChange()
@@ -144,14 +179,16 @@
                             If a_flag.Checked Then CompressionFlags += "a"
                             If s_flag.Checked Then CompressionFlags += "s"
                             If f_flag.Checked Then CompressionFlags += "f"
+                            Dim textFile As String = IO.Path.GetDirectoryName(OutputLocation.Text) + "\" + IO.Path.GetFileNameWithoutExtension(OutputLocation.Text) + ".txt"
                             If My.Computer.FileSystem.DirectoryExists(InputLocation.Text) Then
-                                Dim textFile As String = IO.Path.GetDirectoryName(OutputLocation.Text) + "\" + IO.Path.GetFileNameWithoutExtension(OutputLocation.Text) + ".txt"
                                 Dim textFileStream As New IO.StreamWriter(textFile, False)
-                                GetDirectoriesAndFiles(New IO.DirectoryInfo(InputLocation.Text), textFileStream)
+                                textFileStream.WriteLine()
+                                GetDirectoriesAndFiles(IO.Path.GetDirectoryName(InputLocation.Text), New IO.DirectoryInfo(InputLocation.Text), textFileStream)
                                 textFileStream.Close()
                                 CompressionParameters = CompressionFlags + " ""@" + textFile + """ """ + OutputLocation.Text + """"
                             Else
-                                CompressionParameters = CompressionFlags + " """ + InputLocation.Text + """ """ + OutputLocation.Text + """"
+                                My.Computer.FileSystem.WriteAllText(textFile, Environment.NewLine + IO.Path.GetFileName(InputLocation.Text), False)
+                                CompressionParameters = CompressionFlags + " ""@" + textFile + """ """ + OutputLocation.Text + """"
                             End If
                         Else
                             CompressionParameters = "-" + CompressionLevel.Text + " """ + OutputLocation.Text + """ """ + InputLocation.Text + """"
@@ -217,11 +254,13 @@
     End Sub
 
     Private Sub CompressRButton_CheckedChanged(sender As Object, e As EventArgs) Handles CompressRButton.CheckedChanged
+        BrowseFolder.Enabled = True
         My.Settings.CompressChecked = CompressRButton.Checked
         My.Settings.Save()
     End Sub
 
     Private Sub ExtractRButton_CheckedChanged(sender As Object, e As EventArgs) Handles ExtractRButton.CheckedChanged
+        BrowseFolder.Enabled = False
         My.Settings.ExtractChecked = ExtractRButton.Checked
         My.Settings.Save()
     End Sub
@@ -268,10 +307,13 @@
         Dim result As DialogResult = OpenFileDialog1.ShowDialog
         If result = DialogResult.OK Then
             InputLocation.Text = OpenFileDialog1.FileName
+            If ExtractRButton.Checked Then
+                AdjustPAQVersion(IO.Path.GetExtension(OpenFileDialog1.FileName))
+            End If
         End If
     End Sub
 
-    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+    Private Sub BrowseFolder_Click(sender As Object, e As EventArgs) Handles BrowseFolder.Click
         Dim result As DialogResult = FolderBrowserDialog1.ShowDialog
         If result = DialogResult.OK Then
             InputLocation.Text = FolderBrowserDialog1.SelectedPath

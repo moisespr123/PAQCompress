@@ -25,7 +25,7 @@ Partial Class Form1
         Me.Label4 = New System.Windows.Forms.Label()
         Me.InputLocation = New System.Windows.Forms.TextBox()
         Me.BrowseFile = New System.Windows.Forms.Button()
-        Me.Button5 = New System.Windows.Forms.Button()
+        Me.BrowseFolder = New System.Windows.Forms.Button()
         Me.BrowseOutput = New System.Windows.Forms.Button()
         Me.OutputLocation = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -88,14 +88,14 @@ Partial Class Form1
         Me.BrowseFile.Text = "Browse file"
         Me.BrowseFile.UseVisualStyleBackColor = True
         '
-        'Button5
+        'BrowseFolder
         '
-        Me.Button5.Location = New System.Drawing.Point(414, 76)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(104, 23)
-        Me.Button5.TabIndex = 5
-        Me.Button5.Text = "Browse folder"
-        Me.Button5.UseVisualStyleBackColor = True
+        Me.BrowseFolder.Location = New System.Drawing.Point(414, 76)
+        Me.BrowseFolder.Name = "BrowseFolder"
+        Me.BrowseFolder.Size = New System.Drawing.Size(104, 23)
+        Me.BrowseFolder.TabIndex = 5
+        Me.BrowseFolder.Text = "Browse folder"
+        Me.BrowseFolder.UseVisualStyleBackColor = True
         '
         'BrowseOutput
         '
@@ -380,7 +380,7 @@ Partial Class Form1
         Me.Controls.Add(Me.BrowseOutput)
         Me.Controls.Add(Me.OutputLocation)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.Button5)
+        Me.Controls.Add(Me.BrowseFolder)
         Me.Controls.Add(Me.BrowseFile)
         Me.Controls.Add(Me.InputLocation)
         Me.Controls.Add(Me.Label4)
@@ -401,7 +401,7 @@ End Sub
     Friend WithEvents Label4 As Label
     Friend WithEvents InputLocation As TextBox
     Friend WithEvents BrowseFile As Button
-    Friend WithEvents Button5 As Button
+    Friend WithEvents BrowseFolder As Button
     Friend WithEvents BrowseOutput As Button
     Friend WithEvents OutputLocation As TextBox
     Friend WithEvents Label5 As Label
