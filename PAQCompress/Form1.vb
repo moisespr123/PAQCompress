@@ -167,6 +167,8 @@
         End If
         If Not String.IsNullOrEmpty(CompressorToUse) And Not String.IsNullOrEmpty(CompressionParameters) Then
             StartButton.Enabled = False
+            ClearLogButton.Enabled = False
+            SaveLogButton.Enabled = False
             Dim StartCompressionThread = New Threading.Thread(Sub() CompressionThread(CompressorToUse, CompressionParameters))
             StartCompressionThread.Start()
         Else
@@ -190,6 +192,8 @@
             process.BeginErrorReadLine()
             process.WaitForExit()
             StartButton.BeginInvoke(Sub() StartButton.Enabled = True)
+            ClearLogButton.BeginInvoke(Sub() ClearLogButton.Enabled = True)
+            SaveLogButton.BeginInvoke(Sub() SaveLogButton.Enabled = True)
         End Using
     End Sub
 

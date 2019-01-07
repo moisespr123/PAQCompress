@@ -49,12 +49,13 @@ Partial Class Form1
         Me.StartButton = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Log = New System.Windows.Forms.RichTextBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.SaveLogButton = New System.Windows.Forms.Button()
+        Me.ClearLogButton = New System.Windows.Forms.Button()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.FolderBrowserDialog2 = New System.Windows.Forms.FolderBrowserDialog()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -231,7 +232,7 @@ Partial Class Form1
         Me.GroupBox2.Controls.Add(Me.b_flag)
         Me.GroupBox2.Location = New System.Drawing.Point(12, 231)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(562, 94)
+        Me.GroupBox2.Size = New System.Drawing.Size(562, 92)
         Me.GroupBox2.TabIndex = 15
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "PAQ8PX Additional Options:"
@@ -299,7 +300,7 @@ Partial Class Form1
         'StartButton
         '
         Me.StartButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.StartButton.Location = New System.Drawing.Point(12, 331)
+        Me.StartButton.Location = New System.Drawing.Point(12, 329)
         Me.StartButton.Name = "StartButton"
         Me.StartButton.Size = New System.Drawing.Size(562, 53)
         Me.StartButton.TabIndex = 16
@@ -322,41 +323,51 @@ Partial Class Form1
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Log.Location = New System.Drawing.Point(580, 25)
         Me.Log.Name = "Log"
-        Me.Log.Size = New System.Drawing.Size(460, 300)
+        Me.Log.Size = New System.Drawing.Size(460, 298)
         Me.Log.TabIndex = 18
         Me.Log.Text = ""
         '
-        'Button1
+        'SaveLogButton
         '
-        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button1.Location = New System.Drawing.Point(832, 331)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(208, 53)
-        Me.Button1.TabIndex = 19
-        Me.Button1.Text = "Save Log"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.SaveLogButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SaveLogButton.Location = New System.Drawing.Point(832, 329)
+        Me.SaveLogButton.Name = "SaveLogButton"
+        Me.SaveLogButton.Size = New System.Drawing.Size(208, 53)
+        Me.SaveLogButton.TabIndex = 19
+        Me.SaveLogButton.Text = "Save Log"
+        Me.SaveLogButton.UseVisualStyleBackColor = True
         '
-        'Button2
+        'ClearLogButton
         '
-        Me.Button2.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.Button2.Location = New System.Drawing.Point(580, 331)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(241, 53)
-        Me.Button2.TabIndex = 20
-        Me.Button2.Text = "Clear Log"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.ClearLogButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.ClearLogButton.Location = New System.Drawing.Point(580, 329)
+        Me.ClearLogButton.Name = "ClearLogButton"
+        Me.ClearLogButton.Size = New System.Drawing.Size(241, 53)
+        Me.ClearLogButton.TabIndex = 20
+        Me.ClearLogButton.Text = "Clear Log"
+        Me.ClearLogButton.UseVisualStyleBackColor = True
         '
         'FolderBrowserDialog1
         '
         Me.FolderBrowserDialog1.ShowNewFolderButton = False
         '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(9, 392)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(152, 13)
+        Me.Label3.TabIndex = 21
+        Me.Label3.Text = "v0.1 - GUI by: Moisés Cardona"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1052, 394)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
+        Me.ClientSize = New System.Drawing.Size(1052, 414)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.ClearLogButton)
+        Me.Controls.Add(Me.SaveLogButton)
         Me.Controls.Add(Me.Log)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.StartButton)
@@ -414,10 +425,11 @@ End Sub
     Friend WithEvents a_flag As CheckBox
     Friend WithEvents t_flag As CheckBox
     Friend WithEvents e_flag As CheckBox
-    Friend WithEvents Button1 As Button
-    Friend WithEvents Button2 As Button
+    Friend WithEvents SaveLogButton As Button
+    Friend WithEvents ClearLogButton As Button
     Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
     Friend WithEvents SaveFileDialog1 As SaveFileDialog
     Friend WithEvents FolderBrowserDialog2 As FolderBrowserDialog
+    Friend WithEvents Label3 As Label
 End Class
