@@ -323,6 +323,7 @@ Partial Class Form1
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Log.Location = New System.Drawing.Point(580, 25)
         Me.Log.Name = "Log"
+        Me.Log.ReadOnly = True
         Me.Log.Size = New System.Drawing.Size(460, 298)
         Me.Log.TabIndex = 18
         Me.Log.Text = ""

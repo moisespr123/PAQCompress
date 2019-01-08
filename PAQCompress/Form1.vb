@@ -352,4 +352,19 @@
             End If
         End If
     End Sub
+
+    Private Sub SaveLogButton_Click(sender As Object, e As EventArgs) Handles SaveLogButton.Click
+        Dim SaveDialog As New SaveFileDialog With {
+           .Filter = "Text ile|*.txt",
+           .FileName = String.Empty,
+           .Title = "Browse to save the log"}
+        Dim result As DialogResult = SaveDialog.ShowDialog
+        If result = DialogResult.OK Then
+            If Not String.IsNullOrWhiteSpace(SaveDialog.FileName) Then My.Computer.FileSystem.WriteAllText(SaveDialog.FileName, Log.Text, False)
+        End If
+    End Sub
+
+    Private Sub ClearLogButton_Click(sender As Object, e As EventArgs) Handles ClearLogButton.Click
+        Log.Text = String.Empty
+    End Sub
 End Class
