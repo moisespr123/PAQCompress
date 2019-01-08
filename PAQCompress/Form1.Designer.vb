@@ -321,6 +321,7 @@ Partial Class Form1
         Me.Log.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Log.BackColor = System.Drawing.SystemColors.Window
         Me.Log.Location = New System.Drawing.Point(580, 25)
         Me.Log.Name = "Log"
         Me.Log.ReadOnly = True

@@ -359,7 +359,7 @@
 
     Private Sub SaveLogButton_Click(sender As Object, e As EventArgs) Handles SaveLogButton.Click
         Dim SaveDialog As New SaveFileDialog With {
-           .Filter = "Text ile|*.txt",
+           .Filter = "Text file|*.txt",
            .FileName = String.Empty,
            .Title = "Browse to save the log"}
         Dim result As DialogResult = SaveDialog.ShowDialog
