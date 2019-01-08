@@ -17,28 +17,33 @@
     End Sub
 
     Private Sub AdjustPAQVersion(Extension As String)
-        Dim split_extension As String() = Extension.Split({"_"}, StringSplitOptions.RemoveEmptyEntries)
-        If split_extension.Count >= 2 Then
-            For Each item As String In PAQSeries.Items
-                If item.ToLower = split_extension(0).Remove(0, 1).ToLower Then
-                    PAQSeries.SelectedItem = item
-                End If
-            Next
-            For Each item As String In PAQVersion.Items
-                If item.ToLower = split_extension(1).ToLower Then
-                    PAQVersion.SelectedItem = item
-                End If
-            Next
-        ElseIf Extension.Contains(".paq8px") Then
-            PAQSeries.SelectedItem = "PAQ8PX"
-            Dim split_paq8px_version As String() = Extension.Split({".paq8px"}, StringSplitOptions.RemoveEmptyEntries)
-            Dim paq_version As String = "v" + split_paq8px_version(0)
-            For Each item As String In PAQVersion.Items
-                If item.ToLower = paq_version Then
-                    PAQVersion.SelectedItem = item
-                End If
-            Next
-        End If
+        Dim split_filename As String() = Extension.Split({"."}, StringSplitOptions.RemoveEmptyEntries)
+        For Each filename_split As String In split_filename
+            Dim extension_split As String() = filename_split.Split({"_"}, StringSplitOptions.RemoveEmptyEntries)
+            If extension_split.Count >= 2 Then
+                For Each item As String In PAQSeries.Items
+                    If item.ToLower = extension_split(0).ToLower Then
+                        PAQSeries.SelectedItem = item
+                    End If
+                Next
+                For Each item As String In PAQVersion.Items
+                    If item.ToLower = extension_split(1).ToLower Then
+                        PAQVersion.SelectedItem = item
+                    End If
+                Next
+            ElseIf Extension.Contains(".paq8px") Then
+                PAQSeries.SelectedItem = "PAQ8PX"
+                Dim split_paq8px_version As String() = Extension.Split({".paq8px"}, StringSplitOptions.RemoveEmptyEntries)
+                For Each splitted_item In split_paq8px_version
+                    Dim paq_version As String = "v" + splitted_item
+                    For Each item As String In PAQVersion.Items
+                        If item.ToLower = paq_version Then
+                            PAQVersion.SelectedItem = item
+                        End If
+                    Next
+                Next
+            End If
+        Next
     End Sub
     Private Sub PAQSeries_SelectedIndexChanged(sender As Object, e As EventArgs) Handles PAQSeries.SelectedIndexChanged
         PAQVersion.Items.Clear()
@@ -327,7 +332,7 @@
         If result = DialogResult.OK Then
             InputLocation.Text = OpenFileDialog1.FileName
             If ExtractRButton.Checked Then
-                AdjustPAQVersion(IO.Path.GetExtension(OpenFileDialog1.FileName))
+                AdjustPAQVersion(IO.Path.GetFileName(OpenFileDialog1.FileName))
             End If
         End If
     End Sub
