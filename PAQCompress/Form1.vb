@@ -181,9 +181,13 @@
                     CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQSeries.Text.ToLower + ".exe"
                 End If
                 If CompressRButton.Checked Then
-                    CompressionParameters = "-" + CompressionLevel.Text + " """ + OutputLocation.Text + """ """ + InputLocation.Text + """"
+                    If PAQSeries.SelectedItem IsNot "PAQ8o10t" Then
+                        CompressionParameters = "-" + CompressionLevel.Text + " """ + OutputLocation.Text + """ """ + InputLocation.Text + """"
+                    Else
+                        CompressionParameters = "-" + CompressionLevel.Text + " """ + IO.Path.GetDirectoryName(OutputLocation.Text) + "\" + IO.Path.GetFileNameWithoutExtension(OutputLocation.Text) + """ """ + InputLocation.Text + """"
+                    End If
                 Else
-                    CompressionParameters = "-d """ + InputLocation.Text + """ """ + OutputLocation.Text + """"
+                        CompressionParameters = "-d """ + InputLocation.Text + """ """ + OutputLocation.Text + """"
                 End If
             ElseIf PAQSeries.SelectedItem Is "PAQ8PX" Then
                 If PAQVersion.Items.Contains(PAQVersion.Text) Then
