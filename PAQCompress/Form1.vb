@@ -1,5 +1,6 @@
 ﻿Public Class Form1
-
+    Private Flags_enable As Integer = 47
+    Private f_flag_available As Integer = 56
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         PAQSeries.SelectedItem = My.Settings.PAQSeries
         PAQVersion.SelectedItem = My.Settings.PAQVersion
@@ -83,7 +84,7 @@
         CompressionLevel.Items.Clear()
         CompressionLevel.Items.AddRange({"0", "1", "2", "3", "4", "5", "6", "7", "8"})
         If PAQSeries.SelectedItem Is "PAQ8PX" Then
-            If PAQVersion.SelectedIndex > 47 Then
+            If PAQVersion.SelectedIndex > Flags_enable Then
                 CompressionLevel.Items.Add("9")
             Else
                 CheckCompressionLevelAndChange()
@@ -99,7 +100,7 @@
     Private Sub AdjustOutputFilename()
         If Not String.IsNullOrWhiteSpace(OutputLocation.Text) Then
             If PAQVersion.Enabled Then
-                If PAQSeries.SelectedItem Is "PAQ8PX" And PAQVersion.SelectedIndex > 47 Then
+                If PAQSeries.SelectedItem Is "PAQ8PX" And PAQVersion.SelectedIndex > Flags_enable Then
                     OutputLocation.Text = IO.Path.GetDirectoryName(OutputLocation.Text) + "\" + IO.Path.GetFileNameWithoutExtension(OutputLocation.Text) + "." + PAQSeries.SelectedItem.ToString.ToLower + PAQVersion.SelectedItem.ToString().Remove(0, 1)
                 Else
                     OutputLocation.Text = IO.Path.GetDirectoryName(OutputLocation.Text) + "\" + IO.Path.GetFileNameWithoutExtension(OutputLocation.Text) + "." + PAQSeries.SelectedItem.ToString.ToLower + "_" + PAQVersion.SelectedItem.ToString()
@@ -128,7 +129,7 @@
     Private Sub EnableDisableFlags()
         If PAQSeries.SelectedItem Is "PAQ8PX" Then
             If CompressRButton.Checked Then
-                If PAQVersion.SelectedIndex > 47 Then
+                If PAQVersion.SelectedIndex > Flags_enable Then
                     EnableFlagsCheckboxes()
                 Else
                     DisableFlagsCheckboxes()
@@ -146,7 +147,7 @@
         t_flag.Enabled = True
         a_flag.Enabled = True
         s_flag.Enabled = True
-        If PAQVersion.SelectedIndex > 56 Then
+        If PAQVersion.SelectedIndex > f_flag_available Then
             f_flag.Enabled = True
         Else
             f_flag.Enabled = False
@@ -183,14 +184,14 @@
                 If PAQVersion.Items.Contains(PAQVersion.Text) Then
                     CompressorToUse = "Executables/PAQ8PX/paq8px_" + PAQVersion.Text + ".exe"
                     If CompressRButton.Checked Then
-                        If PAQVersion.SelectedIndex > 47 Then
+                        If PAQVersion.SelectedIndex > Flags_enable Then
                             Dim CompressionFlags As String = "-" + CompressionLevel.Text
                             If b_flag.Checked Then CompressionFlags += "b"
                             If e_flag.Checked Then CompressionFlags += "e"
                             If t_flag.Checked Then CompressionFlags += "t"
                             If a_flag.Checked Then CompressionFlags += "a"
                             If s_flag.Checked Then CompressionFlags += "s"
-                            If f_flag.Checked Then CompressionFlags += "f"
+                            If PAQVersion.SelectedIndex > f_flag_available Then If f_flag.Checked Then CompressionFlags += "f"
                             Dim textFile As String = IO.Path.GetDirectoryName(OutputLocation.Text) + "\" + IO.Path.GetFileNameWithoutExtension(OutputLocation.Text) + ".txt"
                             If My.Computer.FileSystem.DirectoryExists(InputLocation.Text) Then
                                 Dim textFileStream As New IO.StreamWriter(textFile, False)
