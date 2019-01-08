@@ -81,18 +81,6 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="About.Designer.vb">
-      <DependentUpon>About.vb</DependentUpon>
-    </Compile>
-    <Compile Include="About.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Extract.Designer.vb">
-      <DependentUpon>Extract.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Extract.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -115,39 +103,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="PAQExtract\FP8Extract.Designer.vb">
-      <DependentUpon>FP8Extract.vb</DependentUpon>
-    </Compile>
-    <Compile Include="PAQExtract\FP8Extract.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PAQExtract\PAQ8KXExtract.Designer.vb">
-      <DependentUpon>PAQ8KXExtract.vb</DependentUpon>
-    </Compile>
-    <Compile Include="PAQExtract\PAQ8KXExtract.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PAQExtract\PAQ8PFExtract.Designer.vb">
-      <DependentUpon>PAQ8PFExtract.vb</DependentUpon>
-    </Compile>
-    <Compile Include="PAQExtract\PAQ8PFExtract.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PAQExtract\PAQ8PXExtract.Designer.vb">
-      <DependentUpon>PAQ8PXExtract.vb</DependentUpon>
-    </Compile>
-    <Compile Include="PAQExtract\PAQ8PXExtract.vb">
-      <SubType>Form</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="About.resx">
-      <DependentUpon>About.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Extract.resx">
-      <DependentUpon>Extract.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -157,18 +114,6 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PAQExtract\FP8Extract.resx">
-      <DependentUpon>FP8Extract.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PAQExtract\PAQ8KXExtract.resx">
-      <DependentUpon>PAQ8KXExtract.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PAQExtract\PAQ8PFExtract.resx">
-      <DependentUpon>PAQ8PFExtract.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PAQExtract\PAQ8PXExtract.resx">
-      <DependentUpon>PAQ8PXExtract.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
