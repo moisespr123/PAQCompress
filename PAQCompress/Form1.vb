@@ -64,7 +64,7 @@
                                       "v71", "v72", "v73", "v74", "v75", "v77", "v80b", "v83", "v85", "v87", "v88", "v90", "v93", "v95",
                                       "v105", "v122", "v126", "v132_fix1", "v137", "v141", "v141fix1", "v141fix2", "v141fix4", "v144",
                                       "v145", "v146", "v156", "v157", "v159", "v163", "v164", "v167", "v168", "v169", "v170", "v171",
-                                      "v172", "v173", "v174"})
+                                      "v172", "v173", "v174", "v175"})
             PAQVersion.Enabled = True
         End If
         If PAQVersion.Enabled Then
@@ -216,11 +216,15 @@
             End If
         End If
         If Not String.IsNullOrEmpty(CompressorToUse) And Not String.IsNullOrEmpty(CompressionParameters) Then
-            StartButton.Enabled = False
-            ClearLogButton.Enabled = False
-            SaveLogButton.Enabled = False
-            Dim StartCompressionThread = New Threading.Thread(Sub() CompressionThread(CompressorToUse, CompressionParameters))
-            StartCompressionThread.Start()
+            If IO.File.Exists(CompressorToUse) Then
+                StartButton.Enabled = False
+                ClearLogButton.Enabled = False
+                SaveLogButton.Enabled = False
+                Dim StartCompressionThread = New Threading.Thread(Sub() CompressionThread(CompressorToUse, CompressionParameters))
+                StartCompressionThread.Start()
+            Else
+                MsgBox("The selected compressor version could not be found. Cannot proceed")
+            End If
         Else
             MessageBox.Show("No compressor has been selected. Cannot proceed.")
         End If
