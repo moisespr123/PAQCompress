@@ -12,7 +12,7 @@
       <Value Profile="(Default)">PAQ8PX</Value>
     </Setting>
     <Setting Name="PAQVersion" Type="System.String" Scope="User">
-      <Value Profile="(Default)">v174</Value>
+      <Value Profile="(Default)">v175</Value>
     </Setting>
     <Setting Name="CompressionLevel" Type="System.String" Scope="User">
       <Value Profile="(Default)">9</Value>
