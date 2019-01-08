@@ -59,7 +59,11 @@
         ElseIf PAQSeries.SelectedItem Is "PAQ8PX" Then
             PAQVersion.Items.AddRange({"v42", "v44", "v45", "v46", "v47", "v48", "v49", "v51", "v52", "v53", "v54", "v57", "v58",
                                       "v60", "v60_Intel_SSE2", "v61_Intel_SSE2", "v64", "v64_Intel_SSE2", "v65", "v66", "v66_Intel_SSE2",
-                                      "v67", "v67_Intel_SSE2", "v68", "v68_Intel_SSE2", "v68e", "v68p3", "v69", "v69_Intel_SSE2", "v174"})
+                                      "v67", "v67_Intel_SSE2", "v68", "v68_Intel_SSE2", "v68e", "v68p3", "v69", "v69_Intel_SSE2", "v70",
+                                      "v71", "v72", "v73", "v74", "v75", "v77", "v80b", "v83", "v85", "v87", "v88", "v90", "v93", "v95",
+                                      "v105", "v122", "v126", "v132_fix1", "v137", "v141", "v141fix1", "v141fix2", "v141fix4", "v144",
+                                      "v145", "v146", "v156", "v157", "v159", "v163", "v164", "v167", "v168", "v169", "v170", "v171",
+                                      "v172", "v173", "v174"})
             PAQVersion.Enabled = True
         End If
         If PAQVersion.Enabled Then
@@ -79,7 +83,7 @@
         CompressionLevel.Items.Clear()
         CompressionLevel.Items.AddRange({"0", "1", "2", "3", "4", "5", "6", "7", "8"})
         If PAQSeries.SelectedItem Is "PAQ8PX" Then
-            If PAQVersion.SelectedIndex > 28 Then
+            If PAQVersion.SelectedIndex > 47 Then
                 CompressionLevel.Items.Add("9")
             Else
                 CheckCompressionLevelAndChange()
@@ -95,7 +99,7 @@
     Private Sub AdjustOutputFilename()
         If Not String.IsNullOrWhiteSpace(OutputLocation.Text) Then
             If PAQVersion.Enabled Then
-                If PAQSeries.SelectedItem Is "PAQ8PX" And PAQVersion.SelectedIndex > 28 Then
+                If PAQSeries.SelectedItem Is "PAQ8PX" And PAQVersion.SelectedIndex > 47 Then
                     OutputLocation.Text = IO.Path.GetDirectoryName(OutputLocation.Text) + "\" + IO.Path.GetFileNameWithoutExtension(OutputLocation.Text) + "." + PAQSeries.SelectedItem.ToString.ToLower + PAQVersion.SelectedItem.ToString().Remove(0, 1)
                 Else
                     OutputLocation.Text = IO.Path.GetDirectoryName(OutputLocation.Text) + "\" + IO.Path.GetFileNameWithoutExtension(OutputLocation.Text) + "." + PAQSeries.SelectedItem.ToString.ToLower + "_" + PAQVersion.SelectedItem.ToString()
@@ -123,8 +127,12 @@
     End Sub
     Private Sub EnableDisableFlags()
         If PAQSeries.SelectedItem Is "PAQ8PX" Then
-            If PAQVersion.SelectedIndex > 28 Then
-                EnableFlagsCheckboxes()
+            If CompressRButton.Checked Then
+                If PAQVersion.SelectedIndex > 47 Then
+                    EnableFlagsCheckboxes()
+                Else
+                    DisableFlagsCheckboxes()
+                End If
             Else
                 DisableFlagsCheckboxes()
             End If
@@ -138,7 +146,11 @@
         t_flag.Enabled = True
         a_flag.Enabled = True
         s_flag.Enabled = True
-        f_flag.Enabled = True
+        If PAQVersion.SelectedIndex > 56 Then
+            f_flag.Enabled = True
+        Else
+            f_flag.Enabled = False
+        End If
     End Sub
     Private Sub DisableFlagsCheckboxes()
         b_flag.Enabled = False
@@ -171,7 +183,7 @@
                 If PAQVersion.Items.Contains(PAQVersion.Text) Then
                     CompressorToUse = "Executables/PAQ8PX/paq8px_" + PAQVersion.Text + ".exe"
                     If CompressRButton.Checked Then
-                        If PAQVersion.SelectedIndex > 28 Then
+                        If PAQVersion.SelectedIndex > 47 Then
                             Dim CompressionFlags As String = "-" + CompressionLevel.Text
                             If b_flag.Checked Then CompressionFlags += "b"
                             If e_flag.Checked Then CompressionFlags += "e"
@@ -254,12 +266,14 @@
     End Sub
 
     Private Sub CompressRButton_CheckedChanged(sender As Object, e As EventArgs) Handles CompressRButton.CheckedChanged
+        EnableDisableFlags()
         BrowseFolder.Enabled = True
         My.Settings.CompressChecked = CompressRButton.Checked
         My.Settings.Save()
     End Sub
 
     Private Sub ExtractRButton_CheckedChanged(sender As Object, e As EventArgs) Handles ExtractRButton.CheckedChanged
+        EnableDisableFlags()
         BrowseFolder.Enabled = False
         My.Settings.ExtractChecked = ExtractRButton.Checked
         My.Settings.Save()
