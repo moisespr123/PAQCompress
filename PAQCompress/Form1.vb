@@ -19,12 +19,12 @@
         Dim split_extension As String() = Extension.Split({"_"}, StringSplitOptions.RemoveEmptyEntries)
         If split_extension.Count >= 2 Then
             For Each item As String In PAQSeries.Items
-                If item.ToLower = split_extension(0).Remove(0, 1) Then
+                If item.ToLower = split_extension(0).Remove(0, 1).ToLower Then
                     PAQSeries.SelectedItem = item
                 End If
             Next
             For Each item As String In PAQVersion.Items
-                If item.ToLower = split_extension(1) Then
+                If item.ToLower = split_extension(1).ToLower Then
                     PAQVersion.SelectedItem = item
                 End If
             Next
