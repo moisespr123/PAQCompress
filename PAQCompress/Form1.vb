@@ -32,6 +32,17 @@
                         PAQVersion.SelectedItem = item
                     End If
                 Next
+            ElseIf Extension.Contains(".paq8pxd") Then
+                PAQSeries.SelectedItem = "PAQ8PXd"
+                Dim split_paq8pxd_version As String() = Extension.Split({".paq8pxd"}, StringSplitOptions.RemoveEmptyEntries)
+                For Each splitted_item In split_paq8pxd_version
+                    Dim paq_version As String = "v" + splitted_item
+                    For Each item As String In PAQVersion.Items
+                        If item.ToLower = paq_version Then
+                            PAQVersion.SelectedItem = item
+                        End If
+                    Next
+                Next
             ElseIf Extension.Contains(".paq8px") Then
                 PAQSeries.SelectedItem = "PAQ8PX"
                 Dim split_paq8px_version As String() = Extension.Split({".paq8px"}, StringSplitOptions.RemoveEmptyEntries)
@@ -66,8 +77,8 @@
             PAQVersion.Enabled = True
         ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Then
             PAQVersion.Items.AddRange({"v60"})
+            CompressionLevel.Text = "s5"
             CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15"})
-            CompressionLevel.SelectedItem = "s5"
             pxdThreads.Enabled = True
             PAQVersion.Enabled = True
         ElseIf PAQSeries.SelectedItem Is "PAQ8PX" Then
@@ -116,7 +127,7 @@
     Private Sub AdjustOutputFilename()
         If Not String.IsNullOrWhiteSpace(OutputLocation.Text) Then
             If PAQVersion.Enabled Then
-                If PAQSeries.SelectedItem Is "PAQ8PX" And PAQVersion.SelectedIndex > Flags_enable Then
+                If (PAQSeries.SelectedItem Is "PAQ8PX" And PAQVersion.SelectedIndex > Flags_enable) Or PAQSeries.SelectedItem Is "PAQ8PXd" Then
                     OutputLocation.Text = IO.Path.GetDirectoryName(OutputLocation.Text) + "\" + IO.Path.GetFileNameWithoutExtension(OutputLocation.Text) + "." + PAQSeries.SelectedItem.ToString.ToLower + PAQVersion.SelectedItem.ToString().Remove(0, 1)
                 Else
                     OutputLocation.Text = IO.Path.GetDirectoryName(OutputLocation.Text) + "\" + IO.Path.GetFileNameWithoutExtension(OutputLocation.Text) + "." + PAQSeries.SelectedItem.ToString.ToLower + "_" + PAQVersion.SelectedItem.ToString()
@@ -195,7 +206,7 @@
                     If PAQSeries.SelectedItem Is "PAQ8o10t" Then
                         CompressionParameters = "-" + CompressionLevel.Text + " """ + IO.Path.GetDirectoryName(OutputLocation.Text) + "\" + IO.Path.GetFileNameWithoutExtension(OutputLocation.Text) + """ """ + InputLocation.Text + """"
                     ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Then
-                        CompressionParameters = "-" + CompressionLevel.Text + ":" + pxdThreads.Text + " """ + OutputLocation.Text + """ """ + InputLocation.Text + """"
+                        CompressionParameters = "-" + CompressionLevel.Text + ":" + pxdThreads.Text + " """ + IO.Path.GetDirectoryName(OutputLocation.Text) + "\" + IO.Path.GetFileNameWithoutExtension(OutputLocation.Text) + """ """ + InputLocation.Text + """"
                     Else
                         CompressionParameters = "-" + CompressionLevel.Text + " """ + OutputLocation.Text + """ """ + InputLocation.Text + """"
                     End If
