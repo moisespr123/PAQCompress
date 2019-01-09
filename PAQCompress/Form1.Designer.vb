@@ -22,13 +22,13 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Step1Label = New System.Windows.Forms.Label()
         Me.InputLocation = New System.Windows.Forms.TextBox()
         Me.BrowseFile = New System.Windows.Forms.Button()
         Me.BrowseFolder = New System.Windows.Forms.Button()
         Me.BrowseOutput = New System.Windows.Forms.Button()
         Me.OutputLocation = New System.Windows.Forms.TextBox()
-        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Step2Label = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.CompressRButton = New System.Windows.Forms.RadioButton()
         Me.ExtractRButton = New System.Windows.Forms.RadioButton()
@@ -63,14 +63,14 @@ Partial Class Form1
         Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
-        'Label4
+        'Step1Label
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(9, 62)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(223, 13)
-        Me.Label4.TabIndex = 3
-        Me.Label4.Text = "Step 1: Browse for a file or folder to compress:"
+        Me.Step1Label.AutoSize = True
+        Me.Step1Label.Location = New System.Drawing.Point(9, 62)
+        Me.Step1Label.Name = "Step1Label"
+        Me.Step1Label.Size = New System.Drawing.Size(223, 13)
+        Me.Step1Label.TabIndex = 3
+        Me.Step1Label.Text = "Step 1: Browse for a file or folder to compress:"
         '
         'InputLocation
         '
@@ -113,14 +113,14 @@ Partial Class Form1
         Me.OutputLocation.Size = New System.Drawing.Size(286, 20)
         Me.OutputLocation.TabIndex = 8
         '
-        'Label5
+        'Step2Label
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(9, 112)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(278, 13)
-        Me.Label5.TabIndex = 7
-        Me.Label5.Text = "Step 2: Browse for a location to store the compressed file:"
+        Me.Step2Label.AutoSize = True
+        Me.Step2Label.Location = New System.Drawing.Point(9, 112)
+        Me.Step2Label.Name = "Step2Label"
+        Me.Step2Label.Size = New System.Drawing.Size(278, 13)
+        Me.Step2Label.TabIndex = 7
+        Me.Step2Label.Text = "Step 2: Browse for a location to store the compressed file:"
         '
         'GroupBox3
         '
@@ -381,11 +381,11 @@ Partial Class Form1
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.BrowseOutput)
         Me.Controls.Add(Me.OutputLocation)
-        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.Step2Label)
         Me.Controls.Add(Me.BrowseFolder)
         Me.Controls.Add(Me.BrowseFile)
         Me.Controls.Add(Me.InputLocation)
-        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.Step1Label)
         Me.MaximizeBox = False
         Me.Name = "Form1"
         Me.Text = "PAQCompress"
@@ -400,13 +400,13 @@ Partial Class Form1
         Me.PerformLayout
 
 End Sub
-    Friend WithEvents Label4 As Label
+    Friend WithEvents Step1Label As Label
     Friend WithEvents InputLocation As TextBox
     Friend WithEvents BrowseFile As Button
     Friend WithEvents BrowseFolder As Button
     Friend WithEvents BrowseOutput As Button
     Friend WithEvents OutputLocation As TextBox
-    Friend WithEvents Label5 As Label
+    Friend WithEvents Step2Label As Label
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents CompressRButton As RadioButton
     Friend WithEvents ExtractRButton As RadioButton

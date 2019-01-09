@@ -282,6 +282,8 @@
     Private Sub CompressRButton_CheckedChanged(sender As Object, e As EventArgs) Handles CompressRButton.CheckedChanged
         EnableDisableFlags()
         BrowseFolder.Enabled = True
+        Step1Label.Text = "Step 1: Browse for a file or folder to compress:"
+        Step2Label.Text = "Step 2: Browse for a location to store the compressed file:"
         My.Settings.CompressChecked = CompressRButton.Checked
         My.Settings.Save()
     End Sub
@@ -289,6 +291,8 @@
     Private Sub ExtractRButton_CheckedChanged(sender As Object, e As EventArgs) Handles ExtractRButton.CheckedChanged
         EnableDisableFlags()
         BrowseFolder.Enabled = False
+        Step1Label.Text = "Step 1: Browse for a file/archive to extract:"
+        Step2Label.Text = "Step 2: Browse for a location to extract the file/archive:"
         My.Settings.ExtractChecked = ExtractRButton.Checked
         My.Settings.Save()
     End Sub
