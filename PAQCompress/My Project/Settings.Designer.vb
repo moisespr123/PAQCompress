@@ -185,6 +185,18 @@ Namespace My
                 Me("f_flag") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("1")>  _
+        Public Property pxdThreads() As String
+            Get
+                Return CType(Me("pxdThreads"),String)
+            End Get
+            Set
+                Me("pxdThreads") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

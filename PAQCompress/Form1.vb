@@ -4,6 +4,7 @@
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         PAQSeries.SelectedItem = My.Settings.PAQSeries
         PAQVersion.SelectedItem = My.Settings.PAQVersion
+        pxdThreads.SelectedItem = My.Settings.pxdThreads
         CompressionLevel.SelectedItem = My.Settings.CompressionLevel
         CompressRButton.Checked = My.Settings.CompressChecked
         ExtractRButton.Checked = My.Settings.ExtractChecked
@@ -50,6 +51,7 @@
         PAQVersion.Text = String.Empty
         CompressionLevel.Items.Clear()
         CompressionLevel.Text = "0"
+        pxdThreads.Enabled = False
         If PAQSeries.SelectedItem Is "PAQ8o10t" Or PAQSeries.SelectedItem Is "PAQ8PXPRE" Then
             CompressionLevel.Items.AddRange({"0", "1", "2", "3", "4", "5", "6", "7", "8"})
             PAQVersion.Enabled = False
@@ -64,6 +66,9 @@
             PAQVersion.Enabled = True
         ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Then
             PAQVersion.Items.AddRange({"v60"})
+            CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15"})
+            CompressionLevel.SelectedItem = "s5"
+            pxdThreads.Enabled = True
             PAQVersion.Enabled = True
         ElseIf PAQSeries.SelectedItem Is "PAQ8PX" Then
             PAQVersion.Items.AddRange({"v42", "v44", "v45", "v46", "v47", "v48", "v49", "v51", "v52", "v53", "v54", "v57", "v58",
@@ -97,6 +102,9 @@
             Else
                 CheckCompressionLevelAndChange()
             End If
+        ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Then
+            CompressionLevel.Items.Clear()
+            CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15"})
         Else
             CheckCompressionLevelAndChange()
         End If
@@ -184,13 +192,15 @@
                     CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQSeries.Text.ToLower + ".exe"
                 End If
                 If CompressRButton.Checked Then
-                    If PAQSeries.SelectedItem IsNot "PAQ8o10t" Then
-                        CompressionParameters = "-" + CompressionLevel.Text + " """ + OutputLocation.Text + """ """ + InputLocation.Text + """"
-                    Else
+                    If PAQSeries.SelectedItem Is "PAQ8o10t" Then
                         CompressionParameters = "-" + CompressionLevel.Text + " """ + IO.Path.GetDirectoryName(OutputLocation.Text) + "\" + IO.Path.GetFileNameWithoutExtension(OutputLocation.Text) + """ """ + InputLocation.Text + """"
+                    ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Then
+                        CompressionParameters = "-" + CompressionLevel.Text + ":" + pxdThreads.Text + " """ + OutputLocation.Text + """ """ + InputLocation.Text + """"
+                    Else
+                        CompressionParameters = "-" + CompressionLevel.Text + " """ + OutputLocation.Text + """ """ + InputLocation.Text + """"
                     End If
                 Else
-                        CompressionParameters = "-d """ + InputLocation.Text + """ """ + OutputLocation.Text + """"
+                    CompressionParameters = "-d """ + InputLocation.Text + """ """ + OutputLocation.Text + """"
                 End If
             ElseIf PAQSeries.SelectedItem Is "PAQ8PX" Then
                 If PAQVersion.Items.Contains(PAQVersion.Text) Then
@@ -220,7 +230,6 @@
                         End If
                     Else
                         CompressionParameters = "-d """ + InputLocation.Text + """ """ + OutputLocation.Text + """"
-
                     End If
                 Else
                     MessageBox.Show("Select an item from the version dropdown")
@@ -386,5 +395,10 @@
 
     Private Sub ClearLogButton_Click(sender As Object, e As EventArgs) Handles ClearLogButton.Click
         Log.Text = String.Empty
+    End Sub
+
+    Private Sub pxdThreads_SelectedIndexChanged(sender As Object, e As EventArgs) Handles pxdThreads.SelectedIndexChanged
+        My.Settings.pxdThreads = pxdThreads.SelectedItem.ToString()
+        My.Settings.Save()
     End Sub
 End Class
