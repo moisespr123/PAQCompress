@@ -225,7 +225,7 @@
                             If a_flag.Checked Then CompressionFlags += "a"
                             If s_flag.Checked Then CompressionFlags += "s"
                             If PAQVersion.SelectedIndex > f_flag_available Then If f_flag.Checked Then CompressionFlags += "f"
-                            Dim textFile As String = IO.Path.GetDirectoryName(OutputLocation.Text) + "\" + IO.Path.GetFileNameWithoutExtension(OutputLocation.Text) + ".txt"
+                            Dim textFile As String = OutputLocation.Text + ".txt"
                             If My.Computer.FileSystem.DirectoryExists(InputLocation.Text) Then
                                 Dim textFileStream As New IO.StreamWriter(textFile, False)
                                 textFileStream.WriteLine()
