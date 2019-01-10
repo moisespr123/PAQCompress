@@ -364,6 +364,9 @@
             InputLocation.Text = OpenFileDialog1.FileName
             If ExtractRButton.Checked Then
                 AdjustPAQVersion(IO.Path.GetFileName(OpenFileDialog1.FileName))
+            Else
+                OutputLocation.Text = InputLocation.Text
+                AdjustOutputFilename()
             End If
         End If
     End Sub
@@ -372,6 +375,8 @@
         Dim result As DialogResult = FolderBrowserDialog1.ShowDialog
         If result = DialogResult.OK Then
             InputLocation.Text = FolderBrowserDialog1.SelectedPath
+            OutputLocation.Text = InputLocation.Text
+            AdjustOutputFilename()
         End If
     End Sub
 
