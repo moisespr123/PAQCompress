@@ -363,7 +363,7 @@ Partial Class Form1
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(152, 13)
         Me.Label3.TabIndex = 21
-        Me.Label3.Text = "v0.1 - GUI by: Moisés Cardona"
+        Me.Label3.Text = "v0.2 - GUI by: Moisés Cardona"
         '
         'pxdThreadsGroupBox
         '
