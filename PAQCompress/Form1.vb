@@ -15,6 +15,11 @@
         s_flag.Checked = My.Settings.s_flag
         f_flag.Checked = My.Settings.f_flag
         EnableDisableFlags()
+        Dim vars As String() = Environment.GetCommandLineArgs
+        If vars.Count > 1 Then
+            InputLocation.Text = vars(1)
+            CheckAndAdjust()
+        End If
     End Sub
 
     Private Sub AdjustPAQVersion(Extension As String)
@@ -248,6 +253,7 @@
             End If
         End If
         If Not String.IsNullOrEmpty(CompressorToUse) And Not String.IsNullOrEmpty(CompressionParameters) Then
+            CompressorToUse = IO.Path.GetDirectoryName(Process.GetCurrentProcess.MainModule.FileName) + "/" + CompressorToUse
             If IO.File.Exists(CompressorToUse) Then
                 StartButton.Enabled = False
                 ClearLogButton.Enabled = False
@@ -362,15 +368,17 @@
         Dim result As DialogResult = OpenFileDialog1.ShowDialog
         If result = DialogResult.OK Then
             InputLocation.Text = OpenFileDialog1.FileName
-            If ExtractRButton.Checked Then
-                AdjustPAQVersion(IO.Path.GetFileName(OpenFileDialog1.FileName))
-            Else
-                OutputLocation.Text = InputLocation.Text
-                AdjustOutputFilename()
-            End If
+            CheckAndAdjust()
         End If
     End Sub
-
+    Private Sub CheckAndAdjust()
+        If ExtractRButton.Checked Then
+            AdjustPAQVersion(IO.Path.GetFileName(OpenFileDialog1.FileName))
+        Else
+            OutputLocation.Text = InputLocation.Text
+            AdjustOutputFilename()
+        End If
+    End Sub
     Private Sub BrowseFolder_Click(sender As Object, e As EventArgs) Handles BrowseFolder.Click
         Dim result As DialogResult = FolderBrowserDialog1.ShowDialog
         If result = DialogResult.OK Then
@@ -416,5 +424,14 @@
     Private Sub pxdThreads_SelectedIndexChanged(sender As Object, e As EventArgs) Handles pxdThreads.SelectedIndexChanged
         My.Settings.pxdThreads = pxdThreads.SelectedItem.ToString()
         My.Settings.Save()
+    End Sub
+    Private Sub Form1_DragEnter(sender As Object, e As DragEventArgs) Handles MyBase.DragEnter
+        If e.Data.GetDataPresent(DataFormats.FileDrop) Then
+            e.Effect = DragDropEffects.Copy
+        End If
+    End Sub
+    Private Sub Form1_DragDrop(sender As Object, e As DragEventArgs) Handles MyBase.DragDrop
+        InputLocation.Text = CType(e.Data.GetData(DataFormats.FileDrop), String())(0)
+        CheckAndAdjust()
     End Sub
 End Class
