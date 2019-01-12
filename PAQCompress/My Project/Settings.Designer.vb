@@ -92,18 +92,6 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("v175")>  _
-        Public Property PAQVersion() As String
-            Get
-                Return CType(Me("PAQVersion"),String)
-            End Get
-            Set
-                Me("PAQVersion") = value
-            End Set
-        End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("9")>  _
         Public Property CompressionLevel() As String
             Get
@@ -195,6 +183,18 @@ Namespace My
             End Get
             Set
                 Me("pxdThreads") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("v177")>  _
+        Public Property PAQVersion() As String
+            Get
+                Return CType(Me("PAQVersion"),String)
+            End Get
+            Set
+                Me("PAQVersion") = value
             End Set
         End Property
     End Class

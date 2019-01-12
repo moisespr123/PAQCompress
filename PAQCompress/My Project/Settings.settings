@@ -11,9 +11,6 @@
     <Setting Name="PAQSeries" Type="System.String" Scope="User">
       <Value Profile="(Default)">PAQ8PX</Value>
     </Setting>
-    <Setting Name="PAQVersion" Type="System.String" Scope="User">
-      <Value Profile="(Default)">v175</Value>
-    </Setting>
     <Setting Name="CompressionLevel" Type="System.String" Scope="User">
       <Value Profile="(Default)">9</Value>
     </Setting>
@@ -37,6 +34,9 @@
     </Setting>
     <Setting Name="pxdThreads" Type="System.String" Scope="User">
       <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="PAQVersion" Type="System.String" Scope="User">
+      <Value Profile="(Default)">v177</Value>
     </Setting>
   </Settings>
 </SettingsFile>
