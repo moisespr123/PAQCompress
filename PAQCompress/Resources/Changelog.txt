@@ -1,10 +1,13 @@
-PAQCompress v0.3
+v0.3.1
+-Added paq8pxd_v61
+
+v0.3
 -Can now drag and drop a file into the software icon
 
-PAQCompress v0.2
+v0.2
 -Added paq8px v176 and v177
 
-PAQCompress v0.1
+v0.1
 -Initial Release
 
 VERY OLD RELEASES
