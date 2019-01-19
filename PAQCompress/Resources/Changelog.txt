@@ -1,3 +1,6 @@
+v0.3.2
+-Added paq8pxd_v62
+
 v0.3.1
 -Added paq8pxd_v61
 
