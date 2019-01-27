@@ -275,9 +275,9 @@ Partial Class Form1
         Me.t_flag.AutoSize = True
         Me.t_flag.Location = New System.Drawing.Point(6, 65)
         Me.t_flag.Name = "t_flag"
-        Me.t_flag.Size = New System.Drawing.Size(261, 17)
+        Me.t_flag.Size = New System.Drawing.Size(258, 17)
         Me.t_flag.TabIndex = 14
-        Me.t_flag.Text = "Pre-train main model  with word and expression list"
+        Me.t_flag.Text = "Pre-train main model with word and expression list"
         Me.t_flag.UseVisualStyleBackColor = True
         '
         'e_flag
