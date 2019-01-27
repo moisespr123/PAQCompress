@@ -61,18 +61,27 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to PAQCompress v3.0PCE by Moises Cardona
-        '''===========================================================
-        '''PAQCompress is a Program that compresses files using the PAQ 
-        '''version PAQ8 Compression technology. This program can also
-        '''extract archives created by this program.
+        '''  Looks up a localized string similar to v0.3.2
+        '''-Added paq8pxd_v62
         '''
-        '''The program features a nice and simple Grafical User Interface (GUI).
+        '''v0.3.1
+        '''-Added paq8pxd_v61
         '''
-        '''About PAQ:
-        '''============================================================
-        '''PAQ is a series of data compression archivers that have evolved
-        '''through collaborative developmen [rest of string was truncated]&quot;;.
+        '''v0.3
+        '''-Can now drag and drop a file into the software icon
+        '''
+        '''v0.2
+        '''-Added paq8px v176 and v177
+        '''
+        '''v0.1
+        '''-Initial Release
+        '''
+        '''VERY OLD RELEASES
+        '''PAQCompress Version 3.0PCE:
+        '''-Can compress to PAQ8PX, PAQ8PF, PAQ8PXPRE, FP8, PAQ8KX and PAQ8o10t.
+        '''-Can extract PAQ8PX, PAQ8PF, PAQ8PXPRE, FP8, PAQ8KX and PAQ8o10t archives.
+        '''-No more .bat file creation when executing compression and extraction. Actions are done on-the-fly.
+        '''-Pressing &quot;Cancel&quot; on any dialo [rest of string was truncated]&quot;;.
         '''</summary>
         Friend ReadOnly Property Changelog() As String
             Get
