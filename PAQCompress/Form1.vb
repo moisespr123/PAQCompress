@@ -4,7 +4,11 @@
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         PAQSeries.SelectedItem = My.Settings.PAQSeries
         PAQVersion.SelectedItem = My.Settings.PAQVersion
-        pxdThreads.SelectedItem = My.Settings.pxdThreads
+        If paq_other.Text = "Threads" Then
+            paq_other_dropbox.SelectedItem = My.Settings.pxdThreads
+        Else
+            paq_other_dropbox.SelectedItem = My.Settings.compiler
+        End If
         CompressionLevel.SelectedItem = My.Settings.CompressionLevel
         CompressRButton.Checked = My.Settings.CompressChecked
         ExtractRButton.Checked = My.Settings.ExtractChecked
@@ -39,27 +43,25 @@
                 Next
             ElseIf Extension.Contains(".paq8pxd") Then
                 PAQSeries.SelectedItem = "PAQ8PXd"
-                Dim split_paq8pxd_version As String() = Extension.Split({".paq8pxd"}, StringSplitOptions.RemoveEmptyEntries)
-                For Each splitted_item In split_paq8pxd_version
-                    Dim paq_version As String = "v" + splitted_item
-                    For Each item As String In PAQVersion.Items
-                        If item.ToLower = paq_version Then
-                            PAQVersion.SelectedItem = item
-                        End If
-                    Next
-                Next
+                SetPAQVersion(".paq8pxd")
+            ElseIf Extension.Contains(".paq8pxv") Then
+                PAQSeries.SelectedItem = "PAQ8PXv"
+                SetPAQVersion(".paq8pxv")
             ElseIf Extension.Contains(".paq8px") Then
                 PAQSeries.SelectedItem = "PAQ8PX"
-                Dim split_paq8px_version As String() = Extension.Split({".paq8px"}, StringSplitOptions.RemoveEmptyEntries)
-                For Each splitted_item In split_paq8px_version
-                    Dim paq_version As String = "v" + splitted_item
-                    For Each item As String In PAQVersion.Items
-                        If item.ToLower = paq_version Then
-                            PAQVersion.SelectedItem = item
-                        End If
-                    Next
-                Next
+                SetPAQVersion(".paq8px")
             End If
+        Next
+    End Sub
+    Private Sub SetPAQVersion(Extension As String)
+        Dim split_paq_version As String() = Extension.Split({Extension}, StringSplitOptions.RemoveEmptyEntries)
+        For Each splitted_item In split_paq_version
+            Dim paq_version As String = "v" + splitted_item
+            For Each item As String In PAQVersion.Items
+                If item.ToLower = paq_version Then
+                    PAQVersion.SelectedItem = item
+                End If
+            Next
         Next
     End Sub
     Private Sub PAQSeries_SelectedIndexChanged(sender As Object, e As EventArgs) Handles PAQSeries.SelectedIndexChanged
@@ -67,7 +69,8 @@
         PAQVersion.Text = String.Empty
         CompressionLevel.Items.Clear()
         CompressionLevel.Text = "0"
-        pxdThreads.Enabled = False
+        paq_other_dropbox.Enabled = False
+        paq_other_dropbox.Items.Clear()
         If PAQSeries.SelectedItem Is "PAQ8o10t" Or PAQSeries.SelectedItem Is "PAQ8PXPRE" Then
             CompressionLevel.Items.AddRange({"0", "1", "2", "3", "4", "5", "6", "7", "8"})
             PAQVersion.Enabled = False
@@ -84,7 +87,19 @@
             PAQVersion.Items.AddRange({"v60", "v61", "v62", "v63"})
             CompressionLevel.Text = "s5"
             CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15"})
-            pxdThreads.Enabled = True
+            paq_other.Text = "Threads"
+            paq_other_dropbox.Enabled = True
+            paq_other_dropbox.Items.AddRange({"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"})
+            paq_other_dropbox.SelectedItem = My.Settings.pxdThreads
+            PAQVersion.Enabled = True
+        ElseIf PAQSeries.SelectedItem Is "PAQ8PXv" Then
+            PAQVersion.Items.AddRange({"v4"})
+            CompressionLevel.Text = "s5"
+            CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15"})
+            paq_other.Text = "Compiler"
+            paq_other_dropbox.Enabled = True
+            paq_other_dropbox.Items.AddRange({"jit", "vm"})
+            paq_other_dropbox.SelectedItem = My.Settings.compiler
             PAQVersion.Enabled = True
         ElseIf PAQSeries.SelectedItem Is "PAQ8PX" Then
             PAQVersion.Items.AddRange({"v42", "v44", "v45", "v46", "v47", "v48", "v49", "v51", "v52", "v53", "v54", "v57", "v58",
@@ -118,7 +133,7 @@
             Else
                 CheckCompressionLevelAndChange()
             End If
-        ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Then
+        ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Or PAQSeries.SelectedItem Is "PAQ8PXv" Then
             CompressionLevel.Items.Clear()
             CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15"})
         Else
@@ -132,7 +147,7 @@
     Private Sub AdjustOutputFilename()
         If Not String.IsNullOrWhiteSpace(OutputLocation.Text) Then
             If PAQVersion.Enabled Then
-                If (PAQSeries.SelectedItem Is "PAQ8PX" And PAQVersion.SelectedIndex > Flags_enable) Or PAQSeries.SelectedItem Is "PAQ8PXd" Then
+                If (PAQSeries.SelectedItem Is "PAQ8PX" And PAQVersion.SelectedIndex > Flags_enable) Or PAQSeries.SelectedItem Is "PAQ8PXd" Or PAQSeries.SelectedItem Is "PAQ8PXv" Then
                     OutputLocation.Text = IO.Path.GetDirectoryName(OutputLocation.Text) + "\" + IO.Path.GetFileNameWithoutExtension(OutputLocation.Text) + "." + PAQSeries.SelectedItem.ToString.ToLower + PAQVersion.SelectedItem.ToString().Remove(0, 1)
                 Else
                     OutputLocation.Text = IO.Path.GetDirectoryName(OutputLocation.Text) + "\" + IO.Path.GetFileNameWithoutExtension(OutputLocation.Text) + "." + PAQSeries.SelectedItem.ToString.ToLower + "_" + PAQVersion.SelectedItem.ToString()
@@ -198,20 +213,22 @@
         Dim CompressionParameters As String = String.Empty
         If CompressionLevel.Items.Contains(CompressionLevel.Text) Then
             If PAQSeries.SelectedItem IsNot "PAQ8PX" Then
-                If PAQSeries.SelectedItem IsNot "PAQ8o10t" And PAQSeries.SelectedItem IsNot "PAQ8PXPRE" Then
+                If PAQSeries.SelectedItem IsNot "PAQ8o10t" And PAQSeries.SelectedItem IsNot "PAQ8PXPRE" And PAQSeries.SelectedItem IsNot "PAQ8PXv" Then
                     If PAQVersion.Items.Contains(PAQVersion.Text) Then
                         CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQSeries.Text.ToLower + "_" + PAQVersion.Text + ".exe"
                     Else
                         MessageBox.Show("Select an item from the version dropdown")
                     End If
+                ElseIf PAQSeries.SelectedItem Is "PAQ8PXv" Then
+                    CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQVersion.Text + "/" + PAQSeries.Text.ToLower + "_" + PAQVersion.Text + paq_other_dropbox.Text.ToLower() + ".exe"
                 Else
                     CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQSeries.Text.ToLower + ".exe"
                 End If
                 If CompressRButton.Checked Then
-                    If PAQSeries.SelectedItem Is "PAQ8o10t" Then
+                    If PAQSeries.SelectedItem Is "PAQ8o10t" Or PAQSeries.SelectedItem Is "PAQ8PXv" Then
                         CompressionParameters = "-" + CompressionLevel.Text + " """ + IO.Path.GetDirectoryName(OutputLocation.Text) + "\" + IO.Path.GetFileNameWithoutExtension(OutputLocation.Text) + """ """ + InputLocation.Text + """"
                     ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Then
-                        CompressionParameters = "-" + CompressionLevel.Text + ":" + pxdThreads.Text + " """ + IO.Path.GetDirectoryName(OutputLocation.Text) + "\" + IO.Path.GetFileNameWithoutExtension(OutputLocation.Text) + """ """ + InputLocation.Text + """"
+                        CompressionParameters = "-" + CompressionLevel.Text + ":" + paq_other_dropbox.Text + " """ + IO.Path.GetDirectoryName(OutputLocation.Text) + "\" + IO.Path.GetFileNameWithoutExtension(OutputLocation.Text) + """ """ + InputLocation.Text + """"
                     Else
                         CompressionParameters = "-" + CompressionLevel.Text + " """ + OutputLocation.Text + """ """ + InputLocation.Text + """"
                     End If
@@ -270,7 +287,7 @@
 
     Private Sub CompressionThread(Compressor As String, Params As String)
         Using process As New Process()
-            process.StartInfo.WorkingDirectory = Environment.CurrentDirectory
+            process.StartInfo.WorkingDirectory = IO.Path.GetDirectoryName(Compressor)
             process.StartInfo.FileName = Compressor
             process.StartInfo.Arguments = Params
             process.StartInfo.UseShellExecute = False
@@ -373,7 +390,7 @@
     End Sub
     Private Sub CheckAndAdjust()
         If ExtractRButton.Checked Then
-            AdjustPAQVersion(IO.Path.GetFileName(OpenFileDialog1.FileName))
+            AdjustPAQVersion(IO.Path.GetExtension(InputLocation.Text))
         Else
             OutputLocation.Text = InputLocation.Text
             AdjustOutputFilename()
@@ -421,8 +438,12 @@
         Log.Text = String.Empty
     End Sub
 
-    Private Sub pxdThreads_SelectedIndexChanged(sender As Object, e As EventArgs) Handles pxdThreads.SelectedIndexChanged
-        My.Settings.pxdThreads = pxdThreads.SelectedItem.ToString()
+    Private Sub pxdThreads_SelectedIndexChanged(sender As Object, e As EventArgs) Handles paq_other_dropbox.SelectedIndexChanged
+        If paq_other.Text = "Threads" Then
+            My.Settings.pxdThreads = paq_other_dropbox.SelectedItem.ToString()
+        Else
+            My.Settings.compiler = paq_other_dropbox.SelectedItem.ToString()
+        End If
         My.Settings.Save()
     End Sub
     Private Sub Form1_DragEnter(sender As Object, e As DragEventArgs) Handles MyBase.DragEnter

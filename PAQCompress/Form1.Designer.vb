@@ -56,14 +56,14 @@ Partial Class Form1
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.FolderBrowserDialog2 = New System.Windows.Forms.FolderBrowserDialog()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.pxdThreadsGroupBox = New System.Windows.Forms.GroupBox()
-        Me.pxdThreads = New System.Windows.Forms.ComboBox()
+        Me.paq_other = New System.Windows.Forms.GroupBox()
+        Me.paq_other_dropbox = New System.Windows.Forms.ComboBox()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
-        Me.pxdThreadsGroupBox.SuspendLayout()
+        Me.paq_other.SuspendLayout()
         Me.SuspendLayout()
         '
         'Step1Label
@@ -180,7 +180,7 @@ Partial Class Form1
         'PAQSeries
         '
         Me.PAQSeries.FormattingEnabled = True
-        Me.PAQSeries.Items.AddRange(New Object() {"FP8", "PAQ8KX", "PAQ8o10t", "PAQ8PF", "PAQ8PX", "PAQ8PXd", "PAQ8PXPRE"})
+        Me.PAQSeries.Items.AddRange(New Object() {"FP8", "PAQ8KX", "PAQ8o10t", "PAQ8PF", "PAQ8PX", "PAQ8PXd", "PAQ8PXPRE", "PAQ8PXv"})
         Me.PAQSeries.Location = New System.Drawing.Point(6, 19)
         Me.PAQSeries.Name = "PAQSeries"
         Me.PAQSeries.Size = New System.Drawing.Size(116, 21)
@@ -358,6 +358,7 @@ Partial Class Form1
         '
         'Label3
         '
+        Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(9, 392)
         Me.Label3.Name = "Label3"
@@ -365,24 +366,24 @@ Partial Class Form1
         Me.Label3.TabIndex = 21
         Me.Label3.Text = "v0.3.4 - GUI by: Moisés Cardona"
         '
-        'pxdThreadsGroupBox
+        'paq_other
         '
-        Me.pxdThreadsGroupBox.Controls.Add(Me.pxdThreads)
-        Me.pxdThreadsGroupBox.Location = New System.Drawing.Point(451, 178)
-        Me.pxdThreadsGroupBox.Name = "pxdThreadsGroupBox"
-        Me.pxdThreadsGroupBox.Size = New System.Drawing.Size(123, 47)
-        Me.pxdThreadsGroupBox.TabIndex = 15
-        Me.pxdThreadsGroupBox.TabStop = False
-        Me.pxdThreadsGroupBox.Text = "Threads (paq8pxd)"
+        Me.paq_other.Controls.Add(Me.paq_other_dropbox)
+        Me.paq_other.Location = New System.Drawing.Point(451, 178)
+        Me.paq_other.Name = "paq_other"
+        Me.paq_other.Size = New System.Drawing.Size(123, 47)
+        Me.paq_other.TabIndex = 15
+        Me.paq_other.TabStop = False
+        Me.paq_other.Text = "Threads"
         '
-        'pxdThreads
+        'paq_other_dropbox
         '
-        Me.pxdThreads.FormattingEnabled = True
-        Me.pxdThreads.Items.AddRange(New Object() {"1", "2", "3", "4", "5", "6", "7", "8", "9"})
-        Me.pxdThreads.Location = New System.Drawing.Point(6, 19)
-        Me.pxdThreads.Name = "pxdThreads"
-        Me.pxdThreads.Size = New System.Drawing.Size(108, 21)
-        Me.pxdThreads.TabIndex = 11
+        Me.paq_other_dropbox.FormattingEnabled = True
+        Me.paq_other_dropbox.Items.AddRange(New Object() {"1", "2", "3", "4", "5", "6", "7", "8", "9"})
+        Me.paq_other_dropbox.Location = New System.Drawing.Point(6, 19)
+        Me.paq_other_dropbox.Name = "paq_other_dropbox"
+        Me.paq_other_dropbox.Size = New System.Drawing.Size(108, 21)
+        Me.paq_other_dropbox.TabIndex = 11
         '
         'Form1
         '
@@ -390,7 +391,7 @@ Partial Class Form1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1052, 414)
-        Me.Controls.Add(Me.pxdThreadsGroupBox)
+        Me.Controls.Add(Me.paq_other)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.ClearLogButton)
         Me.Controls.Add(Me.SaveLogButton)
@@ -420,7 +421,7 @@ Partial Class Form1
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        Me.pxdThreadsGroupBox.ResumeLayout(False)
+        Me.paq_other.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout
 
@@ -459,6 +460,6 @@ End Sub
     Friend WithEvents SaveFileDialog1 As SaveFileDialog
     Friend WithEvents FolderBrowserDialog2 As FolderBrowserDialog
     Friend WithEvents Label3 As Label
-    Friend WithEvents pxdThreadsGroupBox As GroupBox
-    Friend WithEvents pxdThreads As ComboBox
+    Friend WithEvents paq_other As GroupBox
+    Friend WithEvents paq_other_dropbox As ComboBox
 End Class
