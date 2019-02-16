@@ -44,12 +44,14 @@
             ElseIf Extension.Contains(".paq8pxd") Then
                 PAQSeries.SelectedItem = "PAQ8PXd"
                 SetPAQVersion(".paq8pxd")
+                Exit For
             ElseIf Extension.Contains(".paq8pxv") Then
                 PAQSeries.SelectedItem = "PAQ8PXv"
                 SetPAQVersion(".paq8pxv")
             ElseIf Extension.Contains(".paq8px") Then
                 PAQSeries.SelectedItem = "PAQ8PX"
                 SetPAQVersion(".paq8px")
+                Exit For
             End If
         Next
     End Sub
@@ -390,7 +392,7 @@
     End Sub
     Private Sub CheckAndAdjust()
         If ExtractRButton.Checked Then
-            AdjustPAQVersion(IO.Path.GetExtension(InputLocation.Text))
+            AdjustPAQVersion(IO.Path.GetFileName(InputLocation.Text))
         Else
             OutputLocation.Text = InputLocation.Text
             AdjustOutputFilename()
