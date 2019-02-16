@@ -26,8 +26,8 @@
         End If
     End Sub
 
-    Private Sub AdjustPAQVersion(Extension As String)
-        Dim split_filename As String() = Extension.Split({"."}, StringSplitOptions.RemoveEmptyEntries)
+    Private Sub AdjustPAQVersion(Filename As String)
+        Dim split_filename As String() = Filename.Split({"."}, StringSplitOptions.RemoveEmptyEntries)
         For Each filename_split As String In split_filename
             Dim extension_split As String() = filename_split.Split({"_"}, StringSplitOptions.RemoveEmptyEntries)
             If extension_split.Count >= 2 Then
@@ -41,24 +41,37 @@
                         PAQVersion.SelectedItem = item
                     End If
                 Next
-            ElseIf Extension.Contains(".paq8pxd") Then
+            ElseIf Filename.Contains(".paq8pxd") Then
                 PAQSeries.SelectedItem = "PAQ8PXd"
-                SetPAQVersion(".paq8pxd")
+                SetPAQVersion(Filename, ".paq8pxd")
                 Exit For
-            ElseIf Extension.Contains(".paq8pxv") Then
+            ElseIf Filename.Contains(".paq8pxv") Then
                 PAQSeries.SelectedItem = "PAQ8PXv"
-                SetPAQVersion(".paq8pxv")
-            ElseIf Extension.Contains(".paq8px") Then
+                SetPAQVersion(Filename, ".paq8pxv")
+            ElseIf Filename.Contains(".paq8px") Then
                 PAQSeries.SelectedItem = "PAQ8PX"
-                SetPAQVersion(".paq8px")
+                SetPAQVersion(Filename, ".paq8px")
+                Exit For
+            ElseIf Filename.Contains(".paq8p_pc_") Then
+                PAQSeries.SelectedItem = "PAQ8P_PC"
+                SetPAQVersion(Filename, ".paq8p_pc_", False)
                 Exit For
             End If
         Next
     End Sub
-    Private Sub SetPAQVersion(Extension As String)
-        Dim split_paq_version As String() = Extension.Split({Extension}, StringSplitOptions.RemoveEmptyEntries)
+    Private Sub SetPAQVersion(Filename As String, Extension As String, Optional append_v As Boolean = True, Optional split_after_dot As Boolean = True)
+        Dim split_paq_version As String() = Filename.Split({Extension}, StringSplitOptions.RemoveEmptyEntries)
         For Each splitted_item In split_paq_version
-            Dim paq_version As String = "v" + splitted_item
+            Dim paq_version As String = String.Empty
+            If append_v Then
+                paq_version = "v" + splitted_item
+            Else
+                If split_after_dot Then
+                    paq_version = splitted_item.Split({"."}, StringSplitOptions.RemoveEmptyEntries)(0)
+                Else
+                    paq_version = splitted_item
+                End If
+            End If
             For Each item As String In PAQVersion.Items
                 If item.ToLower = paq_version Then
                     PAQVersion.SelectedItem = item
@@ -81,6 +94,9 @@
             PAQVersion.Enabled = True
         ElseIf PAQSeries.SelectedItem Is "PAQ8PF" Then
             PAQVersion.Items.AddRange({"beta1", "beta2", "beta3"})
+            PAQVersion.Enabled = True
+        ElseIf PAQSeries.SelectedItem Is "PAQ8P_PC" Then
+            PAQVersion.Items.AddRange({"v0"})
             PAQVersion.Enabled = True
         ElseIf PAQSeries.SelectedItem Is "FP8" Then
             PAQVersion.Items.AddRange({"v1", "v2", "v3", "v4", "v5", "v6"})
@@ -215,14 +231,16 @@
         Dim CompressionParameters As String = String.Empty
         If CompressionLevel.Items.Contains(CompressionLevel.Text) Then
             If PAQSeries.SelectedItem IsNot "PAQ8PX" Then
-                If PAQSeries.SelectedItem IsNot "PAQ8o10t" And PAQSeries.SelectedItem IsNot "PAQ8PXPRE" And PAQSeries.SelectedItem IsNot "PAQ8PXv" Then
+                If PAQSeries.SelectedItem IsNot "PAQ8o10t" And PAQSeries.SelectedItem IsNot "PAQ8PXPRE" And PAQSeries.SelectedItem IsNot "PAQ8PXv" And PAQSeries.SelectedItem IsNot "PAQ8P_PC" Then
                     If PAQVersion.Items.Contains(PAQVersion.Text) Then
                         CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQSeries.Text.ToLower + "_" + PAQVersion.Text + ".exe"
                     Else
                         MessageBox.Show("Select an item from the version dropdown")
                     End If
                 ElseIf PAQSeries.SelectedItem Is "PAQ8PXv" Then
-                    CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQVersion.Text + "/" + PAQSeries.Text.ToLower + "_" + PAQVersion.Text + paq_other_dropbox.Text.ToLower() + ".exe"
+                    CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQVersion.Text + "/" + PAQSeries.Text.ToLower() + "_" + PAQVersion.Text + paq_other_dropbox.Text.ToLower() + ".exe"
+                ElseIf PAQSeries.SelectedItem Is "PAQ8P_PC" Then
+                    CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQVersion.Text + "/" + PAQSeries.Text.ToLower() + ".exe"
                 Else
                     CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQSeries.Text.ToLower + ".exe"
                 End If
