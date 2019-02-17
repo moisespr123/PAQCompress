@@ -1,3 +1,16 @@
+v0.3.6
+-Added paq8pxv_v5
+
+v0.3.5
+-Added paq8pxv_v4
+-Added paq8p_pc v0
+
+v0.3.4
+-Added paq8px_v178
+
+v0.3.3
+-Added paq8pxd_v63
+
 v0.3.2
 -Added paq8pxd_v62
 

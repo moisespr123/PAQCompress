@@ -111,7 +111,7 @@
             paq_other_dropbox.SelectedItem = My.Settings.pxdThreads
             PAQVersion.Enabled = True
         ElseIf PAQSeries.SelectedItem Is "PAQ8PXv" Then
-            PAQVersion.Items.AddRange({"v4"})
+            PAQVersion.Items.AddRange({"v4", "v5"})
             CompressionLevel.Text = "s5"
             CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15"})
             paq_other.Text = "Compiler"
