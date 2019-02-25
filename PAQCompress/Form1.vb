@@ -102,7 +102,7 @@
             PAQVersion.Items.AddRange({"v1", "v2", "v3", "v4", "v5", "v6"})
             PAQVersion.Enabled = True
         ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Then
-            PAQVersion.Items.AddRange({"v60", "v61", "v62", "v63"})
+            PAQVersion.Items.AddRange({"v60", "v61", "v62", "v63", "v64"})
             CompressionLevel.Text = "s5"
             CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15"})
             paq_other.Text = "Threads"
@@ -111,13 +111,12 @@
             paq_other_dropbox.SelectedItem = My.Settings.pxdThreads
             PAQVersion.Enabled = True
         ElseIf PAQSeries.SelectedItem Is "PAQ8PXv" Then
-            PAQVersion.Items.AddRange({"v4", "v5"})
+            PAQVersion.Items.AddRange({"v4", "v5", "v6"})
             CompressionLevel.Text = "s5"
             CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15"})
             paq_other.Text = "Compiler"
             paq_other_dropbox.Enabled = True
-            paq_other_dropbox.Items.AddRange({"jit", "vm"})
-            paq_other_dropbox.SelectedItem = My.Settings.compiler
+            checkPAQ8PXVExecutables()
             PAQVersion.Enabled = True
         ElseIf PAQSeries.SelectedItem Is "PAQ8PX" Then
             PAQVersion.Items.AddRange({"v42", "v44", "v45", "v46", "v47", "v48", "v49", "v51", "v52", "v53", "v54", "v57", "v58",
@@ -141,7 +140,23 @@
         My.Settings.PAQSeries = PAQSeries.SelectedItem.ToString()
         My.Settings.Save()
     End Sub
-
+    Private Sub checkPAQ8PXVExecutables()
+        paq_other_dropbox.Items.Clear()
+        Dim CompressorToUse As String = IO.Path.GetDirectoryName(Process.GetCurrentProcess.MainModule.FileName) + "/Executables/" + PAQSeries.Text + "/" + PAQVersion.Text + "/" + PAQSeries.Text.ToLower() + "_" + PAQVersion.Text
+        If IO.File.Exists(CompressorToUse + "jit.exe") Then paq_other_dropbox.Items.Add("jit")
+        If IO.File.Exists(CompressorToUse + "vm.exe") Then paq_other_dropbox.Items.Add("vm")
+        If paq_other_dropbox.Items.Count = 0 Then
+            paq_other_dropbox.Enabled = False
+            paq_other_dropbox.Text = String.Empty
+        Else
+            paq_other_dropbox.Enabled = True
+            If paq_other_dropbox.Items.Contains(My.Settings.compiler) Then
+                paq_other_dropbox.SelectedItem = My.Settings.compiler
+            Else
+                paq_other_dropbox.Text = String.Empty
+            End If
+        End If
+    End Sub
     Private Sub PAQVersion_SelectedIndexChanged(sender As Object, e As EventArgs) Handles PAQVersion.SelectedIndexChanged
         CompressionLevel.Items.Clear()
         CompressionLevel.Items.AddRange({"0", "1", "2", "3", "4", "5", "6", "7", "8"})
@@ -154,6 +169,9 @@
         ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Or PAQSeries.SelectedItem Is "PAQ8PXv" Then
             CompressionLevel.Items.Clear()
             CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15"})
+            If PAQSeries.SelectedItem Is "PAQ8PXv" Then
+                checkPAQ8PXVExecutables()
+            End If
         Else
             CheckCompressionLevelAndChange()
         End If
