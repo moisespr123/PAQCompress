@@ -418,7 +418,11 @@
 
     Private Sub BrowseFile_Click(sender As Object, e As EventArgs) Handles BrowseFile.Click
         OpenFileDialog1.Filter = "All Files|*.*"
-        OpenFileDialog1.Title = "Browse for a file to compress"
+        If CompressRButton.Checked Then
+            OpenFileDialog1.Title = "Browse for a file to compress"
+        Else
+            OpenFileDialog1.Title = "Browse for a file to extract"
+        End If
         If Not String.IsNullOrWhiteSpace(InputLocation.Text) Then OpenFileDialog1.FileName = IO.Path.GetFileName(InputLocation.Text)
         Dim result As DialogResult = OpenFileDialog1.ShowDialog
         If result = DialogResult.OK Then

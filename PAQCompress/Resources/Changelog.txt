@@ -1,3 +1,6 @@
+v0.3.9
+-Fixed OpenFileDialog message saying "Browse for a file to compress" when the Extract Radiobutton was checked.
+
 v0.3.8
 -Added paq8pxv_v8
 

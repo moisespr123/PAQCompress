@@ -364,7 +364,7 @@ Partial Class Form1
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(161, 13)
         Me.Label3.TabIndex = 21
-        Me.Label3.Text = "v0.3.8 - GUI by: Moisés Cardona"
+        Me.Label3.Text = "v0.3.9 - GUI by: Moisés Cardona"
         '
         'paq_other
         '
