@@ -1,6 +1,7 @@
 ﻿Public Class Form1
     Private Flags_enable As Integer = 47
     Private f_flag_available As Integer = 56
+    Private paq8px_use_exe_in_folder As Integer = 73
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         PAQSeries.SelectedItem = My.Settings.PAQSeries
         PAQVersion.SelectedItem = My.Settings.PAQVersion
@@ -124,8 +125,8 @@
                                       "v67", "v67_Intel_SSE2", "v68", "v68_Intel_SSE2", "v68e", "v68p3", "v69", "v69_Intel_SSE2", "v70",
                                       "v71", "v72", "v73", "v74", "v75", "v77", "v80b", "v83", "v85", "v87", "v88", "v90", "v93", "v95",
                                       "v105", "v122", "v126", "v132_fix1", "v137", "v141", "v141fix1", "v141fix2", "v141fix4", "v144",
-                                      "v145", "v146", "v156", "v157", "v159", "v163", "v164", "v167", "v168", "v169", "v170", "v171",
-                                      "v172", "v173", "v174", "v175", "v176", "v177", "v178"})
+                                      "v145", "v146", "v147", "v156", "v157", "v159", "v163", "v164", "v167", "v168", "v169", "v170", "v171",
+                                      "v172", "v173", "v174", "v175", "v176", "v177", "v178", "v179", "v179fix1"})
             PAQVersion.Enabled = True
         End If
         If PAQVersion.Enabled Then
@@ -275,7 +276,11 @@
                 End If
             ElseIf PAQSeries.SelectedItem Is "PAQ8PX" Then
                 If PAQVersion.Items.Contains(PAQVersion.Text) Then
-                    CompressorToUse = "Executables/PAQ8PX/paq8px_" + PAQVersion.Text + ".exe"
+                    If PAQVersion.SelectedIndex > paq8px_use_exe_in_folder Then
+                        CompressorToUse = "Executables/PAQ8PX/" + PAQVersion.Text + "/paq8px_" + PAQVersion.Text + ".exe"
+                    Else
+                        CompressorToUse = "Executables/PAQ8PX/paq8px_" + PAQVersion.Text + ".exe"
+                    End If
                     If CompressRButton.Checked Then
                         If PAQVersion.SelectedIndex > Flags_enable Then
                             Dim CompressionFlags As String = "-" + CompressionLevel.Text
@@ -450,8 +455,8 @@
     Private Sub BrowseOutput_Click(sender As Object, e As EventArgs) Handles BrowseOutput.Click
         If CompressRButton.Checked Then
             SaveFileDialog1.Filter = "PAQ file|*.paq"
-            SaveFileDialog1.Title = "Browse for a file to compress"
-            If Not String.IsNullOrWhiteSpace(InputLocation.Text) Then SaveFileDialog1.FileName = IO.Path.GetFileName(OutputLocation.Text)
+            SaveFileDialog1.Title = "Browse for a location to save the compressed PAQ file"
+            If Not String.IsNullOrWhiteSpace(OutputLocation.Text) Then SaveFileDialog1.FileName = IO.Path.GetFileName(OutputLocation.Text)
             Dim result As DialogResult = SaveFileDialog1.ShowDialog
             If result = DialogResult.OK Then
                 OutputLocation.Text = SaveFileDialog1.FileName

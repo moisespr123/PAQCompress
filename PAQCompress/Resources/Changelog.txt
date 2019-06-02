@@ -1,3 +1,7 @@
+v0.3.10
+-Added paq8px_v179 and paq8px_v179fix1.
+-Added paq8px_v147 which was missing from the list.
+
 v0.3.9
 -Fixed OpenFileDialog message saying "Browse for a file to compress" when the Extract Radiobutton was checked.
 
