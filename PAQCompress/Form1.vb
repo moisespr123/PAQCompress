@@ -112,7 +112,7 @@
             paq_other_dropbox.SelectedItem = My.Settings.pxdThreads
             PAQVersion.Enabled = True
         ElseIf PAQSeries.SelectedItem Is "PAQ8PXv" Then
-            PAQVersion.Items.AddRange({"v4", "v5", "v6", "v8"})
+            PAQVersion.Items.AddRange({"v4", "v5", "v6", "v8", "v12"})
             CompressionLevel.Text = "s5"
             CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15"})
             paq_other.Text = "Compiler"
@@ -126,7 +126,7 @@
                                       "v71", "v72", "v73", "v74", "v75", "v77", "v80b", "v83", "v85", "v87", "v88", "v90", "v93", "v95",
                                       "v105", "v122", "v126", "v132_fix1", "v137", "v141", "v141fix1", "v141fix2", "v141fix4", "v144",
                                       "v145", "v146", "v147", "v156", "v157", "v159", "v163", "v164", "v167", "v168", "v169", "v170", "v171",
-                                      "v172", "v173", "v174", "v175", "v176", "v177", "v178", "v179", "v179fix1"})
+                                      "v172", "v173", "v174", "v175", "v176", "v177", "v178", "v179", "v179fix1", "v179fix2"})
             PAQVersion.Enabled = True
         End If
         If PAQVersion.Enabled Then
@@ -144,8 +144,10 @@
     Private Sub checkPAQ8PXVExecutables()
         paq_other_dropbox.Items.Clear()
         Dim CompressorToUse As String = IO.Path.GetDirectoryName(Process.GetCurrentProcess.MainModule.FileName) + "/Executables/" + PAQSeries.Text + "/" + PAQVersion.Text + "/" + PAQSeries.Text.ToLower() + "_" + PAQVersion.Text
-        If IO.File.Exists(CompressorToUse + "jit.exe") Then paq_other_dropbox.Items.Add("jit")
-        If IO.File.Exists(CompressorToUse + "vm.exe") Then paq_other_dropbox.Items.Add("vm")
+        Dim PAQ8PXV_variants As String() = {"jit", "vm", "_AVX2", "_MMX", "_NONE", "_SSE2", "_SSE4", "_SSE42", "_SSSE3"}
+        For Each item In PAQ8PXV_variants
+            If IO.File.Exists(CompressorToUse + item + ".exe") Then paq_other_dropbox.Items.Add(item)
+        Next
         If paq_other_dropbox.Items.Count = 0 Then
             paq_other_dropbox.Enabled = False
             paq_other_dropbox.Text = String.Empty
