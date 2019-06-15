@@ -1,3 +1,9 @@
+v0.3.12
+-Added paq8px_v179fix3
+
+v0.3.11
+-Added paq8px_v179fix2
+
 v0.3.10
 -Added paq8px_v179 and paq8px_v179fix1.
 -Added paq8px_v147 which was missing from the list.

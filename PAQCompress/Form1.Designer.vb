@@ -327,7 +327,6 @@ Partial Class Form1
         Me.Log.BackColor = System.Drawing.SystemColors.Window
         Me.Log.Location = New System.Drawing.Point(580, 25)
         Me.Log.Name = "Log"
-        Me.Log.ReadOnly = True
         Me.Log.Size = New System.Drawing.Size(460, 298)
         Me.Log.TabIndex = 0
         Me.Log.Text = ""
@@ -364,7 +363,7 @@ Partial Class Form1
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(167, 13)
         Me.Label3.TabIndex = 21
-        Me.Label3.Text = "v0.3.11 - GUI by: Moisés Cardona"
+        Me.Label3.Text = "v0.3.12 - GUI by: Moisés Cardona"
         '
         'paq_other
         '
