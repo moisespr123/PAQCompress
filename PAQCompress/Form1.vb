@@ -126,7 +126,7 @@
                                       "v71", "v72", "v73", "v74", "v75", "v77", "v80b", "v83", "v85", "v87", "v88", "v90", "v93", "v95",
                                       "v105", "v122", "v126", "v132_fix1", "v137", "v141", "v141fix1", "v141fix2", "v141fix4", "v144",
                                       "v145", "v146", "v147", "v156", "v157", "v159", "v163", "v164", "v167", "v168", "v169", "v170", "v171",
-                                      "v172", "v173", "v174", "v175", "v176", "v177", "v178", "v179", "v179fix1", "v179fix2", "v179fix3"})
+                                      "v172", "v173", "v174", "v175", "v176", "v177", "v178", "v179", "v179fix1", "v179fix2", "v179fix3", "v179fix4"})
             PAQVersion.Enabled = True
         End If
         If PAQVersion.Enabled Then
@@ -318,7 +318,6 @@
             CompressorToUse = IO.Path.GetDirectoryName(Process.GetCurrentProcess.MainModule.FileName) + "/" + CompressorToUse
             If IO.File.Exists(CompressorToUse) Then
                 StartButton.Enabled = False
-                ClearLogButton.Enabled = False
                 SaveLogButton.Enabled = False
                 Dim StartCompressionThread = New Threading.Thread(Sub() CompressionThread(CompressorToUse, CompressionParameters))
                 StartCompressionThread.Start()
@@ -346,7 +345,6 @@
             process.BeginErrorReadLine()
             process.WaitForExit()
             StartButton.BeginInvoke(Sub() StartButton.Enabled = True)
-            ClearLogButton.BeginInvoke(Sub() ClearLogButton.Enabled = True)
             SaveLogButton.BeginInvoke(Sub() SaveLogButton.Enabled = True)
         End Using
     End Sub

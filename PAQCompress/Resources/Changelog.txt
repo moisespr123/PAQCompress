@@ -1,3 +1,7 @@
+v0.3.13
+-Added paq8px_v179fix4
+-Enabled the "Clear Log" button to erase log while compression/extraction is in progress.
+
 v0.3.12
 -Added paq8px_v179fix3
 
