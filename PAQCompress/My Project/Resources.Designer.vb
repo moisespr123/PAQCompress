@@ -61,27 +61,29 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to v0.3.2
-        '''-Added paq8pxd_v62
+        '''  Looks up a localized string similar to v0.3.14
+        '''-Targets .NET Framework 4.8
+        '''-Added paq8px_v179fix5
         '''
-        '''v0.3.1
-        '''-Added paq8pxd_v61
+        '''v0.3.13
+        '''-Added paq8px_v179fix4
+        '''-Enabled the &quot;Clear Log&quot; button to erase log while compression/extraction is in progress.
         '''
-        '''v0.3
-        '''-Can now drag and drop a file into the software icon
+        '''v0.3.12
+        '''-Added paq8px_v179fix3
         '''
-        '''v0.2
-        '''-Added paq8px v176 and v177
+        '''v0.3.11
+        '''-Added paq8px_v179fix2
         '''
-        '''v0.1
-        '''-Initial Release
+        '''v0.3.10
+        '''-Added paq8px_v179 and paq8px_v179fix1.
+        '''-Added paq8px_v147 which was missing from the list.
         '''
-        '''VERY OLD RELEASES
-        '''PAQCompress Version 3.0PCE:
-        '''-Can compress to PAQ8PX, PAQ8PF, PAQ8PXPRE, FP8, PAQ8KX and PAQ8o10t.
-        '''-Can extract PAQ8PX, PAQ8PF, PAQ8PXPRE, FP8, PAQ8KX and PAQ8o10t archives.
-        '''-No more .bat file creation when executing compression and extraction. Actions are done on-the-fly.
-        '''-Pressing &quot;Cancel&quot; on any dialo [rest of string was truncated]&quot;;.
+        '''v0.3.9
+        '''-Fixed OpenFileDialog message saying &quot;Browse for a file to compress&quot; when the Extract Radiobutton was checked.
+        '''
+        '''v0.3.8
+        '''-Added paq8pxv_v8 [rest of string was truncated]&quot;;.
         '''</summary>
         Friend ReadOnly Property Changelog() As String
             Get
