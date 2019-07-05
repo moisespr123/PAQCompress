@@ -1,16 +1,19 @@
+v0.3.15
+-Added paq8px_v180.
+
 v0.3.14
--Targets .NET Framework 4.8
--Added paq8px_v179fix5
+-Targets .NET Framework 4.8.
+-Added paq8px_v179fix5.
 
 v0.3.13
--Added paq8px_v179fix4
+-Added paq8px_v179fix4.
 -Enabled the "Clear Log" button to erase log while compression/extraction is in progress.
 
 v0.3.12
--Added paq8px_v179fix3
+-Added paq8px_v179fix3.
 
 v0.3.11
--Added paq8px_v179fix2
+-Added paq8px_v179fix2.
 
 v0.3.10
 -Added paq8px_v179 and paq8px_v179fix1.
@@ -20,39 +23,39 @@ v0.3.9
 -Fixed OpenFileDialog message saying "Browse for a file to compress" when the Extract Radiobutton was checked.
 
 v0.3.8
--Added paq8pxv_v8
+-Added paq8pxv_v8.
 
 v0.3.7
--Added paq8pxd_v64
--Added paq8pxv_v6
+-Added paq8pxd_v64.
+-Added paq8pxv_v6.
 
 v0.3.6
--Added paq8pxv_v5
+-Added paq8pxv_v5.
 
 v0.3.5
--Added paq8pxv_v4
--Added paq8p_pc v0
+-Added paq8pxv_v4.
+-Added paq8p_pc v0.
 
 v0.3.4
--Added paq8px_v178
+-Added paq8px_v178.
 
 v0.3.3
--Added paq8pxd_v63
+-Added paq8pxd_v63.
 
 v0.3.2
--Added paq8pxd_v62
+-Added paq8pxd_v62.
 
 v0.3.1
--Added paq8pxd_v61
+-Added paq8pxd_v61.
 
 v0.3
--Can now drag and drop a file into the software icon
+-Can now drag and drop a file into the software icon.
 
 v0.2
--Added paq8px v176 and v177
+-Added paq8px v176 and v177.
 
 v0.1
--Initial Release
+-Initial Release.
 
 VERY OLD RELEASES
 PAQCompress Version 3.0PCE:
