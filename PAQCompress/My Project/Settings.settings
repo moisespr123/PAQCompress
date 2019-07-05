@@ -36,7 +36,7 @@
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="PAQVersion" Type="System.String" Scope="User">
-      <Value Profile="(Default)">v179fix5</Value>
+      <Value Profile="(Default)">v180</Value>
     </Setting>
     <Setting Name="compiler" Type="System.String" Scope="User">
       <Value Profile="(Default)">jit</Value>
