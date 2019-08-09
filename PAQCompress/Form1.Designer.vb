@@ -58,17 +58,17 @@ Partial Class Form1
         Me.Label3 = New System.Windows.Forms.Label()
         Me.paq_other = New System.Windows.Forms.GroupBox()
         Me.paq_other_dropbox = New System.Windows.Forms.ComboBox()
-        Me.GroupBox3.SuspendLayout()
-        Me.GroupBox4.SuspendLayout()
-        Me.GroupBox5.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
-        Me.paq_other.SuspendLayout()
-        Me.SuspendLayout()
+        Me.GroupBox3.SuspendLayout
+        Me.GroupBox4.SuspendLayout
+        Me.GroupBox5.SuspendLayout
+        Me.GroupBox1.SuspendLayout
+        Me.GroupBox2.SuspendLayout
+        Me.paq_other.SuspendLayout
+        Me.SuspendLayout
         '
         'Step1Label
         '
-        Me.Step1Label.AutoSize = True
+        Me.Step1Label.AutoSize = true
         Me.Step1Label.Location = New System.Drawing.Point(9, 62)
         Me.Step1Label.Name = "Step1Label"
         Me.Step1Label.Size = New System.Drawing.Size(223, 13)
@@ -89,7 +89,7 @@ Partial Class Form1
         Me.BrowseFile.Size = New System.Drawing.Size(104, 23)
         Me.BrowseFile.TabIndex = 4
         Me.BrowseFile.Text = "Browse file"
-        Me.BrowseFile.UseVisualStyleBackColor = True
+        Me.BrowseFile.UseVisualStyleBackColor = true
         '
         'BrowseFolder
         '
@@ -98,7 +98,7 @@ Partial Class Form1
         Me.BrowseFolder.Size = New System.Drawing.Size(104, 23)
         Me.BrowseFolder.TabIndex = 5
         Me.BrowseFolder.Text = "Browse folder"
-        Me.BrowseFolder.UseVisualStyleBackColor = True
+        Me.BrowseFolder.UseVisualStyleBackColor = true
         '
         'BrowseOutput
         '
@@ -107,7 +107,7 @@ Partial Class Form1
         Me.BrowseOutput.Size = New System.Drawing.Size(104, 23)
         Me.BrowseOutput.TabIndex = 7
         Me.BrowseOutput.Text = "Browse"
-        Me.BrowseOutput.UseVisualStyleBackColor = True
+        Me.BrowseOutput.UseVisualStyleBackColor = true
         '
         'OutputLocation
         '
@@ -118,7 +118,7 @@ Partial Class Form1
         '
         'Step2Label
         '
-        Me.Step2Label.AutoSize = True
+        Me.Step2Label.AutoSize = true
         Me.Step2Label.Location = New System.Drawing.Point(9, 112)
         Me.Step2Label.Name = "Step2Label"
         Me.Step2Label.Size = New System.Drawing.Size(278, 13)
@@ -133,34 +133,34 @@ Partial Class Form1
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Size = New System.Drawing.Size(160, 47)
         Me.GroupBox3.TabIndex = 0
-        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.TabStop = false
         Me.GroupBox3.Text = "Action"
         '
         'CompressRButton
         '
-        Me.CompressRButton.AutoSize = True
+        Me.CompressRButton.AutoSize = true
         Me.CompressRButton.Location = New System.Drawing.Point(6, 19)
         Me.CompressRButton.Name = "CompressRButton"
         Me.CompressRButton.Size = New System.Drawing.Size(71, 17)
         Me.CompressRButton.TabIndex = 1
-        Me.CompressRButton.TabStop = True
+        Me.CompressRButton.TabStop = true
         Me.CompressRButton.Text = "Compress"
-        Me.CompressRButton.UseVisualStyleBackColor = True
+        Me.CompressRButton.UseVisualStyleBackColor = true
         '
         'ExtractRButton
         '
-        Me.ExtractRButton.AutoSize = True
+        Me.ExtractRButton.AutoSize = true
         Me.ExtractRButton.Location = New System.Drawing.Point(83, 19)
         Me.ExtractRButton.Name = "ExtractRButton"
         Me.ExtractRButton.Size = New System.Drawing.Size(58, 17)
         Me.ExtractRButton.TabIndex = 2
-        Me.ExtractRButton.TabStop = True
+        Me.ExtractRButton.TabStop = true
         Me.ExtractRButton.Text = "Extract"
-        Me.ExtractRButton.UseVisualStyleBackColor = True
+        Me.ExtractRButton.UseVisualStyleBackColor = true
         '
         'Label1
         '
-        Me.Label1.AutoSize = True
+        Me.Label1.AutoSize = true
         Me.Label1.Location = New System.Drawing.Point(9, 162)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(243, 13)
@@ -174,17 +174,17 @@ Partial Class Form1
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(141, 47)
         Me.GroupBox4.TabIndex = 12
-        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.TabStop = false
         Me.GroupBox4.Text = "Series:"
         '
         'PAQSeries
         '
-        Me.PAQSeries.FormattingEnabled = True
+        Me.PAQSeries.FormattingEnabled = true
         Me.PAQSeries.Items.AddRange(New Object() {"FP8", "PAQ8KX", "PAQ8o10t", "PAQ8P_PC", "PAQ8PF", "PAQ8PX", "PAQ8PXd", "PAQ8PXPRE", "PAQ8PXv"})
         Me.PAQSeries.Location = New System.Drawing.Point(6, 19)
         Me.PAQSeries.Name = "PAQSeries"
         Me.PAQSeries.Size = New System.Drawing.Size(116, 21)
-        Me.PAQSeries.Sorted = True
+        Me.PAQSeries.Sorted = true
         Me.PAQSeries.TabIndex = 8
         '
         'GroupBox5
@@ -194,12 +194,12 @@ Partial Class Form1
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(141, 47)
         Me.GroupBox5.TabIndex = 13
-        Me.GroupBox5.TabStop = False
+        Me.GroupBox5.TabStop = false
         Me.GroupBox5.Text = "Version:"
         '
         'PAQVersion
         '
-        Me.PAQVersion.FormattingEnabled = True
+        Me.PAQVersion.FormattingEnabled = true
         Me.PAQVersion.Location = New System.Drawing.Point(6, 19)
         Me.PAQVersion.Name = "PAQVersion"
         Me.PAQVersion.Size = New System.Drawing.Size(116, 21)
@@ -212,12 +212,12 @@ Partial Class Form1
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(141, 47)
         Me.GroupBox1.TabIndex = 14
-        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.TabStop = false
         Me.GroupBox1.Text = "Compression Level:"
         '
         'CompressionLevel
         '
-        Me.CompressionLevel.FormattingEnabled = True
+        Me.CompressionLevel.FormattingEnabled = true
         Me.CompressionLevel.Location = New System.Drawing.Point(6, 19)
         Me.CompressionLevel.Name = "CompressionLevel"
         Me.CompressionLevel.Size = New System.Drawing.Size(116, 21)
@@ -225,8 +225,8 @@ Partial Class Form1
         '
         'GroupBox2
         '
-        Me.GroupBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom)  _
+            Or System.Windows.Forms.AnchorStyles.Left),System.Windows.Forms.AnchorStyles)
         Me.GroupBox2.Controls.Add(Me.f_flag)
         Me.GroupBox2.Controls.Add(Me.s_flag)
         Me.GroupBox2.Controls.Add(Me.a_flag)
@@ -237,82 +237,82 @@ Partial Class Form1
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(562, 92)
         Me.GroupBox2.TabIndex = 15
-        Me.GroupBox2.TabStop = False
+        Me.GroupBox2.TabStop = false
         Me.GroupBox2.Text = "PAQ8PX Additional Options:"
         '
         'f_flag
         '
-        Me.f_flag.AutoSize = True
+        Me.f_flag.AutoSize = true
         Me.f_flag.Location = New System.Drawing.Point(268, 65)
         Me.f_flag.Name = "f_flag"
         Me.f_flag.Size = New System.Drawing.Size(239, 17)
         Me.f_flag.TabIndex = 17
         Me.f_flag.Text = "Bypass modeling and mixing on long matches"
-        Me.f_flag.UseVisualStyleBackColor = True
+        Me.f_flag.UseVisualStyleBackColor = true
         '
         's_flag
         '
-        Me.s_flag.AutoSize = True
+        Me.s_flag.AutoSize = true
         Me.s_flag.Location = New System.Drawing.Point(268, 42)
         Me.s_flag.Name = "s_flag"
         Me.s_flag.Size = New System.Drawing.Size(285, 17)
         Me.s_flag.TabIndex = 16
         Me.s_flag.Text = "Skip the color transform, just reorder the RGB channels"
-        Me.s_flag.UseVisualStyleBackColor = True
+        Me.s_flag.UseVisualStyleBackColor = true
         '
         'a_flag
         '
-        Me.a_flag.AutoSize = True
+        Me.a_flag.AutoSize = true
         Me.a_flag.Location = New System.Drawing.Point(268, 19)
         Me.a_flag.Name = "a_flag"
         Me.a_flag.Size = New System.Drawing.Size(129, 17)
         Me.a_flag.TabIndex = 15
         Me.a_flag.Text = "Adaptive learning rate"
-        Me.a_flag.UseVisualStyleBackColor = True
+        Me.a_flag.UseVisualStyleBackColor = true
         '
         't_flag
         '
-        Me.t_flag.AutoSize = True
+        Me.t_flag.AutoSize = true
         Me.t_flag.Location = New System.Drawing.Point(6, 65)
         Me.t_flag.Name = "t_flag"
         Me.t_flag.Size = New System.Drawing.Size(258, 17)
         Me.t_flag.TabIndex = 14
         Me.t_flag.Text = "Pre-train main model with word and expression list"
-        Me.t_flag.UseVisualStyleBackColor = True
+        Me.t_flag.UseVisualStyleBackColor = true
         '
         'e_flag
         '
-        Me.e_flag.AutoSize = True
+        Me.e_flag.AutoSize = true
         Me.e_flag.Location = New System.Drawing.Point(6, 42)
         Me.e_flag.Name = "e_flag"
         Me.e_flag.Size = New System.Drawing.Size(138, 17)
         Me.e_flag.TabIndex = 13
         Me.e_flag.Text = "Pre-train x86/x64 model"
-        Me.e_flag.UseVisualStyleBackColor = True
+        Me.e_flag.UseVisualStyleBackColor = true
         '
         'b_flag
         '
-        Me.b_flag.AutoSize = True
+        Me.b_flag.AutoSize = true
         Me.b_flag.Location = New System.Drawing.Point(6, 19)
         Me.b_flag.Name = "b_flag"
         Me.b_flag.Size = New System.Drawing.Size(227, 17)
         Me.b_flag.TabIndex = 12
         Me.b_flag.Text = "Brute-force detection of DEFLATE streams"
-        Me.b_flag.UseVisualStyleBackColor = True
+        Me.b_flag.UseVisualStyleBackColor = true
         '
         'StartButton
         '
-        Me.StartButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.StartButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left),System.Windows.Forms.AnchorStyles)
         Me.StartButton.Location = New System.Drawing.Point(12, 329)
         Me.StartButton.Name = "StartButton"
         Me.StartButton.Size = New System.Drawing.Size(562, 53)
         Me.StartButton.TabIndex = 18
         Me.StartButton.Text = "Start"
-        Me.StartButton.UseVisualStyleBackColor = True
+        Me.StartButton.UseVisualStyleBackColor = true
         '
         'Label2
         '
-        Me.Label2.AutoSize = True
+        Me.Label2.AutoSize = true
         Me.Label2.Location = New System.Drawing.Point(577, 9)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(28, 13)
@@ -321,9 +321,9 @@ Partial Class Form1
         '
         'Log
         '
-        Me.Log.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Log.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom)  _
+            Or System.Windows.Forms.AnchorStyles.Left)  _
+            Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
         Me.Log.BackColor = System.Drawing.SystemColors.Window
         Me.Log.Location = New System.Drawing.Point(580, 25)
         Me.Log.Name = "Log"
@@ -333,13 +333,13 @@ Partial Class Form1
         '
         'SaveLogButton
         '
-        Me.SaveLogButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SaveLogButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right),System.Windows.Forms.AnchorStyles)
         Me.SaveLogButton.Location = New System.Drawing.Point(832, 329)
         Me.SaveLogButton.Name = "SaveLogButton"
         Me.SaveLogButton.Size = New System.Drawing.Size(208, 53)
         Me.SaveLogButton.TabIndex = 20
         Me.SaveLogButton.Text = "Save Log"
-        Me.SaveLogButton.UseVisualStyleBackColor = True
+        Me.SaveLogButton.UseVisualStyleBackColor = true
         '
         'ClearLogButton
         '
@@ -349,21 +349,21 @@ Partial Class Form1
         Me.ClearLogButton.Size = New System.Drawing.Size(241, 53)
         Me.ClearLogButton.TabIndex = 19
         Me.ClearLogButton.Text = "Clear Log"
-        Me.ClearLogButton.UseVisualStyleBackColor = True
+        Me.ClearLogButton.UseVisualStyleBackColor = true
         '
         'FolderBrowserDialog1
         '
-        Me.FolderBrowserDialog1.ShowNewFolderButton = False
+        Me.FolderBrowserDialog1.ShowNewFolderButton = false
         '
         'Label3
         '
-        Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label3.AutoSize = True
+        Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left),System.Windows.Forms.AnchorStyles)
+        Me.Label3.AutoSize = true
         Me.Label3.Location = New System.Drawing.Point(9, 392)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(167, 13)
         Me.Label3.TabIndex = 21
-        Me.Label3.Text = "v0.3.17 - GUI by: Moisés Cardona"
+        Me.Label3.Text = "v0.3.18 - GUI by: Moisés Cardona"
         '
         'paq_other
         '
@@ -372,12 +372,12 @@ Partial Class Form1
         Me.paq_other.Name = "paq_other"
         Me.paq_other.Size = New System.Drawing.Size(123, 47)
         Me.paq_other.TabIndex = 15
-        Me.paq_other.TabStop = False
+        Me.paq_other.TabStop = false
         Me.paq_other.Text = "Threads"
         '
         'paq_other_dropbox
         '
-        Me.paq_other_dropbox.FormattingEnabled = True
+        Me.paq_other_dropbox.FormattingEnabled = true
         Me.paq_other_dropbox.Items.AddRange(New Object() {"1", "2", "3", "4", "5", "6", "7", "8", "9"})
         Me.paq_other_dropbox.Location = New System.Drawing.Point(6, 19)
         Me.paq_other_dropbox.Name = "paq_other_dropbox"
@@ -386,8 +386,8 @@ Partial Class Form1
         '
         'Form1
         '
-        Me.AllowDrop = True
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AllowDrop = true
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6!, 13!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1052, 414)
         Me.Controls.Add(Me.paq_other)
@@ -410,18 +410,18 @@ Partial Class Form1
         Me.Controls.Add(Me.BrowseFile)
         Me.Controls.Add(Me.InputLocation)
         Me.Controls.Add(Me.Step1Label)
-        Me.MaximizeBox = False
+        Me.MaximizeBox = false
         Me.Name = "Form1"
         Me.Text = "PAQCompress"
-        Me.GroupBox3.ResumeLayout(False)
-        Me.GroupBox3.PerformLayout()
-        Me.GroupBox4.ResumeLayout(False)
-        Me.GroupBox5.ResumeLayout(False)
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
-        Me.paq_other.ResumeLayout(False)
-        Me.ResumeLayout(False)
+        Me.GroupBox3.ResumeLayout(false)
+        Me.GroupBox3.PerformLayout
+        Me.GroupBox4.ResumeLayout(false)
+        Me.GroupBox5.ResumeLayout(false)
+        Me.GroupBox1.ResumeLayout(false)
+        Me.GroupBox2.ResumeLayout(false)
+        Me.GroupBox2.PerformLayout
+        Me.paq_other.ResumeLayout(false)
+        Me.ResumeLayout(false)
         Me.PerformLayout
 
 End Sub
