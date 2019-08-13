@@ -1,7 +1,7 @@
 ﻿Public Class Form1
     Private Flags_enable As Integer = 47
     Private f_flag_available As Integer = 56
-    Private paq8px_use_exe_in_folder As Integer = 73
+    Private paq8px_use_exe_in_folder As Integer = 74
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         PAQSeries.SelectedItem = My.Settings.PAQSeries
         PAQVersion.SelectedItem = My.Settings.PAQVersion
