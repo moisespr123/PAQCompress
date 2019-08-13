@@ -1,3 +1,12 @@
+v0.3.19
+-Added paq8px_v167cm.
+
+v0.3.18
+-Added paq8pxd_v67.
+
+v0.3.17
+-Added paq8pxd_v66.
+
 v0.3.16
 -Added paq8px_v181.
 
