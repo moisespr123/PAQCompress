@@ -1,8 +1,8 @@
 ﻿Public Class Form1
-    Private Flags_enable As Integer = 47
-    Private f_flag_available As Integer = 56
-    Private paq8px_use_exe_in_folder As Integer = 74
-    Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Private Const Flags_enable As Integer = 47
+    Private Const f_flag_available As Integer = 56
+    Private Const paq8px_use_exe_in_folder As Integer = 74
+    Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         PAQSeries.SelectedItem = My.Settings.PAQSeries
         PAQVersion.SelectedItem = My.Settings.PAQVersion
         If paq_other.Text = "Threads" Then
@@ -294,14 +294,14 @@
                             If s_flag.Checked Then CompressionFlags += "s"
                             If PAQVersion.SelectedIndex > f_flag_available Then If f_flag.Checked Then CompressionFlags += "f"
                             Dim textFile As String = OutputLocation.Text + ".txt"
-                            If My.Computer.FileSystem.DirectoryExists(InputLocation.Text) Then
+                            If IO.Directory.Exists(InputLocation.Text) Then
                                 Dim textFileStream As New IO.StreamWriter(textFile, False)
                                 textFileStream.WriteLine()
                                 GetDirectoriesAndFiles(IO.Path.GetDirectoryName(InputLocation.Text), New IO.DirectoryInfo(InputLocation.Text), textFileStream)
                                 textFileStream.Close()
                                 CompressionParameters = CompressionFlags + " ""@" + textFile + """ """ + OutputLocation.Text + """"
                             Else
-                                My.Computer.FileSystem.WriteAllText(textFile, Environment.NewLine + IO.Path.GetFileName(InputLocation.Text), False)
+                                IO.File.WriteAllText(textFile, Environment.NewLine + IO.Path.GetFileName(InputLocation.Text))
                                 CompressionParameters = CompressionFlags + " ""@" + textFile + """ """ + OutputLocation.Text + """"
                             End If
                         Else
@@ -478,7 +478,7 @@
            .Title = "Browse to save the log"}
         Dim result As DialogResult = SaveDialog.ShowDialog
         If result = DialogResult.OK Then
-            If Not String.IsNullOrWhiteSpace(SaveDialog.FileName) Then My.Computer.FileSystem.WriteAllText(SaveDialog.FileName, Log.Text, False)
+            If Not String.IsNullOrWhiteSpace(SaveDialog.FileName) Then IO.File.WriteAllText(SaveDialog.FileName, Log.Text)
         End If
     End Sub
 
