@@ -120,14 +120,13 @@
             checkPAQ8PXVExecutables()
             PAQVersion.Enabled = True
         ElseIf PAQSeries.SelectedItem Is "PAQ8PX" Then
-            PAQVersion.Items.AddRange({"v42", "v44", "v45", "v46", "v47", "v48", "v49", "v51", "v52", "v53", "v54", "v57", "v58",
-                                      "v60", "v60_Intel_SSE2", "v61_Intel_SSE2", "v64", "v64_Intel_SSE2", "v65", "v66", "v66_Intel_SSE2",
-                                      "v67", "v67_Intel_SSE2", "v68", "v68_Intel_SSE2", "v68e", "v68p3", "v69", "v69_Intel_SSE2", "v70",
-                                      "v71", "v72", "v73", "v74", "v75", "v77", "v80b", "v83", "v85", "v87", "v88", "v90", "v93", "v95",
-                                      "v105", "v122", "v126", "v132_fix1", "v137", "v141", "v141fix1", "v141fix2", "v141fix4", "v144",
-                                      "v145", "v146", "v147", "v156", "v157", "v159", "v163", "v164", "v167", "v167cm", "v168", "v169", "v170", "v171",
-                                      "v172", "v173", "v174", "v175", "v176", "v177", "v178", "v179", "v179fix1", "v179fix2", "v179fix3", "v179fix4",
-                                      "v179fix5", "v180", "v181"})
+            PAQVersion.Items.AddRange({"v42", "v44", "v45", "v46", "v47", "v48", "v49", "v51", "v52", "v53", "v54", "v57", "v58", "v60", "v60_Intel_SSE2",
+                                      "v61_Intel_SSE2", "v64", "v64_Intel_SSE2", "v65", "v66", "v66_Intel_SSE2", "v67", "v67_Intel_SSE2", "v68",
+                                      "v68_Intel_SSE2", "v68e", "v68p3", "v69", "v69_Intel_SSE2", "v70", "v71", "v72", "v73", "v74", "v75", "v77", "v80b",
+                                      "v83", "v85", "v87", "v88", "v90", "v93", "v95", "v105", "v122", "v126", "v132_fix1", "v137", "v141", "v141fix1",
+                                      "v141fix2", "v141fix4", "v144", "v145", "v146", "v147", "v156", "v157", "v159", "v163", "v164", "v167", "v167cm",
+                                      "v168", "v169", "v170", "v171", "v172", "v173", "v174", "v175", "v176", "v177", "v178", "v179", "v179fix1",
+                                      "v179fix2", "v179fix3", "v179fix4", "v179fix5", "v180", "v181", "v181fix1"})
             PAQVersion.Enabled = True
         End If
         If PAQVersion.Enabled Then
