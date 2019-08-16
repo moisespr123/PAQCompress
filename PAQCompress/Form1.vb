@@ -137,7 +137,7 @@
             End If
         End If
         EnableDisableFlags()
-        AdjustOutputFilename()
+        If Not String.IsNullOrWhiteSpace(InputLocation.Text) Then AdjustOutputFilename()
         My.Settings.PAQSeries = PAQSeries.SelectedItem.ToString()
         My.Settings.Save()
     End Sub
@@ -179,22 +179,26 @@
             CheckCompressionLevelAndChange()
         End If
         EnableDisableFlags()
-        AdjustOutputFilename()
+        If Not String.IsNullOrWhiteSpace(InputLocation.Text) Then AdjustOutputFilename()
         My.Settings.PAQVersion = PAQVersion.SelectedItem.ToString()
         My.Settings.Save()
     End Sub
     Private Sub AdjustOutputFilename()
-        If Not String.IsNullOrWhiteSpace(OutputLocation.Text) Then
-            If PAQVersion.Enabled Then
-                If (PAQSeries.SelectedItem Is "PAQ8PX" And PAQVersion.SelectedIndex > Flags_enable) Or PAQSeries.SelectedItem Is "PAQ8PXd" Or PAQSeries.SelectedItem Is "PAQ8PXv" Then
-                    OutputLocation.Text = IO.Path.ChangeExtension(OutputLocation.Text, PAQSeries.SelectedItem.ToString.ToLower + PAQVersion.SelectedItem.ToString().Remove(0, 1))
-                Else
-                    OutputLocation.Text = IO.Path.ChangeExtension(OutputLocation.Text, "." + PAQSeries.SelectedItem.ToString.ToLower + "_" + PAQVersion.SelectedItem.ToString())
-                End If
+        If CompressRButton.Checked Then
+            If Not String.IsNullOrWhiteSpace(OutputLocation.Text) Then
+                If PAQVersion.Enabled Then
+                    If (PAQSeries.SelectedItem Is "PAQ8PX" And PAQVersion.SelectedIndex > Flags_enable) Or PAQSeries.SelectedItem Is "PAQ8PXd" Or PAQSeries.SelectedItem Is "PAQ8PXv" Then
+                        OutputLocation.Text = IO.Path.ChangeExtension(OutputLocation.Text, PAQSeries.SelectedItem.ToString.ToLower + PAQVersion.SelectedItem.ToString().Remove(0, 1))
+                    Else
+                        OutputLocation.Text = IO.Path.ChangeExtension(OutputLocation.Text, "." + PAQSeries.SelectedItem.ToString.ToLower + "_" + PAQVersion.SelectedItem.ToString())
+                    End If
 
-            Else
-                OutputLocation.Text = IO.Path.ChangeExtension(OutputLocation.Text, "." + PAQSeries.SelectedItem.ToString.ToLower)
+                Else
+                    OutputLocation.Text = IO.Path.ChangeExtension(OutputLocation.Text, "." + PAQSeries.SelectedItem.ToString.ToLower)
+                End If
             End If
+        Else
+            OutputLocation.Text = IO.Path.GetDirectoryName(InputLocation.Text)
         End If
     End Sub
 
@@ -436,6 +440,7 @@
         End If
     End Sub
     Private Sub CheckAndAdjust()
+        If IO.Path.GetExtension(InputLocation.Text).Contains(".paq8") Then ExtractRButton.Checked = True Else CompressRButton.Checked = True
         If ExtractRButton.Checked Then
             AdjustPAQVersion(IO.Path.GetFileName(InputLocation.Text))
         Else
