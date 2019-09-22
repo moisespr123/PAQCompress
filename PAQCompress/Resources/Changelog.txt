@@ -1,3 +1,9 @@
+v0.3.22
+-Added paq8px_v182
+-Added paq8px_v182fix1
+-Added paq8px_v182fix2
+-Can now use the CMD to show PAQ output in realtime
+
 v0.3.21
 -Added paq8px_v181fix1.
 

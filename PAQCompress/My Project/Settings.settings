@@ -41,5 +41,8 @@
     <Setting Name="compiler" Type="System.String" Scope="User">
       <Value Profile="(Default)">jit</Value>
     </Setting>
+    <Setting Name="ShowCMD" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

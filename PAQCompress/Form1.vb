@@ -19,6 +19,7 @@
         a_flag.Checked = My.Settings.a_flag
         s_flag.Checked = My.Settings.s_flag
         f_flag.Checked = My.Settings.f_flag
+        ShowCMD.Checked = My.Settings.ShowCMD
         EnableDisableFlags()
         Dim vars As String() = Environment.GetCommandLineArgs
         If vars.Count > 1 Then
@@ -63,7 +64,7 @@
     Private Sub SetPAQVersion(Filename As String, Extension As String, Optional append_v As Boolean = True, Optional split_after_dot As Boolean = True)
         Dim split_paq_version As String() = Filename.Split({Extension}, StringSplitOptions.RemoveEmptyEntries)
         For Each splitted_item In split_paq_version
-            Dim paq_version As String = String.Empty
+            Dim paq_version As String
             If append_v Then
                 paq_version = "v" + splitted_item
             Else
@@ -126,7 +127,7 @@
                                       "v83", "v85", "v87", "v88", "v90", "v93", "v95", "v105", "v122", "v126", "v132_fix1", "v137", "v141", "v141fix1",
                                       "v141fix2", "v141fix4", "v144", "v145", "v146", "v147", "v156", "v157", "v159", "v163", "v164", "v167", "v167cm",
                                       "v168", "v169", "v170", "v171", "v172", "v173", "v174", "v175", "v176", "v177", "v178", "v179", "v179fix1",
-                                      "v179fix2", "v179fix3", "v179fix4", "v179fix5", "v180", "v181", "v181fix1"})
+                                      "v179fix2", "v179fix3", "v179fix4", "v179fix5", "v180", "v181", "v181fix1", "v182", "v182fix1", "v182fix2"})
             PAQVersion.Enabled = True
         End If
         If PAQVersion.Enabled Then
@@ -323,6 +324,10 @@
             If IO.File.Exists(CompressorToUse) Then
                 StartButton.Enabled = False
                 SaveLogButton.Enabled = False
+                If ShowCMD.Checked Then
+                    CompressionParameters = "/C " + CompressorToUse + " " + CompressionParameters + " & pause"
+                    CompressorToUse = "cmd.exe"
+                End If
                 Dim StartCompressionThread = New Threading.Thread(Sub() CompressionThread(CompressorToUse, CompressionParameters))
                 StartCompressionThread.Start()
             Else
@@ -338,15 +343,17 @@
             process.StartInfo.WorkingDirectory = IO.Path.GetDirectoryName(Compressor)
             process.StartInfo.FileName = Compressor
             process.StartInfo.Arguments = Params
-            process.StartInfo.UseShellExecute = False
-            process.StartInfo.RedirectStandardOutput = True
-            process.StartInfo.RedirectStandardError = True
-            process.StartInfo.CreateNoWindow = True
-            AddHandler process.OutputDataReceived, New DataReceivedEventHandler(AddressOf UpdateLogEventHandler)
-            AddHandler process.ErrorDataReceived, New DataReceivedEventHandler(AddressOf UpdateLogEventHandler)
+            process.StartInfo.UseShellExecute = ShowCMD.Checked
+            process.StartInfo.RedirectStandardOutput = Not ShowCMD.Checked
+            process.StartInfo.RedirectStandardError = Not ShowCMD.Checked
+            process.StartInfo.CreateNoWindow = Not ShowCMD.Checked
             process.Start()
-            process.BeginOutputReadLine()
-            process.BeginErrorReadLine()
+            If Not ShowCMD.Checked Then
+                AddHandler process.OutputDataReceived, New DataReceivedEventHandler(AddressOf UpdateLogEventHandler)
+                AddHandler process.ErrorDataReceived, New DataReceivedEventHandler(AddressOf UpdateLogEventHandler)
+                process.BeginOutputReadLine()
+                process.BeginErrorReadLine()
+            End If
             process.WaitForExit()
             StartButton.BeginInvoke(Sub() StartButton.Enabled = True)
             SaveLogButton.BeginInvoke(Sub() SaveLogButton.Enabled = True)
@@ -506,5 +513,10 @@
     Private Sub Form1_DragDrop(sender As Object, e As DragEventArgs) Handles MyBase.DragDrop
         InputLocation.Text = CType(e.Data.GetData(DataFormats.FileDrop), String())(0)
         CheckAndAdjust()
+    End Sub
+
+    Private Sub ShowCMD_CheckedChanged(sender As Object, e As EventArgs) Handles ShowCMD.CheckedChanged
+        My.Settings.ShowCMD = ShowCMD.Checked
+        My.Settings.Save()
     End Sub
 End Class
