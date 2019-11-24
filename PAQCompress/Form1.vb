@@ -322,6 +322,7 @@
         End If
         If Not String.IsNullOrEmpty(CompressorToUse) And Not String.IsNullOrEmpty(CompressionParameters) Then
             CompressorToUse = IO.Path.GetDirectoryName(Process.GetCurrentProcess.MainModule.FileName) + "/" + CompressorToUse
+            Dim CompressorPath As String = IO.Path.GetDirectoryName(CompressorToUse)
             If IO.File.Exists(CompressorToUse) Then
                 StartButton.Enabled = False
                 SaveLogButton.Enabled = False
@@ -329,7 +330,7 @@
                     CompressionParameters = "/C " + CompressorToUse + " " + CompressionParameters + " & pause"
                     CompressorToUse = "cmd.exe"
                 End If
-                Dim StartCompressionThread = New Threading.Thread(Sub() CompressionThread(CompressorToUse, CompressionParameters))
+                Dim StartCompressionThread = New Threading.Thread(Sub() CompressionThread(CompressorToUse, CompressionParameters, CompressorPath))
                 StartCompressionThread.Start()
             Else
                 MsgBox("The selected compressor version could not be found. Cannot proceed")
@@ -339,9 +340,9 @@
         End If
     End Sub
 
-    Private Sub CompressionThread(Compressor As String, Params As String)
+    Private Sub CompressionThread(Compressor As String, Params As String, CompressorPath As String)
         Using process As New Process()
-            process.StartInfo.WorkingDirectory = IO.Path.GetDirectoryName(Compressor)
+            process.StartInfo.WorkingDirectory = CompressorPath
             process.StartInfo.FileName = Compressor
             process.StartInfo.Arguments = Params
             process.StartInfo.UseShellExecute = ShowCMD.Checked
