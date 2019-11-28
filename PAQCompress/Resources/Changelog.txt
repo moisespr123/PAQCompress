@@ -1,3 +1,6 @@
+v0.3.27
+-Added paq8pxd_v69
+
 v0.3.26
 -Fixed a bug on some compressors when the show cmd option is selected
 -Added and updated some paq8pxv v12 profiles.
