@@ -20,6 +20,7 @@
         s_flag.Checked = My.Settings.s_flag
         f_flag.Checked = My.Settings.f_flag
         ShowCMD.Checked = My.Settings.ShowCMD
+        GenerateBatchScriptOnly.Checked = My.Settings.OnlyGenerateBatchFile
         EnableDisableFlags()
         Dim vars As String() = Environment.GetCommandLineArgs
         If vars.Count > 1 Then
@@ -324,14 +325,25 @@
             CompressorToUse = IO.Path.GetDirectoryName(Process.GetCurrentProcess.MainModule.FileName) + "/" + CompressorToUse
             Dim CompressorPath As String = IO.Path.GetDirectoryName(CompressorToUse)
             If IO.File.Exists(CompressorToUse) Then
-                StartButton.Enabled = False
-                SaveLogButton.Enabled = False
-                If ShowCMD.Checked Then
-                    CompressionParameters = "/C " + CompressorToUse + " " + CompressionParameters + " & pause"
-                    CompressorToUse = "cmd.exe"
+                If Not GenerateBatchScriptOnly.Checked Then
+                    StartButton.Enabled = False
+                    SaveLogButton.Enabled = False
+                    If ShowCMD.Checked Then
+                        CompressionParameters = "/C " + CompressorToUse + " " + CompressionParameters + " & pause"
+                        CompressorToUse = "cmd.exe"
+                    End If
+                    Dim StartCompressionThread = New Threading.Thread(Sub() CompressionThread(CompressorToUse, CompressionParameters, CompressorPath))
+                    StartCompressionThread.Start()
+                Else
+                    Dim OutputPath As String
+                    If IO.Directory.Exists(OutputLocation.Text) Then
+                        OutputPath = OutputLocation.Text + "\" + IO.Path.GetFileName(OutputLocation.Text) + ".bat"
+                    Else
+                        OutputPath = IO.Path.ChangeExtension(OutputLocation.Text, ".bat")
+                    End If
+                    IO.File.WriteAllText(OutputPath, CompressorToUse + " " + CompressionParameters + " & pause")
+                    MsgBox("Batch file written to the output location.")
                 End If
-                Dim StartCompressionThread = New Threading.Thread(Sub() CompressionThread(CompressorToUse, CompressionParameters, CompressorPath))
-                StartCompressionThread.Start()
             Else
                 MsgBox("The selected compressor version could not be found. Cannot proceed")
             End If
@@ -519,6 +531,11 @@
 
     Private Sub ShowCMD_CheckedChanged(sender As Object, e As EventArgs) Handles ShowCMD.CheckedChanged
         My.Settings.ShowCMD = ShowCMD.Checked
+        My.Settings.Save()
+    End Sub
+
+    Private Sub GenerateBatchScriptOnly_CheckedChanged(sender As Object, e As EventArgs) Handles GenerateBatchScriptOnly.CheckedChanged
+        My.Settings.OnlyGenerateBatchFile = GenerateBatchScriptOnly.Checked
         My.Settings.Save()
     End Sub
 End Class

@@ -59,6 +59,7 @@ Partial Class Form1
         Me.paq_other = New System.Windows.Forms.GroupBox()
         Me.paq_other_dropbox = New System.Windows.Forms.ComboBox()
         Me.ShowCMD = New System.Windows.Forms.CheckBox()
+        Me.GenerateBatchScriptOnly = New System.Windows.Forms.CheckBox()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -364,7 +365,7 @@ Partial Class Form1
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(167, 13)
         Me.Label3.TabIndex = 21
-        Me.Label3.Text = "v0.3.27 - GUI by: Moisés Cardona"
+        Me.Label3.Text = "v0.3.28 - GUI by: Moisés Cardona"
         '
         'paq_other
         '
@@ -388,12 +389,22 @@ Partial Class Form1
         'ShowCMD
         '
         Me.ShowCMD.AutoSize = True
-        Me.ShowCMD.Location = New System.Drawing.Point(18, 331)
+        Me.ShowCMD.Location = New System.Drawing.Point(163, 331)
         Me.ShowCMD.Name = "ShowCMD"
         Me.ShowCMD.Size = New System.Drawing.Size(139, 17)
         Me.ShowCMD.TabIndex = 22
         Me.ShowCMD.Text = "Show Command Prompt"
         Me.ShowCMD.UseVisualStyleBackColor = True
+        '
+        'GenerateBatchScriptOnly
+        '
+        Me.GenerateBatchScriptOnly.AutoSize = True
+        Me.GenerateBatchScriptOnly.Location = New System.Drawing.Point(12, 332)
+        Me.GenerateBatchScriptOnly.Name = "GenerateBatchScriptOnly"
+        Me.GenerateBatchScriptOnly.Size = New System.Drawing.Size(151, 17)
+        Me.GenerateBatchScriptOnly.TabIndex = 23
+        Me.GenerateBatchScriptOnly.Text = "Only generate Batch script"
+        Me.GenerateBatchScriptOnly.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -401,6 +412,7 @@ Partial Class Form1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1052, 440)
+        Me.Controls.Add(Me.GenerateBatchScriptOnly)
         Me.Controls.Add(Me.ShowCMD)
         Me.Controls.Add(Me.paq_other)
         Me.Controls.Add(Me.Label3)
@@ -474,4 +486,5 @@ End Sub
     Friend WithEvents paq_other As GroupBox
     Friend WithEvents paq_other_dropbox As ComboBox
     Friend WithEvents ShowCMD As CheckBox
+    Friend WithEvents GenerateBatchScriptOnly As CheckBox
 End Class
