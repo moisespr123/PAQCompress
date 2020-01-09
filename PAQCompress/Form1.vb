@@ -114,7 +114,7 @@
             paq_other_dropbox.SelectedItem = My.Settings.pxdThreads
             PAQVersion.Enabled = True
         ElseIf PAQSeries.SelectedItem Is "PAQ8PXv" Then
-            PAQVersion.Items.AddRange({"v4", "v5", "v6", "v8", "v12"})
+            PAQVersion.Items.AddRange({"v4", "v5", "v6", "v8", "v12", "v13"})
             CompressionLevel.Text = "s5"
             CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15"})
             paq_other.Text = "Compiler"
@@ -147,7 +147,7 @@
     Private Sub checkPAQ8PXVExecutables()
         paq_other_dropbox.Items.Clear()
         Dim CompressorToUse As String = IO.Path.GetDirectoryName(Process.GetCurrentProcess.MainModule.FileName) + "/Executables/" + PAQSeries.Text + "/" + PAQVersion.Text + "/" + PAQSeries.Text.ToLower() + "_" + PAQVersion.Text
-        Dim PAQ8PXV_variants As String() = {"jit", "vm", "_AVX2", "_MMX", "_NONE", "_SSE2", "_SSE4", "_SSE42", "_SSSE3"}
+        Dim PAQ8PXV_variants As String() = {"jit", "vm", "_AVX2", "_MMX", "_NONE", "_SSE2", "_SSE4", "_SSE42", "_SSSE3", "_VM", "_JIT_AVX2", "_JIT_SSE4"}
         For Each item In PAQ8PXV_variants
             If IO.File.Exists(CompressorToUse + item + ".exe") Then paq_other_dropbox.Items.Add(item)
         Next
@@ -257,6 +257,14 @@
     Private Sub StartButton_Click(sender As Object, e As EventArgs) Handles StartButton.Click
         Dim CompressorToUse As String = String.Empty
         Dim CompressionParameters As String = String.Empty
+        If String.IsNullOrWhiteSpace(InputLocation.Text) Then
+            MessageBox.Show("The Input field cannot be empty.")
+            Exit Sub
+        End If
+        If String.IsNullOrWhiteSpace(OutputLocation.Text) Then
+            MessageBox.Show("The Output field cannot be empty.")
+            Exit Sub
+        End If
         If CompressionLevel.Items.Contains(CompressionLevel.Text) Then
             If PAQSeries.SelectedItem IsNot "PAQ8PX" Then
                 If PAQSeries.SelectedItem IsNot "PAQ8o10t" And PAQSeries.SelectedItem IsNot "PAQ8PXPRE" And PAQSeries.SelectedItem IsNot "PAQ8PXv" And PAQSeries.SelectedItem IsNot "PAQ8P_PC" Then
