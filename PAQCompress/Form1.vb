@@ -105,7 +105,8 @@
             PAQVersion.Items.AddRange({"v1", "v2", "v3", "v4", "v5", "v6"})
             PAQVersion.Enabled = True
         ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Then
-            PAQVersion.Items.AddRange({"v60", "v61", "v62", "v63", "v64", "v66", "v67", "v68", "v69f", "v69"})
+            PAQVersion.Items.AddRange({"v45", "v46", "v47", "v48", "v49", "v50", "v51", "v52", "v53", "v54", "v55", "v56", "v57", "v58", "v59", "v60",
+                                      "v61", "v62", "v63", "v64", "v66", "v67", "v68", "v69f", "v69"})
             CompressionLevel.Text = "s5"
             CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15"})
             paq_other.Text = "Threads"
@@ -114,7 +115,7 @@
             paq_other_dropbox.SelectedItem = My.Settings.pxdThreads
             PAQVersion.Enabled = True
         ElseIf PAQSeries.SelectedItem Is "PAQ8PXv" Then
-            PAQVersion.Items.AddRange({"v4", "v5", "v6", "v8", "v12", "v13", "v16"})
+            PAQVersion.Items.AddRange({"v4", "v5", "v6", "v7", "v8", "v9", "v10", "v11", "v12", "v13", "v14", "v15", "v16"})
             CompressionLevel.Text = "s5"
             CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15"})
             paq_other.Text = "Compiler"
@@ -267,12 +268,14 @@
         End If
         If CompressionLevel.Items.Contains(CompressionLevel.Text) Then
             If PAQSeries.SelectedItem IsNot "PAQ8PX" Then
-                If PAQSeries.SelectedItem IsNot "PAQ8o10t" And PAQSeries.SelectedItem IsNot "PAQ8PXPRE" And PAQSeries.SelectedItem IsNot "PAQ8PXv" And PAQSeries.SelectedItem IsNot "PAQ8P_PC" Then
+                If PAQSeries.SelectedItem IsNot "PAQ8o10t" And PAQSeries.SelectedItem IsNot "PAQ8PXPRE" And PAQSeries.SelectedItem IsNot "PAQ8PXd" And PAQSeries.SelectedItem IsNot "PAQ8PXv" And PAQSeries.SelectedItem IsNot "PAQ8P_PC" Then
                     If PAQVersion.Items.Contains(PAQVersion.Text) Then
                         CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQSeries.Text.ToLower + "_" + PAQVersion.Text + ".exe"
                     Else
                         MessageBox.Show("Select an item from the version dropdown")
                     End If
+                ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Then
+                    CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQVersion.Text + "/" + PAQSeries.Text.ToLower() + "_" + PAQVersion.Text + ".exe"
                 ElseIf PAQSeries.SelectedItem Is "PAQ8PXv" Then
                     CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQVersion.Text + "/" + PAQSeries.Text.ToLower() + "_" + PAQVersion.Text + paq_other_dropbox.Text.ToLower() + ".exe"
                 ElseIf PAQSeries.SelectedItem Is "PAQ8P_PC" Then

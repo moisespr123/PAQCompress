@@ -1,3 +1,17 @@
+v0.3.31
+-Added paq8pxd v45 to v59.
+-Added paq8pxv v7, v9 to v11, v14, and v15.
+
+v0.3.30
+-Added paq8pxv_v16
+
+v0.3.29
+-Added paq8pxv_v13
+-Validate the input and output fields.
+
+v0.3.28
+-Can now create batch files to compress or extract files later.
+
 v0.3.27
 -Added paq8pxd_v69
 
