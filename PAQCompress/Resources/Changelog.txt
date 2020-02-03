@@ -1,3 +1,6 @@
+v0.3.32
+-Added paq8pxd v70.
+
 v0.3.31
 -Added paq8pxd v45 to v59.
 -Added paq8pxv v7, v9 to v11, v14, and v15.
