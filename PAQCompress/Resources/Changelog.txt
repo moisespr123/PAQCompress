@@ -1,4 +1,7 @@
 v0.3.32
+-Added paq8pxd v71
+
+v0.3.32
 -Added paq8pxd v70.
 
 v0.3.31
