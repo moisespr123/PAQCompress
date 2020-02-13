@@ -1,6 +1,7 @@
 v0.3.34
 -Added paq8px_v184
 -Added paq8px v185
+-Added paq8pxd v72
 
 v0.3.33
 -Added paq8pxd v71
