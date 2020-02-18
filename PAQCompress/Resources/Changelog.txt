@@ -1,10 +1,13 @@
+v0.3.35
+-Added paq8pxd v73.
+
 v0.3.34
--Added paq8px_v184
--Added paq8px v185
--Added paq8pxd v72
+-Added paq8px_v184.
+-Added paq8px v185.
+-Added paq8pxd v72.
 
 v0.3.33
--Added paq8pxd v71
+-Added paq8pxd v71.
 
 v0.3.32
 -Added paq8pxd v70.
@@ -14,20 +17,20 @@ v0.3.31
 -Added paq8pxv v7, v9 to v11, v14, and v15.
 
 v0.3.30
--Added paq8pxv_v16
+-Added paq8pxv_v16.
 
 v0.3.29
--Added paq8pxv_v13
+-Added paq8pxv_v13.
 -Validate the input and output fields.
 
 v0.3.28
 -Can now create batch files to compress or extract files later.
 
 v0.3.27
--Added paq8pxd_v69
+-Added paq8pxd_v69.
 
 v0.3.26
--Fixed a bug on some compressors when the show cmd option is selected
+-Fixed a bug on some compressors when the show cmd option is selected.
 -Added and updated some paq8pxv v12 profiles.
 
 v0.3.25
