@@ -59,36 +59,5 @@ Namespace My.Resources
                 resourceCulture = value
             End Set
         End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to v0.3.14
-        '''-Targets .NET Framework 4.8
-        '''-Added paq8px_v179fix5
-        '''
-        '''v0.3.13
-        '''-Added paq8px_v179fix4
-        '''-Enabled the &quot;Clear Log&quot; button to erase log while compression/extraction is in progress.
-        '''
-        '''v0.3.12
-        '''-Added paq8px_v179fix3
-        '''
-        '''v0.3.11
-        '''-Added paq8px_v179fix2
-        '''
-        '''v0.3.10
-        '''-Added paq8px_v179 and paq8px_v179fix1.
-        '''-Added paq8px_v147 which was missing from the list.
-        '''
-        '''v0.3.9
-        '''-Fixed OpenFileDialog message saying &quot;Browse for a file to compress&quot; when the Extract Radiobutton was checked.
-        '''
-        '''v0.3.8
-        '''-Added paq8pxv_v8 [rest of string was truncated]&quot;;.
-        '''</summary>
-        Friend ReadOnly Property Changelog() As String
-            Get
-                Return ResourceManager.GetString("Changelog", resourceCulture)
-            End Get
-        End Property
     End Module
 End Namespace
