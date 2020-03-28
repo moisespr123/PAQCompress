@@ -60,6 +60,8 @@ Partial Class Form1
         Me.paq_other_dropbox = New System.Windows.Forms.ComboBox()
         Me.ShowCMD = New System.Windows.Forms.CheckBox()
         Me.GenerateBatchScriptOnly = New System.Windows.Forms.CheckBox()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -406,12 +408,33 @@ Partial Class Form1
         Me.GenerateBatchScriptOnly.Text = "Only generate Batch script"
         Me.GenerateBatchScriptOnly.UseVisualStyleBackColor = True
         '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(289, 12)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(285, 17)
+        Me.CheckBox1.TabIndex = 24
+        Me.CheckBox1.Text = "Send to Distributed Media and Data Processing project"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(289, 31)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(276, 23)
+        Me.Button1.TabIndex = 25
+        Me.Button1.Text = "Distributed Data and Media Processing settings"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AllowDrop = True
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1052, 440)
+        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.CheckBox1)
         Me.Controls.Add(Me.GenerateBatchScriptOnly)
         Me.Controls.Add(Me.ShowCMD)
         Me.Controls.Add(Me.paq_other)
@@ -487,4 +510,6 @@ End Sub
     Friend WithEvents paq_other_dropbox As ComboBox
     Friend WithEvents ShowCMD As CheckBox
     Friend WithEvents GenerateBatchScriptOnly As CheckBox
+    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents Button1 As Button
 End Class
