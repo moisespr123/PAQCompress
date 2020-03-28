@@ -60,8 +60,8 @@ Partial Class Form1
         Me.paq_other_dropbox = New System.Windows.Forms.ComboBox()
         Me.ShowCMD = New System.Windows.Forms.CheckBox()
         Me.GenerateBatchScriptOnly = New System.Windows.Forms.CheckBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.SendToDistributedProject = New System.Windows.Forms.CheckBox()
+        Me.DistributedProcessingOptions = New System.Windows.Forms.Button()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -367,7 +367,7 @@ Partial Class Form1
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(167, 13)
         Me.Label3.TabIndex = 21
-        Me.Label3.Text = "v0.3.39 - GUI by: Moisés Cardona"
+        Me.Label3.Text = "v0.3.40 - GUI by: Moisés Cardona"
         '
         'paq_other
         '
@@ -408,24 +408,26 @@ Partial Class Form1
         Me.GenerateBatchScriptOnly.Text = "Only generate Batch script"
         Me.GenerateBatchScriptOnly.UseVisualStyleBackColor = True
         '
-        'CheckBox1
+        'SendToDistributedProject
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(289, 12)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(285, 17)
-        Me.CheckBox1.TabIndex = 24
-        Me.CheckBox1.Text = "Send to Distributed Media and Data Processing project"
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.SendToDistributedProject.AutoSize = True
+        Me.SendToDistributedProject.Location = New System.Drawing.Point(289, 12)
+        Me.SendToDistributedProject.Name = "SendToDistributedProject"
+        Me.SendToDistributedProject.Size = New System.Drawing.Size(285, 17)
+        Me.SendToDistributedProject.TabIndex = 24
+        Me.SendToDistributedProject.Text = "Send to Distributed Media and Data Processing project"
+        Me.SendToDistributedProject.UseVisualStyleBackColor = True
+        Me.SendToDistributedProject.Visible = False
         '
-        'Button1
+        'DistributedProcessingOptions
         '
-        Me.Button1.Location = New System.Drawing.Point(289, 31)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(276, 23)
-        Me.Button1.TabIndex = 25
-        Me.Button1.Text = "Distributed Data and Media Processing settings"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.DistributedProcessingOptions.Location = New System.Drawing.Point(289, 31)
+        Me.DistributedProcessingOptions.Name = "DistributedProcessingOptions"
+        Me.DistributedProcessingOptions.Size = New System.Drawing.Size(276, 23)
+        Me.DistributedProcessingOptions.TabIndex = 25
+        Me.DistributedProcessingOptions.Text = "Distributed Data and Media Processing settings"
+        Me.DistributedProcessingOptions.UseVisualStyleBackColor = True
+        Me.DistributedProcessingOptions.Visible = False
         '
         'Form1
         '
@@ -433,8 +435,8 @@ Partial Class Form1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1052, 440)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.CheckBox1)
+        Me.Controls.Add(Me.DistributedProcessingOptions)
+        Me.Controls.Add(Me.SendToDistributedProject)
         Me.Controls.Add(Me.GenerateBatchScriptOnly)
         Me.Controls.Add(Me.ShowCMD)
         Me.Controls.Add(Me.paq_other)
@@ -510,6 +512,6 @@ End Sub
     Friend WithEvents paq_other_dropbox As ComboBox
     Friend WithEvents ShowCMD As CheckBox
     Friend WithEvents GenerateBatchScriptOnly As CheckBox
-    Friend WithEvents CheckBox1 As CheckBox
-    Friend WithEvents Button1 As Button
+    Friend WithEvents SendToDistributedProject As CheckBox
+    Friend WithEvents DistributedProcessingOptions As Button
 End Class

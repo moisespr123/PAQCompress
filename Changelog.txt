@@ -1,14 +1,17 @@
+v0.3.40
+-Added paq8pxd v79.
+
 v0.3.39
--Added paq8pxd v78
+-Added paq8pxd v78.
 
 v0.3.38
--Added paq8pxd v77
+-Added paq8pxd v77.
 
 v0.3.37
--Added paq8pxd v76
+-Added paq8pxd v76.
 
 v0.3.36
--Added paq8pxd v74 and v75
+-Added paq8pxd v74 and v75.
 
 v0.3.35
 -Added paq8pxd v73.
