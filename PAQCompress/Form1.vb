@@ -2,6 +2,8 @@
     Private Const Flags_enable As Integer = 47
     Private Const f_flag_available As Integer = 56
     Private Const paq8px_use_exe_in_folder As Integer = 74
+    Private DistributedPAQCompressors As New Dictionary(Of String, String())() From {{"PAQ8PX", {"v185"}}}
+
     Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         PAQSeries.SelectedItem = My.Settings.PAQSeries
         PAQVersion.SelectedItem = My.Settings.PAQVersion
@@ -29,6 +31,7 @@
         End If
         If My.Settings.ShowDistributedOption Then
             SendToDistributedProject.Visible = True
+            SendToDistributedProject.Checked = My.Settings.SendToDistributedProject
             DistributedProcessingOptions.Visible = True
         Else
             My.Settings.SendToDistributedProject = False
@@ -271,7 +274,7 @@
             Exit Sub
         End If
         If String.IsNullOrWhiteSpace(OutputLocation.Text) Then
-            MessageBox.Show("The Output field cannot be empty.")
+            If Not My.Settings.SendToDistributedProject Then MessageBox.Show("The Output field cannot be empty.") Else MessageBox.Show("The Category field cannot be empty.")
             Exit Sub
         End If
         If CompressionLevel.Items.Contains(CompressionLevel.Text) Then
@@ -556,5 +559,17 @@
     Private Sub GenerateBatchScriptOnly_CheckedChanged(sender As Object, e As EventArgs) Handles GenerateBatchScriptOnly.CheckedChanged
         My.Settings.OnlyGenerateBatchFile = GenerateBatchScriptOnly.Checked
         My.Settings.Save()
+    End Sub
+
+    Private Sub SendToDistributedProject_CheckedChanged(sender As Object, e As EventArgs) Handles SendToDistributedProject.CheckedChanged
+        My.Settings.SendToDistributedProject = SendToDistributedProject.Checked
+        My.Settings.Save()
+        If SendToDistributedProject.Checked Then
+            Step2Label.Text = "Step 2: Enter a Category name:"
+            BrowseOutput.Enabled = False
+        Else
+            Step2Label.Text = "Step 2: Browse for a location to store the compressed file:"
+            BrowseOutput.Enabled = True
+        End If
     End Sub
 End Class
