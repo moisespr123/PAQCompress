@@ -217,14 +217,24 @@
         End If
     End Sub
 
-    Private Sub GetDirectoriesAndFiles(ByVal OrigLocation As String, ByVal BaseFolder As IO.DirectoryInfo, ByVal TextFile As IO.StreamWriter)
-        For Each FI As IO.FileInfo In BaseFolder.GetFiles()
-            TextFile.WriteLine(FI.FullName.Remove(0, OrigLocation.Count + 1))
-        Next
-        For Each subF As IO.DirectoryInfo In BaseFolder.GetDirectories()
-            GetDirectoriesAndFiles(OrigLocation, subF, TextFile)
-        Next
-    End Sub
+    Private Function GetDirectoriesAndFiles(ByVal OrigLocation As String, ByVal BaseFolder As IO.DirectoryInfo, Optional ByVal TextFile As IO.StreamWriter = Nothing, Optional FileList As String() = Nothing) As String()
+        If TextFile Is Nothing Then
+            For Each FI As IO.FileInfo In BaseFolder.GetFiles()
+                FileList.Append(FI.FullName)
+            Next
+            For Each subF As IO.DirectoryInfo In BaseFolder.GetDirectories()
+                GetDirectoriesAndFiles(OrigLocation, subF, TextFile, FileList)
+            Next
+        Else
+            For Each FI As IO.FileInfo In BaseFolder.GetFiles()
+                TextFile.WriteLine(FI.FullName.Remove(0, OrigLocation.Count + 1))
+            Next
+            For Each subF As IO.DirectoryInfo In BaseFolder.GetDirectories()
+                GetDirectoriesAndFiles(OrigLocation, subF, TextFile)
+            Next
+        End If
+        Return FileList
+    End Function
     Private Sub CheckCompressionLevelAndChange()
         If CompressionLevel.Text = "9" Then
             CompressionLevel.Text = "8"
@@ -277,103 +287,116 @@
             If Not My.Settings.SendToDistributedProject Then MessageBox.Show("The Output field cannot be empty.") Else MessageBox.Show("The Category field cannot be empty.")
             Exit Sub
         End If
-        If CompressionLevel.Items.Contains(CompressionLevel.Text) Then
-            If PAQSeries.SelectedItem IsNot "PAQ8PX" Then
-                If PAQSeries.SelectedItem IsNot "PAQ8o10t" And PAQSeries.SelectedItem IsNot "PAQ8PXPRE" And PAQSeries.SelectedItem IsNot "PAQ8PXd" And PAQSeries.SelectedItem IsNot "PAQ8PXv" And PAQSeries.SelectedItem IsNot "PAQ8P_PC" Then
-                    If PAQVersion.Items.Contains(PAQVersion.Text) Then
-                        CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQSeries.Text.ToLower + "_" + PAQVersion.Text + ".exe"
-                    Else
-                        MessageBox.Show("Select an item from the version dropdown")
-                    End If
-                ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Then
-                    CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQVersion.Text + "/" + PAQSeries.Text.ToLower() + "_" + PAQVersion.Text + ".exe"
-                ElseIf PAQSeries.SelectedItem Is "PAQ8PXv" Then
-                    CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQVersion.Text + "/" + PAQSeries.Text.ToLower() + "_" + PAQVersion.Text + paq_other_dropbox.Text.ToLower() + ".exe"
-                ElseIf PAQSeries.SelectedItem Is "PAQ8P_PC" Then
-                    CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQVersion.Text + "/" + PAQSeries.Text.ToLower() + ".exe"
-                Else
-                    CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQSeries.Text.ToLower + ".exe"
+        If My.Settings.SendToDistributedProject Then
+            If Not DistributedPAQCompressors.ContainsKey(PAQSeries.Text) Then
+                MessageBox.Show("The selected PAQ Series cannot be used on the Distributed project.")
+                Exit Sub
+            Else
+                If Not DistributedPAQCompressors(PAQSeries.Text).Contains(PAQVersion.Text) Then
+                    MessageBox.Show("The selected PAQ compressor cannot be used on the Distributed project.")
+                    Exit Sub
                 End If
-                If CompressRButton.Checked Then
-                    If PAQSeries.SelectedItem Is "PAQ8o10t" Or PAQSeries.SelectedItem Is "PAQ8PXv" Then
-                        CompressionParameters = "-" + CompressionLevel.Text + " """ + IO.Path.ChangeExtension(OutputLocation.Text, Nothing) + """ """ + InputLocation.Text + """"
+                Dim Files As String() = GetDirectoriesAndFiles(IO.Path.GetDirectoryName(InputLocation.Text), New IO.DirectoryInfo(InputLocation.Text), Nothing, New String() {})
+            End If
+            MessageBox.Show("The file(s) have been sent to the Distributed Data and Media Processing project for processing.")
+        Else
+            If CompressionLevel.Items.Contains(CompressionLevel.Text) Then
+                If PAQSeries.SelectedItem IsNot "PAQ8PX" Then
+                    If PAQSeries.SelectedItem IsNot "PAQ8o10t" And PAQSeries.SelectedItem IsNot "PAQ8PXPRE" And PAQSeries.SelectedItem IsNot "PAQ8PXd" And PAQSeries.SelectedItem IsNot "PAQ8PXv" And PAQSeries.SelectedItem IsNot "PAQ8P_PC" Then
+                        If PAQVersion.Items.Contains(PAQVersion.Text) Then
+                            CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQSeries.Text.ToLower + "_" + PAQVersion.Text + ".exe"
+                        Else
+                            MessageBox.Show("Select an item from the version dropdown")
+                        End If
                     ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Then
-                        CompressionParameters = "-" + CompressionLevel.Text + ":" + paq_other_dropbox.Text + " """ + IO.Path.ChangeExtension(OutputLocation.Text, Nothing) + """ """ + InputLocation.Text + """"
+                        CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQVersion.Text + "/" + PAQSeries.Text.ToLower() + "_" + PAQVersion.Text + ".exe"
+                    ElseIf PAQSeries.SelectedItem Is "PAQ8PXv" Then
+                        CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQVersion.Text + "/" + PAQSeries.Text.ToLower() + "_" + PAQVersion.Text + paq_other_dropbox.Text.ToLower() + ".exe"
+                    ElseIf PAQSeries.SelectedItem Is "PAQ8P_PC" Then
+                        CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQVersion.Text + "/" + PAQSeries.Text.ToLower() + ".exe"
                     Else
-                        CompressionParameters = "-" + CompressionLevel.Text + " """ + OutputLocation.Text + """ """ + InputLocation.Text + """"
-                    End If
-                Else
-                    CompressionParameters = "-d """ + InputLocation.Text + """ """ + OutputLocation.Text + """"
-                End If
-            ElseIf PAQSeries.SelectedItem Is "PAQ8PX" Then
-                If PAQVersion.Items.Contains(PAQVersion.Text) Then
-                    If PAQVersion.SelectedIndex > paq8px_use_exe_in_folder Then
-                        CompressorToUse = "Executables/PAQ8PX/" + PAQVersion.Text + "/paq8px_" + PAQVersion.Text + ".exe"
-                    Else
-                        CompressorToUse = "Executables/PAQ8PX/paq8px_" + PAQVersion.Text + ".exe"
+                        CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQSeries.Text.ToLower + ".exe"
                     End If
                     If CompressRButton.Checked Then
-                        If PAQVersion.SelectedIndex > Flags_enable Then
-                            Dim CompressionFlags As String = "-" + CompressionLevel.Text
-                            If b_flag.Checked Then CompressionFlags += "b"
-                            If e_flag.Checked Then CompressionFlags += "e"
-                            If t_flag.Checked Then CompressionFlags += "t"
-                            If a_flag.Checked Then CompressionFlags += "a"
-                            If s_flag.Checked Then CompressionFlags += "s"
-                            If PAQVersion.SelectedIndex > f_flag_available Then If f_flag.Checked Then CompressionFlags += "f"
-                            Dim textFile As String = OutputLocation.Text + ".txt"
-                            If IO.Directory.Exists(InputLocation.Text) Then
-                                Dim textFileStream As New IO.StreamWriter(textFile, False)
-                                textFileStream.WriteLine()
-                                GetDirectoriesAndFiles(IO.Path.GetDirectoryName(InputLocation.Text), New IO.DirectoryInfo(InputLocation.Text), textFileStream)
-                                textFileStream.Close()
-                                CompressionParameters = CompressionFlags + " ""@" + textFile + """ """ + OutputLocation.Text + """"
-                            Else
-                                IO.File.WriteAllText(textFile, Environment.NewLine + IO.Path.GetFileName(InputLocation.Text))
-                                CompressionParameters = CompressionFlags + " ""@" + textFile + """ """ + OutputLocation.Text + """"
-                            End If
+                        If PAQSeries.SelectedItem Is "PAQ8o10t" Or PAQSeries.SelectedItem Is "PAQ8PXv" Then
+                            CompressionParameters = "-" + CompressionLevel.Text + " """ + IO.Path.ChangeExtension(OutputLocation.Text, Nothing) + """ """ + InputLocation.Text + """"
+                        ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Then
+                            CompressionParameters = "-" + CompressionLevel.Text + ":" + paq_other_dropbox.Text + " """ + IO.Path.ChangeExtension(OutputLocation.Text, Nothing) + """ """ + InputLocation.Text + """"
                         Else
                             CompressionParameters = "-" + CompressionLevel.Text + " """ + OutputLocation.Text + """ """ + InputLocation.Text + """"
                         End If
                     Else
                         CompressionParameters = "-d """ + InputLocation.Text + """ """ + OutputLocation.Text + """"
                     End If
-                Else
-                    MessageBox.Show("Select an item from the version dropdown")
+                ElseIf PAQSeries.SelectedItem Is "PAQ8PX" Then
+                    If PAQVersion.Items.Contains(PAQVersion.Text) Then
+                        If PAQVersion.SelectedIndex > paq8px_use_exe_in_folder Then
+                            CompressorToUse = "Executables/PAQ8PX/" + PAQVersion.Text + "/paq8px_" + PAQVersion.Text + ".exe"
+                        Else
+                            CompressorToUse = "Executables/PAQ8PX/paq8px_" + PAQVersion.Text + ".exe"
+                        End If
+                        If CompressRButton.Checked Then
+                            If PAQVersion.SelectedIndex > Flags_enable Then
+                                Dim CompressionFlags As String = "-" + CompressionLevel.Text
+                                If b_flag.Checked Then CompressionFlags += "b"
+                                If e_flag.Checked Then CompressionFlags += "e"
+                                If t_flag.Checked Then CompressionFlags += "t"
+                                If a_flag.Checked Then CompressionFlags += "a"
+                                If s_flag.Checked Then CompressionFlags += "s"
+                                If PAQVersion.SelectedIndex > f_flag_available Then If f_flag.Checked Then CompressionFlags += "f"
+                                Dim textFile As String = OutputLocation.Text + ".txt"
+                                If IO.Directory.Exists(InputLocation.Text) Then
+                                    Dim textFileStream As New IO.StreamWriter(textFile, False)
+                                    textFileStream.WriteLine()
+                                    GetDirectoriesAndFiles(IO.Path.GetDirectoryName(InputLocation.Text), New IO.DirectoryInfo(InputLocation.Text), textFileStream)
+                                    textFileStream.Close()
+                                    CompressionParameters = CompressionFlags + " ""@" + textFile + """ """ + OutputLocation.Text + """"
+                                Else
+                                    IO.File.WriteAllText(textFile, Environment.NewLine + IO.Path.GetFileName(InputLocation.Text))
+                                    CompressionParameters = CompressionFlags + " ""@" + textFile + """ """ + OutputLocation.Text + """"
+                                End If
+                            Else
+                                CompressionParameters = "-" + CompressionLevel.Text + " """ + OutputLocation.Text + """ """ + InputLocation.Text + """"
+                            End If
+                        Else
+                            CompressionParameters = "-d """ + InputLocation.Text + """ """ + OutputLocation.Text + """"
+                        End If
+                    Else
+                        MessageBox.Show("Select an item from the version dropdown")
+                    End If
                 End If
             End If
-        End If
-        If Not String.IsNullOrEmpty(CompressorToUse) And Not String.IsNullOrEmpty(CompressionParameters) Then
-            CompressorToUse = IO.Path.GetDirectoryName(Process.GetCurrentProcess.MainModule.FileName) + "/" + CompressorToUse
-            Dim CompressorPath As String = IO.Path.GetDirectoryName(CompressorToUse)
-            If IO.File.Exists(CompressorToUse) Then
-                If Not GenerateBatchScriptOnly.Checked Then
-                    StartButton.Enabled = False
-                    SaveLogButton.Enabled = False
-                    If ShowCMD.Checked Then
-                        CompressionParameters = "/C " + CompressorToUse + " " + CompressionParameters + " & pause"
-                        CompressorToUse = "cmd.exe"
-                    End If
-                    Dim StartCompressionThread = New Threading.Thread(Sub() CompressionThread(CompressorToUse, CompressionParameters, CompressorPath))
-                    StartCompressionThread.Start()
-                Else
-                    Dim OutputPath As String
-                    If IO.Directory.Exists(OutputLocation.Text) Then
-                        OutputPath = OutputLocation.Text + "\" + IO.Path.GetFileName(OutputLocation.Text) + ".bat"
+            If Not String.IsNullOrEmpty(CompressorToUse) And Not String.IsNullOrEmpty(CompressionParameters) Then
+                CompressorToUse = IO.Path.GetDirectoryName(Process.GetCurrentProcess.MainModule.FileName) + "/" + CompressorToUse
+                Dim CompressorPath As String = IO.Path.GetDirectoryName(CompressorToUse)
+                If IO.File.Exists(CompressorToUse) Then
+                    If Not GenerateBatchScriptOnly.Checked Then
+                        StartButton.Enabled = False
+                        SaveLogButton.Enabled = False
+                        If ShowCMD.Checked Then
+                            CompressionParameters = "/C " + CompressorToUse + " " + CompressionParameters + " & pause"
+                            CompressorToUse = "cmd.exe"
+                        End If
+                        Dim StartCompressionThread = New Threading.Thread(Sub() CompressionThread(CompressorToUse, CompressionParameters, CompressorPath))
+                        StartCompressionThread.Start()
                     Else
-                        OutputPath = IO.Path.ChangeExtension(OutputLocation.Text, ".bat")
+                        Dim OutputPath As String
+                        If IO.Directory.Exists(OutputLocation.Text) Then
+                            OutputPath = OutputLocation.Text + "\" + IO.Path.GetFileName(OutputLocation.Text) + ".bat"
+                        Else
+                            OutputPath = IO.Path.ChangeExtension(OutputLocation.Text, ".bat")
+                        End If
+                        IO.File.WriteAllText(OutputPath, CompressorToUse + " " + CompressionParameters + " & pause")
+                        MsgBox("Batch file written to the output location.")
                     End If
-                    IO.File.WriteAllText(OutputPath, CompressorToUse + " " + CompressionParameters + " & pause")
-                    MsgBox("Batch file written to the output location.")
+                Else
+                    MsgBox("The selected compressor version could not be found. Cannot proceed")
                 End If
             Else
-                MsgBox("The selected compressor version could not be found. Cannot proceed")
+                MessageBox.Show("No compressor has been selected. Cannot proceed.")
             End If
-        Else
-            MessageBox.Show("No compressor has been selected. Cannot proceed.")
         End If
     End Sub
-
     Private Sub CompressionThread(Compressor As String, Params As String, CompressorPath As String)
         Using process As New Process()
             process.StartInfo.WorkingDirectory = CompressorPath
