@@ -257,6 +257,18 @@ Namespace My
                 Me("SendToDistributedProject") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property DistributedAccountWeakKey() As String
+            Get
+                Return CType(Me("DistributedAccountWeakKey"),String)
+            End Get
+            Set
+                Me("DistributedAccountWeakKey") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

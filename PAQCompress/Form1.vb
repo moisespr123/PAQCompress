@@ -1,6 +1,6 @@
 ﻿Public Class Form1
-    Private Const Flags_enable As Integer = 47
-    Private Const f_flag_available As Integer = 56
+    Public Const Flags_enable As Integer = 47
+    Public Const f_flag_available As Integer = 56
     Private Const paq8px_use_exe_in_folder As Integer = 74
     Private DistributedPAQCompressors As New Dictionary(Of String, String())() From {{"PAQ8PX", {"v185"}}}
 
@@ -571,5 +571,9 @@
             Step2Label.Text = "Step 2: Browse for a location to store the compressed file:"
             BrowseOutput.Enabled = True
         End If
+    End Sub
+
+    Private Sub DistributedProcessingOptions_Click(sender As Object, e As EventArgs) Handles DistributedProcessingOptions.Click
+        DistributedSettings.ShowDialog()
     End Sub
 End Class
