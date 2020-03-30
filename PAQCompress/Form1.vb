@@ -152,7 +152,7 @@
             End If
         End If
         EnableDisableFlags()
-        If Not String.IsNullOrWhiteSpace(InputLocation.Text) Then AdjustOutputFilename()
+        If Not String.IsNullOrWhiteSpace(InputLocation.Text) Then AdjustOutputFilename(InputLocation.Text)
         My.Settings.PAQSeries = PAQSeries.SelectedItem.ToString()
         My.Settings.Save()
     End Sub
@@ -194,33 +194,39 @@
             CheckCompressionLevelAndChange()
         End If
         EnableDisableFlags()
-        If Not String.IsNullOrWhiteSpace(InputLocation.Text) Then AdjustOutputFilename()
+        If Not String.IsNullOrWhiteSpace(InputLocation.Text) Then AdjustOutputFilename(InputLocation.Text)
         My.Settings.PAQVersion = PAQVersion.SelectedItem.ToString()
         My.Settings.Save()
     End Sub
-    Private Sub AdjustOutputFilename()
-        If CompressRButton.Checked Then
-            If Not String.IsNullOrWhiteSpace(OutputLocation.Text) Then
+    Public Function AdjustOutputFilename(Item As String, Optional OnlyReturn As Boolean = False) As String
+        Dim OutputName As String = String.Empty
+        If Not SendToDistributedProject.Checked Or OnlyReturn Then
+            If CompressRButton.Checked Then
                 If PAQVersion.Enabled Then
                     If (PAQSeries.SelectedItem Is "PAQ8PX" And PAQVersion.SelectedIndex > Flags_enable) Or PAQSeries.SelectedItem Is "PAQ8PXd" Or PAQSeries.SelectedItem Is "PAQ8PXv" Then
-                        OutputLocation.Text = IO.Path.ChangeExtension(OutputLocation.Text, PAQSeries.SelectedItem.ToString.ToLower + PAQVersion.SelectedItem.ToString().Remove(0, 1))
+                        OutputName = Item + "." + PAQSeries.SelectedItem.ToString.ToLower + PAQVersion.SelectedItem.ToString().Remove(0, 1)
                     Else
-                        OutputLocation.Text = IO.Path.ChangeExtension(OutputLocation.Text, "." + PAQSeries.SelectedItem.ToString.ToLower + "_" + PAQVersion.SelectedItem.ToString())
+                        OutputName = Item + "." + PAQSeries.SelectedItem.ToString.ToLower + "_" + PAQVersion.SelectedItem.ToString()
                     End If
-
                 Else
-                    OutputLocation.Text = IO.Path.ChangeExtension(OutputLocation.Text, "." + PAQSeries.SelectedItem.ToString.ToLower)
+                    OutputName = IO.Path.ChangeExtension(Item, "." + PAQSeries.SelectedItem.ToString.ToLower)
                 End If
+            Else
+                OutputName = IO.Path.GetDirectoryName(InputLocation.Text)
+            End If
+            If Not OnlyReturn Then
+                OutputLocation.Text = OutputName
             End If
         Else
-            OutputLocation.Text = IO.Path.GetDirectoryName(InputLocation.Text)
+            OutputLocation.Text = IO.Path.GetFileName(InputLocation.Text)
         End If
-    End Sub
+        Return OutputName
+    End Function
 
-    Private Function GetDirectoriesAndFiles(ByVal OrigLocation As String, ByVal BaseFolder As IO.DirectoryInfo, Optional ByVal TextFile As IO.StreamWriter = Nothing, Optional FileList As String() = Nothing) As String()
+    Private Function GetDirectoriesAndFiles(ByVal OrigLocation As String, ByVal BaseFolder As IO.DirectoryInfo, Optional ByVal TextFile As IO.StreamWriter = Nothing, Optional FileList As List(Of String) = Nothing) As List(Of String)
         If TextFile Is Nothing Then
             For Each FI As IO.FileInfo In BaseFolder.GetFiles()
-                FileList.Append(FI.FullName)
+                FileList.Add(FI.FullName)
             Next
             For Each subF As IO.DirectoryInfo In BaseFolder.GetDirectories()
                 GetDirectoriesAndFiles(OrigLocation, subF, TextFile, FileList)
@@ -291,14 +297,24 @@
             If Not DistributedPAQCompressors.ContainsKey(PAQSeries.Text) Then
                 MessageBox.Show("The selected PAQ Series cannot be used on the Distributed project.")
                 Exit Sub
-            Else
-                If Not DistributedPAQCompressors(PAQSeries.Text).Contains(PAQVersion.Text) Then
-                    MessageBox.Show("The selected PAQ compressor cannot be used on the Distributed project.")
-                    Exit Sub
-                End If
-                Dim Files As String() = GetDirectoriesAndFiles(IO.Path.GetDirectoryName(InputLocation.Text), New IO.DirectoryInfo(InputLocation.Text), Nothing, New String() {})
             End If
-            MessageBox.Show("The file(s) have been sent to the Distributed Data and Media Processing project for processing.")
+            If Not DistributedPAQCompressors(PAQSeries.Text).Contains(PAQVersion.Text) Then
+                MessageBox.Show("The selected PAQ compressor cannot be used on the Distributed project.")
+                Exit Sub
+            End If
+            Dim UserKey As String = My.Settings.DistributedAccountWeakKey
+            Dim Category As String = OutputLocation.Text
+            Dim DistributedProject As New DistributedProjectFunctions
+            If IO.Directory.Exists(InputLocation.Text) Then
+                Dim Files As List(Of String) = GetDirectoriesAndFiles(IO.Path.GetDirectoryName(InputLocation.Text), New IO.DirectoryInfo(InputLocation.Text), Nothing, New List(Of String))
+                For Each file As String In Files
+                    DistributedProject.Upload(UserKey, PAQSeries.Text.ToLower() + "_" + PAQVersion.Text.ToLower(), IO.Path.GetFileName(file), Category, file)
+                Next
+                MessageBox.Show("The file(s)  in the directory have been sent to the Distributed Data and Media Processing project for processing.")
+            Else
+                Dim file As String = InputLocation.Text
+                DistributedProject.Upload(UserKey, PAQSeries.Text.ToLower() + "_" + PAQVersion.Text.ToLower(), IO.Path.GetFileName(file), Category, file)
+            End If
         Else
             If CompressionLevel.Items.Contains(CompressionLevel.Text) Then
                 If PAQSeries.SelectedItem IsNot "PAQ8PX" Then
@@ -442,16 +458,25 @@
         EnableDisableFlags()
         BrowseFolder.Enabled = True
         Step1Label.Text = "Step 1: Browse for a file or folder to compress:"
-        Step2Label.Text = "Step 2: Browse for a location to store the compressed file:"
+        If SendToDistributedProject.Checked Then
+            Step2Label.Text = "Step 2: Enter a Category name:"
+        Else
+            Step2Label.Text = "Step 2: Browse for a location to store the compressed file:"
+        End If
         My.Settings.CompressChecked = CompressRButton.Checked
         My.Settings.Save()
     End Sub
 
     Private Sub ExtractRButton_CheckedChanged(sender As Object, e As EventArgs) Handles ExtractRButton.CheckedChanged
         EnableDisableFlags()
-        BrowseFolder.Enabled = False
         Step1Label.Text = "Step 1: Browse for a file/archive to extract:"
-        Step2Label.Text = "Step 2: Browse for a location to extract the file/archive:"
+        If SendToDistributedProject.Checked Then
+            Step2Label.Text = "Step 2: Enter a Category name:"
+            BrowseFolder.Enabled = True
+        Else
+            Step2Label.Text = "Step 2: Browse for a location to extract the file/archive:"
+            BrowseFolder.Enabled = False
+        End If
         My.Settings.ExtractChecked = ExtractRButton.Checked
         My.Settings.Save()
     End Sub
@@ -510,16 +535,16 @@
         If ExtractRButton.Checked Then
             AdjustPAQVersion(IO.Path.GetFileName(InputLocation.Text))
         Else
-            OutputLocation.Text = InputLocation.Text
-            AdjustOutputFilename()
+            If Not SendToDistributedProject.Checked Then OutputLocation.Text = InputLocation.Text
         End If
+        AdjustOutputFilename(InputLocation.Text)
     End Sub
     Private Sub BrowseFolder_Click(sender As Object, e As EventArgs) Handles BrowseFolder.Click
         Dim result As DialogResult = FolderBrowserDialog1.ShowDialog
         If result = DialogResult.OK Then
             InputLocation.Text = FolderBrowserDialog1.SelectedPath
-            OutputLocation.Text = InputLocation.Text
-            AdjustOutputFilename()
+            If Not SendToDistributedProject.Checked Then OutputLocation.Text = InputLocation.Text
+            AdjustOutputFilename(InputLocation.Text)
         End If
     End Sub
 
@@ -531,7 +556,7 @@
             Dim result As DialogResult = SaveFileDialog1.ShowDialog
             If result = DialogResult.OK Then
                 OutputLocation.Text = SaveFileDialog1.FileName
-                AdjustOutputFilename()
+                AdjustOutputFilename(InputLocation.Text)
             End If
         Else
             Dim result As DialogResult = FolderBrowserDialog2.ShowDialog
@@ -590,13 +615,25 @@
         If SendToDistributedProject.Checked Then
             Step2Label.Text = "Step 2: Enter a Category name:"
             BrowseOutput.Enabled = False
+            BrowseFolder.Enabled = True
         Else
-            Step2Label.Text = "Step 2: Browse for a location to store the compressed file:"
-            BrowseOutput.Enabled = True
+            If CompressRButton.Checked Then
+                Step2Label.Text = "Step 2: Browse for a location to store the compressed file:"
+            Else
+                Step2Label.Text = "Step 2: Browse for a location to extract the file/archive:"
+                BrowseOutput.Enabled = True
+                BrowseFolder.Enabled = False
+            End If
         End If
     End Sub
 
     Private Sub DistributedProcessingOptions_Click(sender As Object, e As EventArgs) Handles DistributedProcessingOptions.Click
         DistributedSettings.ShowDialog()
+    End Sub
+
+    Private Sub InputLocation_TextChanged(sender As Object, e As EventArgs) Handles InputLocation.TextChanged
+        If IO.File.Exists(InputLocation.Text) Or IO.Directory.Exists(InputLocation.Text) Then
+            AdjustOutputFilename(InputLocation.Text)
+        End If
     End Sub
 End Class

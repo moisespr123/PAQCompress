@@ -21,7 +21,14 @@ Public Class DistributedProjectFunctions
         End If
         Return Flags
     End Function
-    Private Function Upload(ByVal key As String, ByVal format As String, ByVal filename As String, ByVal category As String, ByVal file As String) As String
+    Private Function GetOutputFilename(filename As String) As String
+        If Form1.CompressRButton.Checked Then
+            Return Form1.AdjustOutputFilename(filename, True)
+        Else
+            Return IO.Path.GetFileNameWithoutExtension(filename)
+        End If
+    End Function
+    Public Function Upload(ByVal key As String, ByVal format As String, ByVal filename As String, ByVal category As String, ByVal file As String) As String
         Using client = New HttpClient()
             Using formData = New MultipartFormDataContent()
                 If True Then
@@ -30,7 +37,7 @@ Public Class DistributedProjectFunctions
                     formData.Add(New StringContent(category), "a")
                     formData.Add(New StringContent(format), "f")
                     formData.Add(New StringContent(GenerateCommandLineArguments()), "c")
-                    formData.Add(New StringContent(filename), "n")
+                    formData.Add(New StringContent(GetOutputFilename(filename)), "n")
                     Dim uri As Uri = New Uri("http://boinc.moisescardona.me/media_put.php")
                     client.DefaultRequestHeaders.Add("Accept-Language", "en-GB,en-US;q=0.8,en;q=0.6,ru;q=0.4")
                     Dim response As HttpResponseMessage = client.PostAsync(uri, formData).Result
@@ -39,11 +46,11 @@ Public Class DistributedProjectFunctions
                         Console.WriteLine("Error")
                         Console.WriteLine(response.StatusCode)
                     End If
-
                     Dim reader As StreamReader = New StreamReader(response.Content.ReadAsStreamAsync().Result)
                     Dim result As String = reader.ReadToEnd()
                     Return result
                 End If
+                Return String.Empty
             End Using
         End Using
     End Function
