@@ -200,25 +200,27 @@
     End Sub
     Public Function AdjustOutputFilename(Item As String, Optional OnlyReturn As Boolean = False) As String
         Dim OutputName As String = String.Empty
-        If Not SendToDistributedProject.Checked Or OnlyReturn Then
-            If CompressRButton.Checked Then
-                If PAQVersion.Enabled Then
-                    If (PAQSeries.SelectedItem Is "PAQ8PX" And PAQVersion.SelectedIndex > Flags_enable) Or PAQSeries.SelectedItem Is "PAQ8PXd" Or PAQSeries.SelectedItem Is "PAQ8PXv" Then
-                        OutputName = Item + "." + PAQSeries.SelectedItem.ToString.ToLower + PAQVersion.SelectedItem.ToString().Remove(0, 1)
+        If Not String.IsNullOrWhiteSpace(Item) Then
+            If Not SendToDistributedProject.Checked Or OnlyReturn Then
+                If CompressRButton.Checked Then
+                    If PAQVersion.Enabled Then
+                        If (PAQSeries.SelectedItem Is "PAQ8PX" And PAQVersion.SelectedIndex > Flags_enable) Or PAQSeries.SelectedItem Is "PAQ8PXd" Or PAQSeries.SelectedItem Is "PAQ8PXv" Then
+                            OutputName = Item + "." + PAQSeries.SelectedItem.ToString.ToLower + PAQVersion.SelectedItem.ToString().Remove(0, 1)
+                        Else
+                            OutputName = Item + "." + PAQSeries.SelectedItem.ToString.ToLower + "_" + PAQVersion.SelectedItem.ToString()
+                        End If
                     Else
-                        OutputName = Item + "." + PAQSeries.SelectedItem.ToString.ToLower + "_" + PAQVersion.SelectedItem.ToString()
+                        OutputName = IO.Path.ChangeExtension(Item, "." + PAQSeries.SelectedItem.ToString.ToLower)
                     End If
                 Else
-                    OutputName = IO.Path.ChangeExtension(Item, "." + PAQSeries.SelectedItem.ToString.ToLower)
+                    OutputName = IO.Path.GetDirectoryName(InputLocation.Text)
+                End If
+                If Not OnlyReturn Then
+                    OutputLocation.Text = OutputName
                 End If
             Else
-                OutputName = IO.Path.GetDirectoryName(InputLocation.Text)
+                OutputLocation.Text = IO.Path.GetFileName(InputLocation.Text)
             End If
-            If Not OnlyReturn Then
-                OutputLocation.Text = OutputName
-            End If
-        Else
-            OutputLocation.Text = IO.Path.GetFileName(InputLocation.Text)
         End If
         Return OutputName
     End Function
@@ -300,6 +302,10 @@
             End If
             If Not DistributedPAQCompressors(PAQSeries.Text).Contains(PAQVersion.Text) Then
                 MessageBox.Show("The selected PAQ compressor cannot be used on the Distributed project.")
+                Exit Sub
+            End If
+            If String.IsNullOrWhiteSpace(My.Settings.DistributedAccountWeakKey) Then
+                MessageBox.Show("The User Account Weak Key is not set.")
                 Exit Sub
             End If
             Dim UserKey As String = My.Settings.DistributedAccountWeakKey
@@ -625,6 +631,7 @@
                 BrowseFolder.Enabled = False
             End If
         End If
+        AdjustOutputFilename(InputLocation.Text)
     End Sub
 
     Private Sub DistributedProcessingOptions_Click(sender As Object, e As EventArgs) Handles DistributedProcessingOptions.Click
