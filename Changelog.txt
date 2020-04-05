@@ -1,5 +1,6 @@
 v0.3.41
 -The output field will now be auto-populated when typing a file path manually if a file or directory exists.
+-Added paq8pxd v80 and v81.
 
 v0.3.40
 -Added paq8pxd v79.
