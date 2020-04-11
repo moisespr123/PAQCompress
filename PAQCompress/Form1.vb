@@ -317,15 +317,30 @@
             Dim Category As String = OutputLocation.Text
             Dim DistributedProject As New DistributedProjectFunctions
             If IO.Directory.Exists(InputLocation.Text) Then
+                Dim TwoGBExceeded As Boolean = False
                 Dim Files As List(Of String) = GetDirectoriesAndFiles(IO.Path.GetDirectoryName(InputLocation.Text), New IO.DirectoryInfo(InputLocation.Text), Nothing, New List(Of String))
                 For Each file As String In Files
-                    DistributedProject.Upload(UserKey, PAQSeries.Text.ToLower() + "_" + PAQVersion.Text.ToLower(), IO.Path.GetFileName(file), Category, file)
+                    If New IO.FileInfo(file).Length <= Integer.MaxValue Then
+                        DistributedProject.Upload(UserKey, PAQSeries.Text.ToLower() + "_" + PAQVersion.Text.ToLower(), IO.Path.GetFileName(file), Category, file)
+                    Else
+                        TwoGBExceeded = True
+                    End If
                 Next
-                MessageBox.Show("The file(s) in the directory have been sent to the Distributed Data and Media Processing project for processing.")
+                Dim message As String = "The file(s)"
+                If TwoGBExceeded Then
+                    message = "Some file(s)"
+                End If
+                MessageBox.Show(message + " in the directory have been sent to the Distributed Data and Media Processing project for processing.")
             Else
+                Dim TwoGBExceeded As Boolean = False
                 Dim file As String = InputLocation.Text
-                DistributedProject.Upload(UserKey, PAQSeries.Text.ToLower() + "_" + PAQVersion.Text.ToLower(), IO.Path.GetFileName(file), Category, file)
-                MessageBox.Show("The file have been sent to the Distributed Data and Media Processing project for processing.")
+                Dim message As String = "The file have been sent to the Distributed Data and Media Processing project for processing."
+                If New IO.FileInfo(file).Length <= Integer.MaxValue Then
+                    DistributedProject.Upload(UserKey, PAQSeries.Text.ToLower() + "_" + PAQVersion.Text.ToLower(), IO.Path.GetFileName(file), Category, file)
+                Else
+                    message = "The file could not be sent to the Distributed Data and Media Processing project for processing because it exceeds 2GB of size."
+                End If
+                MessageBox.Show(message)
             End If
         Else
             If CompressionLevel.Items.Contains(CompressionLevel.Text) Then
