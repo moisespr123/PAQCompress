@@ -1,3 +1,8 @@
+v0.3.42
+-Added paq8px v186 and v186fix1.
+-Added paq8pxd v82 and v83.
+-Added pax8pxd levels x0 to x15 for paq8pxd v73 to latest.
+
 v0.3.41
 -The output field will now be auto-populated when typing a file path manually if a file or directory exists.
 -Added paq8pxd v80 and v81.

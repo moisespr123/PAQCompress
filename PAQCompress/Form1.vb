@@ -2,7 +2,8 @@
     Public Const Flags_enable As Integer = 47
     Public Const f_flag_available As Integer = 56
     Private Const paq8px_use_exe_in_folder As Integer = 74
-    Private DistributedPAQCompressors As New Dictionary(Of String, String())() From {{"PAQ8PX", {"v185"}}}
+    Private Const paq8pxd_add_x_levels As Integer = 28
+    Private DistributedPAQCompressors As New Dictionary(Of String, String())() From {{"PAQ8PX", {"v185", "v186", "v186fix1"}}}
 
     Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         PAQSeries.SelectedItem = My.Settings.PAQSeries
@@ -116,10 +117,11 @@
             PAQVersion.Enabled = True
         ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Then
             PAQVersion.Items.AddRange({"v45", "v46", "v47", "v48", "v49", "v50", "v51", "v52", "v53", "v54", "v55", "v56", "v57", "v58", "v59", "v60",
-                                      "v61", "v62", "v63", "v64", "v66", "v67", "v68", "v69f", "v69", "v70", "v71", "v72", "v73", "v74", "v75", "v76",
-                                      "v77", "v78", "v79", "v80", "v81"})
+                                       "v61", "v62", "v63", "v64", "v66", "v67", "v68", "v69f", "v69", "v70", "v71", "v72", "v73", "v74", "v75", "v76",
+                                       "v77", "v78", "v79", "v80", "v81", "v82", "v83"})
             CompressionLevel.Text = "s5"
-            CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15"})
+            CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15",
+                                             "x0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9", "x10", "x11", "x12", "x13", "x14", "x15"})
             paq_other.Text = "Threads"
             paq_other_dropbox.Enabled = True
             paq_other_dropbox.Items.AddRange({"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"})
@@ -141,7 +143,7 @@
                                       "v141fix2", "v141fix4", "v144", "v145", "v146", "v147", "v156", "v157", "v159", "v163", "v164", "v167", "v167cm",
                                       "v168", "v169", "v170", "v171", "v172", "v173", "v174", "v175", "v176", "v177", "v178", "v179", "v179fix1",
                                       "v179fix2", "v179fix3", "v179fix4", "v179fix5", "v180", "v181", "v181fix1", "v182", "v182fix1", "v182fix2",
-                                      "v183", "v183fix1", "v184", "v185"})
+                                      "v183", "v183fix1", "v184", "v185", "v186", "v186fix1"})
             PAQVersion.Enabled = True
         End If
         If PAQVersion.Enabled Then
@@ -187,6 +189,9 @@
         ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Or PAQSeries.SelectedItem Is "PAQ8PXv" Then
             CompressionLevel.Items.Clear()
             CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15"})
+            If PAQVersion.SelectedIndex >= paq8pxd_add_x_levels Then
+                CompressionLevel.Items.AddRange({"x0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9", "x10", "x11", "x12", "x13", "x14", "x15"})
+            End If
             If PAQSeries.SelectedItem Is "PAQ8PXv" Then
                 checkPAQ8PXVExecutables()
             End If
@@ -316,10 +321,11 @@
                 For Each file As String In Files
                     DistributedProject.Upload(UserKey, PAQSeries.Text.ToLower() + "_" + PAQVersion.Text.ToLower(), IO.Path.GetFileName(file), Category, file)
                 Next
-                MessageBox.Show("The file(s)  in the directory have been sent to the Distributed Data and Media Processing project for processing.")
+                MessageBox.Show("The file(s) in the directory have been sent to the Distributed Data and Media Processing project for processing.")
             Else
                 Dim file As String = InputLocation.Text
                 DistributedProject.Upload(UserKey, PAQSeries.Text.ToLower() + "_" + PAQVersion.Text.ToLower(), IO.Path.GetFileName(file), Category, file)
+                MessageBox.Show("The file have been sent to the Distributed Data and Media Processing project for processing.")
             End If
         Else
             If CompressionLevel.Items.Contains(CompressionLevel.Text) Then
