@@ -188,7 +188,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("v186fix1")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("v187")>  _
         Public Property PAQVersion() As String
             Get
                 Return CType(Me("PAQVersion"),String)

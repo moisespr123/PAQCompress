@@ -3,7 +3,7 @@
     Public Const f_flag_available As Integer = 56
     Private Const paq8px_use_exe_in_folder As Integer = 74
     Private Const paq8pxd_add_x_levels As Integer = 28
-    Private DistributedPAQCompressors As New Dictionary(Of String, String())() From {{"PAQ8PX", {"v185", "v186", "v186fix1"}}}
+    Private DistributedPAQCompressors As New Dictionary(Of String, String())() From {{"PAQ8PX", {"v185", "v186", "v186fix1", "v187"}}}
 
     Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         PAQSeries.SelectedItem = My.Settings.PAQSeries
@@ -143,7 +143,7 @@
                                       "v141fix2", "v141fix4", "v144", "v145", "v146", "v147", "v156", "v157", "v159", "v163", "v164", "v167", "v167cm",
                                       "v168", "v169", "v170", "v171", "v172", "v173", "v174", "v175", "v176", "v177", "v178", "v179", "v179fix1",
                                       "v179fix2", "v179fix3", "v179fix4", "v179fix5", "v180", "v181", "v181fix1", "v182", "v182fix1", "v182fix2",
-                                      "v183", "v183fix1", "v184", "v185", "v186", "v186fix1"})
+                                      "v183", "v183fix1", "v184", "v185", "v186", "v186fix1", "v187"})
             PAQVersion.Enabled = True
         End If
         If PAQVersion.Enabled Then

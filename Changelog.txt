@@ -1,3 +1,6 @@
+v0.3.43
+-Added paq8px v187
+
 v0.3.42
 -Added paq8px v186 and v186fix1.
 -Added paq8pxd v82 and v83.
