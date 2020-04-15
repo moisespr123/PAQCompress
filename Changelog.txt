@@ -1,5 +1,8 @@
+v0.3.44
+-Added an option to not create the text file when compressing a single file.
+
 v0.3.43
--Added paq8px v187
+-Added paq8px v187.
 
 v0.3.42
 -Added paq8px v186 and v186fix1.

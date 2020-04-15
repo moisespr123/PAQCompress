@@ -24,6 +24,7 @@
         f_flag.Checked = My.Settings.f_flag
         ShowCMD.Checked = My.Settings.ShowCMD
         GenerateBatchScriptOnly.Checked = My.Settings.OnlyGenerateBatchFile
+        DontCreateTextFile.Checked = My.Settings.DontCreateTextFile
         EnableDisableFlags()
         Dim vars As String() = Environment.GetCommandLineArgs
         If vars.Count > 1 Then
@@ -275,6 +276,7 @@
         t_flag.Enabled = True
         a_flag.Enabled = True
         s_flag.Enabled = True
+        DontCreateTextFile.Enabled = True
         If PAQVersion.SelectedIndex > f_flag_available Then
             f_flag.Enabled = True
         Else
@@ -288,6 +290,7 @@
         a_flag.Enabled = False
         s_flag.Enabled = False
         f_flag.Enabled = False
+        DontCreateTextFile.Enabled = False
     End Sub
     Private Sub StartButton_Click(sender As Object, e As EventArgs) Handles StartButton.Click
         Dim CompressorToUse As String = String.Empty
@@ -403,8 +406,12 @@
                                     textFileStream.Close()
                                     CompressionParameters = CompressionFlags + " ""@" + textFile + """ """ + OutputLocation.Text + """"
                                 Else
-                                    IO.File.WriteAllText(textFile, Environment.NewLine + IO.Path.GetFileName(InputLocation.Text))
-                                    CompressionParameters = CompressionFlags + " ""@" + textFile + """ """ + OutputLocation.Text + """"
+                                    If DontCreateTextFile.Checked Then
+                                        CompressionParameters = CompressionFlags + " """ + InputLocation.Text + """ """ + OutputLocation.Text + """"
+                                    Else
+                                        IO.File.WriteAllText(textFile, Environment.NewLine + IO.Path.GetFileName(InputLocation.Text))
+                                        CompressionParameters = CompressionFlags + " ""@" + textFile + """ """ + OutputLocation.Text + """"
+                                    End If
                                 End If
                             Else
                                 CompressionParameters = "-" + CompressionLevel.Text + " """ + OutputLocation.Text + """ """ + InputLocation.Text + """"
@@ -671,5 +678,10 @@
         If IO.File.Exists(InputLocation.Text) Or IO.Directory.Exists(InputLocation.Text) Then
             AdjustOutputFilename(InputLocation.Text)
         End If
+    End Sub
+
+    Private Sub DontCreateTextFile_CheckedChanged(sender As Object, e As EventArgs) Handles DontCreateTextFile.CheckedChanged
+        My.Settings.DontCreateTextFile = DontCreateTextFile.Checked
+        My.Settings.Save()
     End Sub
 End Class
