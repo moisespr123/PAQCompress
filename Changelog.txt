@@ -1,3 +1,6 @@
+v0.3.45
+-Added paq8pxd v84 and paq8pxd v85.
+
 v0.3.44
 -Added an option to not create the text file when compressing a single file.
 
