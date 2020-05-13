@@ -432,7 +432,7 @@
                         StartButton.Enabled = False
                         SaveLogButton.Enabled = False
                         If ShowCMD.Checked Then
-                            CompressionParameters = "/C " + CompressorToUse + " " + CompressionParameters + " & pause"
+                            CompressionParameters = "/C @""" + CompressorToUse + """ " + CompressionParameters + " & pause"
                             CompressorToUse = "cmd.exe"
                         End If
                         Dim StartCompressionThread = New Threading.Thread(Sub() CompressionThread(CompressorToUse, CompressionParameters, CompressorPath))
@@ -444,7 +444,7 @@
                         Else
                             OutputPath = IO.Path.ChangeExtension(OutputLocation.Text, ".bat")
                         End If
-                        IO.File.WriteAllText(OutputPath, CompressorToUse + " " + CompressionParameters + " & pause")
+                        IO.File.WriteAllText(OutputPath, """" + CompressorToUse + """ " + CompressionParameters + " & pause")
                         MsgBox("Batch file written to the output location.")
                     End If
                 Else
