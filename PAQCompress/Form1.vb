@@ -60,9 +60,14 @@
                 PAQSeries.SelectedItem = "PAQ8PXd"
                 SetPAQVersion(Filename, ".paq8pxd")
                 Exit For
+            ElseIf Filename.Contains(".paq8sk") Then
+                PAQSeries.SelectedItem = "PAQ8SK"
+                SetPAQVersion(Filename, ".paq8sk")
+                Exit For
             ElseIf Filename.Contains(".paq8pxv") Then
                 PAQSeries.SelectedItem = "PAQ8PXv"
                 SetPAQVersion(Filename, ".paq8pxv")
+                Exit For
             ElseIf Filename.Contains(".paq8px") Then
                 PAQSeries.SelectedItem = "PAQ8PX"
                 SetPAQVersion(Filename, ".paq8px")
@@ -120,6 +125,16 @@
             PAQVersion.Items.AddRange({"v45", "v46", "v47", "v48", "v49", "v50", "v51", "v52", "v53", "v54", "v55", "v56", "v57", "v58", "v59", "v60",
                                        "v61", "v62", "v63", "v64", "v66", "v67", "v68", "v69f", "v69", "v70", "v71", "v72", "v73", "v74", "v75", "v76",
                                        "v77", "v78", "v79", "v80", "v81", "v82", "v83", "v84", "v85", "v86", "v87", "v88", "v89"})
+            CompressionLevel.Text = "s5"
+            CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15",
+                                             "x0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9", "x10", "x11", "x12", "x13", "x14", "x15"})
+            paq_other.Text = "Threads"
+            paq_other_dropbox.Enabled = True
+            paq_other_dropbox.Items.AddRange({"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"})
+            paq_other_dropbox.SelectedItem = My.Settings.pxdThreads
+            PAQVersion.Enabled = True
+        ElseIf PAQSeries.SelectedItem Is "PAQ8SK" Then
+            PAQVersion.Items.AddRange({"v2", "v5", "v7", "v9", "v10", "v13", "v14", "v15", "v18", "v19", "v22", "v23", "v25"})
             CompressionLevel.Text = "s5"
             CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15",
                                              "x0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9", "x10", "x11", "x12", "x13", "x14", "x15"})
@@ -187,15 +202,20 @@
             Else
                 CheckCompressionLevelAndChange()
             End If
-        ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Or PAQSeries.SelectedItem Is "PAQ8PXv" Then
+        ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Then
             CompressionLevel.Items.Clear()
             CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15"})
             If PAQVersion.SelectedIndex >= paq8pxd_add_x_levels Then
                 CompressionLevel.Items.AddRange({"x0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9", "x10", "x11", "x12", "x13", "x14", "x15"})
             End If
-            If PAQSeries.SelectedItem Is "PAQ8PXv" Then
-                checkPAQ8PXVExecutables()
-            End If
+        ElseIf PAQSeries.SelectedItem Is "PAQ8PXv" Then
+            CompressionLevel.Items.Clear()
+            CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15"})
+            checkPAQ8PXVExecutables()
+        ElseIf PAQSeries.SelectedItem Is "PAQ8SK" Then
+            CompressionLevel.Items.Clear()
+            CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15",
+                                             "x0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9", "x10", "x11", "x12", "x13", "x14", "x15"})
         Else
             CheckCompressionLevelAndChange()
         End If
@@ -210,7 +230,7 @@
             If Not SendToDistributedProject.Checked Or OnlyReturn Then
                 If CompressRButton.Checked Then
                     If PAQVersion.Enabled Then
-                        If (PAQSeries.SelectedItem Is "PAQ8PX" And PAQVersion.SelectedIndex > Flags_enable) Or PAQSeries.SelectedItem Is "PAQ8PXd" Or PAQSeries.SelectedItem Is "PAQ8PXv" Then
+                        If (PAQSeries.SelectedItem Is "PAQ8PX" And PAQVersion.SelectedIndex > Flags_enable) Or PAQSeries.SelectedItem Is "PAQ8PXd" Or PAQSeries.SelectedItem Is "PAQ8PXv" Or PAQSeries.SelectedItem Is "PAQ8SK" Then
                             OutputName = Item + "." + PAQSeries.SelectedItem.ToString.ToLower + PAQVersion.SelectedItem.ToString().Remove(0, 1)
                         Else
                             OutputName = Item + "." + PAQSeries.SelectedItem.ToString.ToLower + "_" + PAQVersion.SelectedItem.ToString()
@@ -250,9 +270,15 @@
         Return FileList
     End Function
     Private Sub CheckCompressionLevelAndChange()
-        If CompressionLevel.Text = "9" Then
-            CompressionLevel.Text = "8"
-            CompressionLevel.SelectedItem = "8"
+        If PAQSeries.SelectedItem Is "PAQ8PX" Then
+            If CompressionLevel.Text = "9" Then
+                CompressionLevel.Text = "8"
+                CompressionLevel.SelectedItem = "8"
+            End If
+        ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Or PAQSeries.SelectedItem Is "PAQ8PXv" Or PAQSeries.SelectedItem Is "PAQ8SK" Then
+            If Not (CompressionLevel.Text.Contains("s") And CompressionLevel.Text.Contains("x")) Then
+                CompressionLevel.Text = "s5"
+            End If
         End If
     End Sub
     Private Sub EnableDisableFlags()
@@ -348,7 +374,7 @@
         Else
             If CompressionLevel.Items.Contains(CompressionLevel.Text) Then
                 If PAQSeries.SelectedItem IsNot "PAQ8PX" Then
-                    If PAQSeries.SelectedItem IsNot "PAQ8o10t" And PAQSeries.SelectedItem IsNot "PAQ8PXPRE" And PAQSeries.SelectedItem IsNot "PAQ8PXd" And PAQSeries.SelectedItem IsNot "PAQ8PXv" And PAQSeries.SelectedItem IsNot "PAQ8P_PC" Then
+                    If PAQSeries.SelectedItem IsNot "PAQ8o10t" And PAQSeries.SelectedItem IsNot "PAQ8PXPRE" And PAQSeries.SelectedItem IsNot "PAQ8PXd" And PAQSeries.SelectedItem IsNot "PAQ8SK" And PAQSeries.SelectedItem IsNot "PAQ8PXv" And PAQSeries.SelectedItem IsNot "PAQ8P_PC" Then
                         If PAQVersion.Items.Contains(PAQVersion.Text) Then
                             CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQSeries.Text.ToLower + "_" + PAQVersion.Text + ".exe"
                         Else
@@ -356,6 +382,8 @@
                         End If
                     ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Then
                         CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQVersion.Text + "/" + PAQSeries.Text.ToLower() + "_" + PAQVersion.Text + ".exe"
+                    ElseIf PAQSeries.SelectedItem Is "PAQ8SK" Then
+                        CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQSeries.Text.ToLower() + PAQVersion.Text.Remove(0, 1) + ".exe"
                     ElseIf PAQSeries.SelectedItem Is "PAQ8PXv" Then
                         CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQVersion.Text + "/" + PAQSeries.Text.ToLower() + "_" + PAQVersion.Text + paq_other_dropbox.Text.ToLower() + ".exe"
                     ElseIf PAQSeries.SelectedItem Is "PAQ8P_PC" Then
@@ -370,7 +398,7 @@
                             Else
                                 CompressionParameters = "-" + CompressionLevel.Text + " """ + IO.Path.ChangeExtension(OutputLocation.Text, Nothing) + """ """ + InputLocation.Text + """"
                             End If
-                        ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Then
+                        ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Or PAQSeries.SelectedItem Is "PAQ8SK" Then
                             If InputLocation.Text = IO.Path.ChangeExtension(OutputLocation.Text, Nothing) Then
                                 CompressionParameters = "-" + CompressionLevel.Text + ":" + paq_other_dropbox.Text + " """ + InputLocation.Text + """"
                             Else

@@ -185,7 +185,7 @@ Partial Class Form1
         'PAQSeries
         '
         Me.PAQSeries.FormattingEnabled = True
-        Me.PAQSeries.Items.AddRange(New Object() {"FP8", "PAQ8KX", "PAQ8o10t", "PAQ8P_PC", "PAQ8PF", "PAQ8PX", "PAQ8PXd", "PAQ8PXPRE", "PAQ8PXv"})
+        Me.PAQSeries.Items.AddRange(New Object() {"FP8", "PAQ8KX", "PAQ8o10t", "PAQ8P_PC", "PAQ8PF", "PAQ8PX", "PAQ8PXd", "PAQ8PXPRE", "PAQ8PXv", "PAQ8SK"})
         Me.PAQSeries.Location = New System.Drawing.Point(6, 19)
         Me.PAQSeries.Name = "PAQSeries"
         Me.PAQSeries.Size = New System.Drawing.Size(116, 21)
