@@ -2,8 +2,9 @@
     Public Const Flags_enable As Integer = 47
     Public Const f_flag_available As Integer = 56
     Private Const paq8px_use_exe_in_folder As Integer = 74
+    Private Const paq8px_enable_levels_10_12 = 94
     Private Const paq8pxd_add_x_levels As Integer = 28
-    Private DistributedPAQCompressors As New Dictionary(Of String, String())() From {{"PAQ8PX", {"v185", "v186", "v186fix1", "v187"}}, {"PAQ8PXd", {"v85", "v86"}}}
+    Private DistributedPAQCompressors As New Dictionary(Of String, String())() From {{"PAQ8PX", {"v185", "v186", "v186fix1", "v187", "v187fix3"}}, {"PAQ8PXd", {"v85", "v86"}}}
 
     Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         PAQSeries.SelectedItem = My.Settings.PAQSeries
@@ -126,15 +127,14 @@
                                        "v61", "v62", "v63", "v64", "v66", "v67", "v68", "v69f", "v69", "v70", "v71", "v72", "v73", "v74", "v75", "v76",
                                        "v77", "v78", "v79", "v80", "v81", "v82", "v83", "v84", "v85", "v86", "v87", "v88", "v89"})
             CompressionLevel.Text = "s5"
-            CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15",
-                                             "x0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9", "x10", "x11", "x12", "x13", "x14", "x15"})
+            CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15"})
             paq_other.Text = "Threads"
             paq_other_dropbox.Enabled = True
             paq_other_dropbox.Items.AddRange({"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"})
             paq_other_dropbox.SelectedItem = My.Settings.pxdThreads
             PAQVersion.Enabled = True
         ElseIf PAQSeries.SelectedItem Is "PAQ8SK" Then
-            PAQVersion.Items.AddRange({"v2", "v5", "v7", "v9", "v10", "v13", "v14", "v15", "v18", "v19", "v22", "v23", "v25"})
+            PAQVersion.Items.AddRange({"v2", "v5", "v7", "v9", "v10", "v13", "v14", "v15", "v18", "v19", "v22", "v23", "v25", "v26"})
             CompressionLevel.Text = "s5"
             CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15",
                                              "x0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9", "x10", "x11", "x12", "x13", "x14", "x15"})
@@ -159,7 +159,7 @@
                                       "v141fix2", "v141fix4", "v144", "v145", "v146", "v147", "v156", "v157", "v159", "v163", "v164", "v167", "v167cm",
                                       "v168", "v169", "v170", "v171", "v172", "v173", "v174", "v175", "v176", "v177", "v178", "v179", "v179fix1",
                                       "v179fix2", "v179fix3", "v179fix4", "v179fix5", "v180", "v181", "v181fix1", "v182", "v182fix1", "v182fix2",
-                                      "v183", "v183fix1", "v184", "v185", "v186", "v186fix1", "v187"})
+                                      "v183", "v183fix1", "v184", "v185", "v186", "v186fix1", "v187", "v187fix1", "v187fix2", "v187fix3"})
             PAQVersion.Enabled = True
         End If
         If PAQVersion.Enabled Then
@@ -199,6 +199,11 @@
         If PAQSeries.SelectedItem Is "PAQ8PX" Then
             If PAQVersion.SelectedIndex > Flags_enable Then
                 CompressionLevel.Items.Add("9")
+                If PAQVersion.SelectedIndex > paq8px_enable_levels_10_12 Then
+                    CompressionLevel.Items.AddRange({"10", "11", "12"})
+                Else
+                    CheckCompressionLevelAndChange()
+                End If
             Else
                 CheckCompressionLevelAndChange()
             End If
@@ -207,6 +212,8 @@
             CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15"})
             If PAQVersion.SelectedIndex >= paq8pxd_add_x_levels Then
                 CompressionLevel.Items.AddRange({"x0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9", "x10", "x11", "x12", "x13", "x14", "x15"})
+            Else
+                CheckCompressionLevelAndChange()
             End If
         ElseIf PAQSeries.SelectedItem Is "PAQ8PXv" Then
             CompressionLevel.Items.Clear()
@@ -271,12 +278,17 @@
     End Function
     Private Sub CheckCompressionLevelAndChange()
         If PAQSeries.SelectedItem Is "PAQ8PX" Then
-            If CompressionLevel.Text = "9" Then
+            Try
+                If Convert.ToInt32(CompressionLevel.Text) >= 9 Then
+                    CompressionLevel.Text = "8"
+                    CompressionLevel.SelectedItem = "8"
+                End If
+            Catch
                 CompressionLevel.Text = "8"
                 CompressionLevel.SelectedItem = "8"
-            End If
+            End Try
         ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Or PAQSeries.SelectedItem Is "PAQ8PXv" Or PAQSeries.SelectedItem Is "PAQ8SK" Then
-            If Not (CompressionLevel.Text.Contains("s") And CompressionLevel.Text.Contains("x")) Then
+            If Not (CompressionLevel.Text.Contains("s") And Not CompressionLevel.Text.Contains("x")) Then
                 CompressionLevel.Text = "s5"
             End If
         End If
