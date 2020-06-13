@@ -1,186 +1,198 @@
+v0.3.49
+- Added paq8sk: v2, v5, v7, v9, v10, v13, v14, v15, v18, v19, v22, v23, v25, v26.
+- Added paq8px v187fix1, fix2, fix3.
+- Compression level improvements when changing between compression series.
+
+v0.3.48
+- Added paq8pxd v87, v88 and v89
+
+v0.3.47
+- Fixes an issue where the software would not work if its location contained spaces and "Show Command Prompt" was checked.
+- Fixes Batch script generation if the software was placed on a location with spaces.
+
 v0.3.46
--Added paq8pxd v86.
+- Added paq8pxd v86.
 
 v0.3.45
--Added paq8pxd v84 and paq8pxd v85.
+- Added paq8pxd v84 and paq8pxd v85.
 
 v0.3.44
--Added an option to not create the text file when compressing a single file.
+- Added an option to not create the text file when compressing a single file.
 
 v0.3.43
--Added paq8px v187.
+- Added paq8px v187.
 
 v0.3.42
--Added paq8px v186 and v186fix1.
--Added paq8pxd v82 and v83.
--Added pax8pxd levels x0 to x15 for paq8pxd v73 to latest.
+- Added paq8px v186 and v186fix1.
+- Added paq8pxd v82 and v83.
+- Added pax8pxd levels x0 to x15 for paq8pxd v73 to latest.
 
 v0.3.41
--The output field will now be auto-populated when typing a file path manually if a file or directory exists.
--Added paq8pxd v80 and v81.
+- The output field will now be auto-populated when typing a file path manually if a file or directory exists.
+- Added paq8pxd v80 and v81.
 
 v0.3.40
--Added paq8pxd v79.
+- Added paq8pxd v79.
 
 v0.3.39
--Added paq8pxd v78.
+- Added paq8pxd v78.
 
 v0.3.38
--Added paq8pxd v77.
+- Added paq8pxd v77.
 
 v0.3.37
--Added paq8pxd v76.
+- Added paq8pxd v76.
 
 v0.3.36
--Added paq8pxd v74 and v75.
+- Added paq8pxd v74 and v75.
 
 v0.3.35
--Added paq8pxd v73.
+- Added paq8pxd v73.
 
 v0.3.34
--Added paq8px_v184.
--Added paq8px v185.
--Added paq8pxd v72.
+- Added paq8px_v184.
+- Added paq8px v185.
+- Added paq8pxd v72.
 
 v0.3.33
--Added paq8pxd v71.
+- Added paq8pxd v71.
 
 v0.3.32
--Added paq8pxd v70.
+- Added paq8pxd v70.
 
 v0.3.31
--Added paq8pxd v45 to v59.
--Added paq8pxv v7, v9 to v11, v14, and v15.
+- Added paq8pxd v45 to v59.
+- Added paq8pxv v7, v9 to v11, v14, and v15.
 
 v0.3.30
--Added paq8pxv_v16.
+- Added paq8pxv_v16.
 
 v0.3.29
--Added paq8pxv_v13.
--Validate the input and output fields.
+- Added paq8pxv_v13.
+- Validate the input and output fields.
 
 v0.3.28
--Can now create batch files to compress or extract files later.
+- Can now create batch files to compress or extract files later.
 
 v0.3.27
--Added paq8pxd_v69.
+- Added paq8pxd_v69.
 
 v0.3.26
--Fixed a bug on some compressors when the show cmd option is selected.
--Added and updated some paq8pxv v12 profiles.
+- Fixed a bug on some compressors when the show cmd option is selected.
+- Added and updated some paq8pxv v12 profiles.
 
 v0.3.25
--Added paq8pxd_v69f.
+- Added paq8pxd_v69f.
 
 v0.3.24
--Added paq8px_v183fix1.
+- Added paq8px_v183fix1.
 
 v0.3.23
--Added paq8px_v183.
+- Added paq8px_v183.
 
 v0.3.22
--Added paq8px_v182.
--Added paq8px_v182fix1.
--Added paq8px_v182fix2.
--Can now use the CMD to show PAQ output in realtime.
+- Added paq8px_v182.
+- Added paq8px_v182fix1.
+- Added paq8px_v182fix2.
+- Can now use the CMD to show PAQ output in realtime.
 
 v0.3.21
--Added paq8px_v181fix1.
+- Added paq8px_v181fix1.
 
 v0.3.20
--Added paq8pxd_v68.
+- Added paq8pxd_v68.
 
 v0.3.19
--Added paq8px_v167cm.
+- Added paq8px_v167cm.
 
 v0.3.18
--Added paq8pxd_v67.
+- Added paq8pxd_v67.
 
 v0.3.17
--Added paq8pxd_v66.
+- Added paq8pxd_v66.
 
 v0.3.16
--Added paq8px_v181.
+- Added paq8px_v181.
 
 v0.3.15
--Added paq8px_v180.
+- Added paq8px_v180.
 
 v0.3.14
--Targets .NET Framework 4.8.
--Added paq8px_v179fix5.
+- Targets .NET Framework 4.8.
+- Added paq8px_v179fix5.
 
 v0.3.13
--Added paq8px_v179fix4.
--Enabled the "Clear Log" button to erase log while compression/extraction is in progress.
+- Added paq8px_v179fix4.
+- Enabled the "Clear Log" button to erase log while compression/extraction is in progress.
 
 v0.3.12
--Added paq8px_v179fix3.
+- Added paq8px_v179fix3.
 
 v0.3.11
--Added paq8px_v179fix2.
+- Added paq8px_v179fix2.
 
 v0.3.10
--Added paq8px_v179 and paq8px_v179fix1.
--Added paq8px_v147 which was missing from the list.
+- Added paq8px_v179 and paq8px_v179fix1.
+- Added paq8px_v147 which was missing from the list.
 
 v0.3.9
--Fixed OpenFileDialog message saying "Browse for a file to compress" when the Extract Radiobutton was checked.
+- Fixed OpenFileDialog message saying "Browse for a file to compress" when the Extract Radiobutton was checked.
 
 v0.3.8
--Added paq8pxv_v8.
+- Added paq8pxv_v8.
 
 v0.3.7
--Added paq8pxd_v64.
--Added paq8pxv_v6.
+- Added paq8pxd_v64.
+- Added paq8pxv_v6.
 
 v0.3.6
--Added paq8pxv_v5.
+- Added paq8pxv_v5.
 
 v0.3.5
--Added paq8pxv_v4.
--Added paq8p_pc v0.
+- Added paq8pxv_v4.
+- Added paq8p_pc v0.
 
 v0.3.4
--Added paq8px_v178.
+- Added paq8px_v178.
 
 v0.3.3
--Added paq8pxd_v63.
+- Added paq8pxd_v63.
 
 v0.3.2
--Added paq8pxd_v62.
+- Added paq8pxd_v62.
 
 v0.3.1
--Added paq8pxd_v61.
+- Added paq8pxd_v61.
 
 v0.3
--Can now drag and drop a file into the software icon.
+- Can now drag and drop a file into the software icon.
 
 v0.2
--Added paq8px v176 and v177.
+- Added paq8px v176 and v177.
 
 v0.1
--Initial Release.
+- Initial Release.
 
 VERY OLD RELEASES
 PAQCompress Version 3.0PCE:
--Can compress to PAQ8PX, PAQ8PF, PAQ8PXPRE, FP8, PAQ8KX and PAQ8o10t.
--Can extract PAQ8PX, PAQ8PF, PAQ8PXPRE, FP8, PAQ8KX and PAQ8o10t archives.
--No more .bat file creation when executing compression and extraction. Actions are done on-the-fly.
--Pressing "Cancel" on any dialog will not erase the current selected file/folder from the textbox.
--Integrated Changelog on the software
+- Can compress to PAQ8PX, PAQ8PF, PAQ8PXPRE, FP8, PAQ8KX and PAQ8o10t.
+- Can extract PAQ8PX, PAQ8PF, PAQ8PXPRE, FP8, PAQ8KX and PAQ8o10t archives.
+- No more .bat file creation when executing compression and extraction. Actions are done on-the-fly.
+- Pressing "Cancel" on any dialog will not erase the current selected file/folder from the textbox.
+- Integrated Changelog on the software
 
 PAQCompress Version 2.0PCE:
--Updated some software texts
+- Updated some software texts
 
 PAQCompress Version 2.0:
--Feature: Added "Open File" Dialog to Compress and Extract
--Feature: Added "Open Folder" Dialog to Compress
--Feature: Added Save Archive to Destination"
--Feature: Added "Save File" Dialog to Compress
--Feature: Added Save to "Same Destination as input file" to Compress.
--Change: Deleted the "Note:" on Compress
--Change: Add Compression Levels names on Compress.
--Change: Edited the About Section
+- Feature: Added "Open File" Dialog to Compress and Extract
+- Feature: Added "Open Folder" Dialog to Compress
+- Feature: Added Save Archive to Destination"
+- Feature: Added "Save File" Dialog to Compress
+- Feature: Added Save to "Same Destination as input file" to Compress.
+- Change: Deleted the "Note:" on Compress
+- Change: Add Compression Levels names on Compress.
+- Change: Edited the About Section
 
 PAQCompress Version 1.0
--Initial Release
+- Initial Release
