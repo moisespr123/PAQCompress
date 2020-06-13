@@ -13,6 +13,7 @@ Supported PAQ versions are:
 * [paq8pxd](https://encode.su/threads/1464-Paq8pxd-dict)
 * [paq8pxv](https://encode.su/threads/3064-paq8pxv-virtual-machine)
 * [paq8p_pc](https://encode.su/threads/3070-mod_CM-another-paq-submodel)
+* [paq8sk](https://encode.su/threads/3371-Paq8sk)
 * [fp8](https://encode.su/threads/613-FP8-(-Fast-PAQ8))
 
 The software appends the PAQ series and version to the output filename and this allows the GUI to select the proper version to use when extracting the file.
