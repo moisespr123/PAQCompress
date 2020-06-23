@@ -4,7 +4,8 @@
     Private Const paq8px_use_exe_in_folder As Integer = 74
     Private Const paq8px_enable_levels_10_12 = 94
     Private Const paq8pxd_add_x_levels As Integer = 28
-    Private DistributedPAQCompressors As New Dictionary(Of String, String())() From {{"PAQ8PX", {"v185", "v186", "v186fix1", "v187", "v187fix3"}}, {"PAQ8PXd", {"v85", "v86"}}}
+    Private DistributedPAQCompressors As New Dictionary(Of String, String())() From {{"PAQ8PX", {"v185", "v186", "v186fix1", "v187", "v187fix3", "v187fix5"}},
+                                                                                     {"PAQ8PXd", {"v85", "v86"}}}
 
     Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
         PAQSeries.SelectedItem = My.Settings.PAQSeries
@@ -134,7 +135,7 @@
             paq_other_dropbox.SelectedItem = My.Settings.pxdThreads
             PAQVersion.Enabled = True
         ElseIf PAQSeries.SelectedItem Is "PAQ8SK" Then
-            PAQVersion.Items.AddRange({"v2", "v5", "v7", "v9", "v10", "v13", "v14", "v15", "v18", "v19", "v22", "v23", "v25", "v26"})
+            PAQVersion.Items.AddRange({"v2", "v5", "v7", "v9", "v10", "v13", "v14", "v15", "v18", "v19", "v22", "v23", "v25", "v26", "v28", "v29"})
             CompressionLevel.Text = "s5"
             CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15",
                                              "x0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9", "x10", "x11", "x12", "x13", "x14", "x15"})
@@ -159,7 +160,7 @@
                                       "v141fix2", "v141fix4", "v144", "v145", "v146", "v147", "v156", "v157", "v159", "v163", "v164", "v167", "v167cm",
                                       "v168", "v169", "v170", "v171", "v172", "v173", "v174", "v175", "v176", "v177", "v178", "v179", "v179fix1",
                                       "v179fix2", "v179fix3", "v179fix4", "v179fix5", "v180", "v181", "v181fix1", "v182", "v182fix1", "v182fix2",
-                                      "v183", "v183fix1", "v184", "v185", "v186", "v186fix1", "v187", "v187fix1", "v187fix2", "v187fix3"})
+                                      "v183", "v183fix1", "v184", "v185", "v186", "v186fix1", "v187", "v187fix1", "v187fix2", "v187fix3", "v187fix4", "v187fix5"})
             PAQVersion.Enabled = True
         End If
         If PAQVersion.Enabled Then
