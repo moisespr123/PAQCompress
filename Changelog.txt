@@ -1,3 +1,6 @@
+v0.3.51
+- Added paq8sk v30, v31, and v32.
+
 v0.3.50
 - Added paq8sk v28 and v29.
 - Added paq8px v187fix4 and fix5.
