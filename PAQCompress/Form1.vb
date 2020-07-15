@@ -1,10 +1,13 @@
 ﻿Public Class Form1
     Public Const Flags_enable As Integer = 47
     Public Const f_flag_available As Integer = 56
+    Public Const f_flag_disable As Integer = 81
     Private Const paq8px_use_exe_in_folder As Integer = 74
     Private Const paq8px_enable_levels_10_12 = 94
+    Private Const paq8px_enable_l_flag = 98
+    Private Const fp8sk_enable_level_9 = 6
     Private Const paq8pxd_add_x_levels As Integer = 28
-    Private DistributedPAQCompressors As New Dictionary(Of String, String())() From {{"PAQ8PX", {"v185", "v186", "v186fix1", "v187", "v187fix3", "v187fix5"}},
+    Private DistributedPAQCompressors As New Dictionary(Of String, String())() From {{"PAQ8PX", {"v185", "v186", "v186fix1", "v187", "v187fix3", "v187fix5", "v188"}},
                                                                                      {"PAQ8PXd", {"v85", "v86"}}}
 
     Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
@@ -24,6 +27,7 @@
         a_flag.Checked = My.Settings.a_flag
         s_flag.Checked = My.Settings.s_flag
         f_flag.Checked = My.Settings.f_flag
+        l_flag.Checked = My.Settings.l_flag
         ShowCMD.Checked = My.Settings.ShowCMD
         GenerateBatchScriptOnly.Checked = My.Settings.OnlyGenerateBatchFile
         DontCreateTextFile.Checked = My.Settings.DontCreateTextFile
@@ -58,6 +62,10 @@
                         PAQVersion.SelectedItem = item
                     End If
                 Next
+            ElseIf Filename.Contains(".fp8sk") Then
+                PAQSeries.SelectedItem = "FP8sk"
+                SetPAQVersion(Filename, ".fp8sk")
+                Exit For
             ElseIf Filename.Contains(".paq8pxd") Then
                 PAQSeries.SelectedItem = "PAQ8PXd"
                 SetPAQVersion(Filename, ".paq8pxd")
@@ -123,6 +131,9 @@
         ElseIf PAQSeries.SelectedItem Is "FP8" Then
             PAQVersion.Items.AddRange({"v1", "v2", "v3", "v4", "v5", "v6"})
             PAQVersion.Enabled = True
+        ElseIf PAQSeries.SelectedItem Is "FP8sk" Then
+            PAQVersion.Items.AddRange({"v1", "v3", "v4", "v5", "v9", "v12", "v13", "v14", "v15", "v16"})
+            PAQVersion.Enabled = True
         ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Then
             PAQVersion.Items.AddRange({"v45", "v46", "v47", "v48", "v49", "v50", "v51", "v52", "v53", "v54", "v55", "v56", "v57", "v58", "v59", "v60",
                                        "v61", "v62", "v63", "v64", "v66", "v67", "v68", "v69f", "v69", "v70", "v71", "v72", "v73", "v74", "v75", "v76",
@@ -161,7 +172,7 @@
                                       "v141fix2", "v141fix4", "v144", "v145", "v146", "v147", "v156", "v157", "v159", "v163", "v164", "v167", "v167cm",
                                       "v168", "v169", "v170", "v171", "v172", "v173", "v174", "v175", "v176", "v177", "v178", "v179", "v179fix1",
                                       "v179fix2", "v179fix3", "v179fix4", "v179fix5", "v180", "v181", "v181fix1", "v182", "v182fix1", "v182fix2",
-                                      "v183", "v183fix1", "v184", "v185", "v186", "v186fix1", "v187", "v187fix1", "v187fix2", "v187fix3", "v187fix4", "v187fix5"})
+                                      "v183", "v183fix1", "v184", "v185", "v186", "v186fix1", "v187", "v187fix1", "v187fix2", "v187fix3", "v187fix4", "v187fix5", "v188"})
             PAQVersion.Enabled = True
         End If
         If PAQVersion.Enabled Then
@@ -198,7 +209,13 @@
     Private Sub PAQVersion_SelectedIndexChanged(sender As Object, e As EventArgs) Handles PAQVersion.SelectedIndexChanged
         CompressionLevel.Items.Clear()
         CompressionLevel.Items.AddRange({"0", "1", "2", "3", "4", "5", "6", "7", "8"})
-        If PAQSeries.SelectedItem Is "PAQ8PX" Then
+        If PAQSeries.SelectedItem Is "FP8sk" Then
+            If PAQVersion.SelectedIndex > fp8sk_enable_level_9 Then
+                CompressionLevel.Items.Add("9")
+            Else
+                CheckCompressionLevelAndChange()
+            End If
+        ElseIf PAQSeries.SelectedItem Is "PAQ8PX" Then
             If PAQVersion.SelectedIndex > Flags_enable Then
                 CompressionLevel.Items.Add("9")
                 If PAQVersion.SelectedIndex > paq8px_enable_levels_10_12 Then
@@ -239,7 +256,7 @@
             If Not SendToDistributedProject.Checked Or OnlyReturn Then
                 If CompressRButton.Checked Then
                     If PAQVersion.Enabled Then
-                        If (PAQSeries.SelectedItem Is "PAQ8PX" And PAQVersion.SelectedIndex > Flags_enable) Or PAQSeries.SelectedItem Is "PAQ8PXd" Or PAQSeries.SelectedItem Is "PAQ8PXv" Or PAQSeries.SelectedItem Is "PAQ8SK" Then
+                        If (PAQSeries.SelectedItem Is "PAQ8PX" And PAQVersion.SelectedIndex > Flags_enable) Or PAQSeries.SelectedItem Is "PAQ8PXd" Or PAQSeries.SelectedItem Is "PAQ8PXv" Or PAQSeries.SelectedItem Is "PAQ8SK" Or PAQSeries.SelectedItem Is "FP8sk" Then
                             OutputName = Item + "." + PAQSeries.SelectedItem.ToString.ToLower + PAQVersion.SelectedItem.ToString().Remove(0, 1)
                         Else
                             OutputName = Item + "." + PAQSeries.SelectedItem.ToString.ToLower + "_" + PAQVersion.SelectedItem.ToString()
@@ -279,7 +296,7 @@
         Return FileList
     End Function
     Private Sub CheckCompressionLevelAndChange()
-        If PAQSeries.SelectedItem Is "PAQ8PX" Then
+        If PAQSeries.SelectedItem Is "PAQ8PX" Or PAQSeries.SelectedItem Is "FP8sk" Then
             Try
                 If Convert.ToInt32(CompressionLevel.Text) >= 9 Then
                     CompressionLevel.Text = "8"
@@ -303,6 +320,7 @@
                 Else
                     DisableFlagsCheckboxes()
                 End If
+
             Else
                 DisableFlagsCheckboxes()
             End If
@@ -317,10 +335,15 @@
         a_flag.Enabled = True
         s_flag.Enabled = True
         DontCreateTextFile.Enabled = True
-        If PAQVersion.SelectedIndex > f_flag_available Then
+        If PAQVersion.SelectedIndex > f_flag_available And PAQVersion.SelectedIndex <= f_flag_disable Then
             f_flag.Enabled = True
         Else
             f_flag.Enabled = False
+        End If
+        If PAQVersion.SelectedIndex > paq8px_enable_l_flag Then
+            l_flag.Enabled = True
+        Else
+            l_flag.Enabled = False
         End If
     End Sub
     Private Sub DisableFlagsCheckboxes()
@@ -330,8 +353,21 @@
         a_flag.Enabled = False
         s_flag.Enabled = False
         f_flag.Enabled = False
+        l_flag.Enabled = False
         DontCreateTextFile.Enabled = False
     End Sub
+
+    Public Function GetPAQ8PXCompressionFlags() As String
+        Dim CompressionFlags As String = "-" + CompressionLevel.Text
+        If b_flag.Checked Then CompressionFlags += "b"
+        If e_flag.Checked Then CompressionFlags += "e"
+        If t_flag.Checked Then CompressionFlags += "t"
+        If a_flag.Checked Then CompressionFlags += "a"
+        If s_flag.Checked Then CompressionFlags += "s"
+        If PAQVersion.SelectedIndex > f_flag_available And PAQVersion.SelectedIndex <= f_flag_disable Then If f_flag.Checked Then CompressionFlags += "f"
+        If PAQVersion.SelectedIndex > paq8px_enable_l_flag Then If l_flag.Checked Then CompressionFlags += "l"
+        Return CompressionFlags
+    End Function
     Private Sub StartButton_Click(sender As Object, e As EventArgs) Handles StartButton.Click
         Dim CompressorToUse As String = String.Empty
         Dim CompressionParameters As String = String.Empty
@@ -388,7 +424,7 @@
         Else
             If CompressionLevel.Items.Contains(CompressionLevel.Text) Then
                 If PAQSeries.SelectedItem IsNot "PAQ8PX" Then
-                    If PAQSeries.SelectedItem IsNot "PAQ8o10t" And PAQSeries.SelectedItem IsNot "PAQ8PXPRE" And PAQSeries.SelectedItem IsNot "PAQ8PXd" And PAQSeries.SelectedItem IsNot "PAQ8SK" And PAQSeries.SelectedItem IsNot "PAQ8PXv" And PAQSeries.SelectedItem IsNot "PAQ8P_PC" Then
+                    If PAQSeries.SelectedItem IsNot "PAQ8o10t" And PAQSeries.SelectedItem IsNot "PAQ8PXPRE" And PAQSeries.SelectedItem IsNot "PAQ8PXd" And PAQSeries.SelectedItem IsNot "PAQ8SK" And PAQSeries.SelectedItem IsNot "FP8sk" And PAQSeries.SelectedItem IsNot "PAQ8PXv" And PAQSeries.SelectedItem IsNot "PAQ8P_PC" Then
                         If PAQVersion.Items.Contains(PAQVersion.Text) Then
                             CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQSeries.Text.ToLower + "_" + PAQVersion.Text + ".exe"
                         Else
@@ -396,7 +432,7 @@
                         End If
                     ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Then
                         CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQVersion.Text + "/" + PAQSeries.Text.ToLower() + "_" + PAQVersion.Text + ".exe"
-                    ElseIf PAQSeries.SelectedItem Is "PAQ8SK" Then
+                    ElseIf PAQSeries.SelectedItem Is "PAQ8SK" Or PAQSeries.SelectedItem Is "FP8sk" Then
                         CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQSeries.Text.ToLower() + PAQVersion.Text.Remove(0, 1) + ".exe"
                     ElseIf PAQSeries.SelectedItem Is "PAQ8PXv" Then
                         CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQVersion.Text + "/" + PAQSeries.Text.ToLower() + "_" + PAQVersion.Text + paq_other_dropbox.Text.ToLower() + ".exe"
@@ -406,7 +442,7 @@
                         CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQSeries.Text.ToLower + ".exe"
                     End If
                     If CompressRButton.Checked Then
-                        If PAQSeries.SelectedItem Is "PAQ8o10t" Or PAQSeries.SelectedItem Is "PAQ8PXv" Then
+                        If PAQSeries.SelectedItem Is "PAQ8o10t" Or PAQSeries.SelectedItem Is "PAQ8PXv" Or PAQSeries.SelectedItem Is "FP8sk" Then
                             If InputLocation.Text = IO.Path.ChangeExtension(OutputLocation.Text, Nothing) Then
                                 CompressionParameters = "-" + CompressionLevel.Text + " """ + InputLocation.Text + """"
                             Else
@@ -433,13 +469,7 @@
                         End If
                         If CompressRButton.Checked Then
                             If PAQVersion.SelectedIndex > Flags_enable Then
-                                Dim CompressionFlags As String = "-" + CompressionLevel.Text
-                                If b_flag.Checked Then CompressionFlags += "b"
-                                If e_flag.Checked Then CompressionFlags += "e"
-                                If t_flag.Checked Then CompressionFlags += "t"
-                                If a_flag.Checked Then CompressionFlags += "a"
-                                If s_flag.Checked Then CompressionFlags += "s"
-                                If PAQVersion.SelectedIndex > f_flag_available Then If f_flag.Checked Then CompressionFlags += "f"
+                                Dim CompressionFlags As String = GetPAQ8PXCompressionFlags()
                                 Dim textFile As String = OutputLocation.Text + ".txt"
                                 If IO.Directory.Exists(InputLocation.Text) Then
                                     Dim textFileStream As New IO.StreamWriter(textFile, False)
@@ -615,7 +645,7 @@
         End If
     End Sub
     Private Sub CheckAndAdjust()
-        If IO.Path.GetExtension(InputLocation.Text).Contains(".paq8") Then ExtractRButton.Checked = True Else CompressRButton.Checked = True
+        If IO.Path.GetExtension(InputLocation.Text).Contains(".paq8") Or IO.Path.GetExtension(InputLocation.Text).Contains(".fp8") Then ExtractRButton.Checked = True Else CompressRButton.Checked = True
         If ExtractRButton.Checked Then
             AdjustPAQVersion(IO.Path.GetFileName(InputLocation.Text))
         Else
@@ -724,6 +754,11 @@
 
     Private Sub DontCreateTextFile_CheckedChanged(sender As Object, e As EventArgs) Handles DontCreateTextFile.CheckedChanged
         My.Settings.DontCreateTextFile = DontCreateTextFile.Checked
+        My.Settings.Save()
+    End Sub
+
+    Private Sub l_flag_CheckedChanged(sender As Object, e As EventArgs) Handles l_flag.CheckedChanged
+        My.Settings.l_flag = l_flag.Checked
         My.Settings.Save()
     End Sub
 End Class

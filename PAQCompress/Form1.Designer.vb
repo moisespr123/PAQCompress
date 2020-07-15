@@ -63,6 +63,7 @@ Partial Class Form1
         Me.GenerateBatchScriptOnly = New System.Windows.Forms.CheckBox()
         Me.SendToDistributedProject = New System.Windows.Forms.CheckBox()
         Me.DistributedProcessingOptions = New System.Windows.Forms.Button()
+        Me.l_flag = New System.Windows.Forms.CheckBox()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -185,7 +186,7 @@ Partial Class Form1
         'PAQSeries
         '
         Me.PAQSeries.FormattingEnabled = True
-        Me.PAQSeries.Items.AddRange(New Object() {"FP8", "PAQ8KX", "PAQ8o10t", "PAQ8P_PC", "PAQ8PF", "PAQ8PX", "PAQ8PXd", "PAQ8PXPRE", "PAQ8PXv", "PAQ8SK"})
+        Me.PAQSeries.Items.AddRange(New Object() {"FP8", "FP8sk", "PAQ8KX", "PAQ8o10t", "PAQ8P_PC", "PAQ8PF", "PAQ8PX", "PAQ8PXd", "PAQ8PXPRE", "PAQ8PXv", "PAQ8SK"})
         Me.PAQSeries.Location = New System.Drawing.Point(6, 19)
         Me.PAQSeries.Name = "PAQSeries"
         Me.PAQSeries.Size = New System.Drawing.Size(116, 21)
@@ -232,6 +233,7 @@ Partial Class Form1
         '
         Me.GroupBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox2.Controls.Add(Me.l_flag)
         Me.GroupBox2.Controls.Add(Me.DontCreateTextFile)
         Me.GroupBox2.Controls.Add(Me.f_flag)
         Me.GroupBox2.Controls.Add(Me.s_flag)
@@ -379,7 +381,7 @@ Partial Class Form1
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(167, 13)
         Me.Label3.TabIndex = 21
-        Me.Label3.Text = "v0.3.51 - GUI by: Moisés Cardona"
+        Me.Label3.Text = "v0.3.52 - GUI by: Moisés Cardona"
         '
         'paq_other
         '
@@ -442,6 +444,16 @@ Partial Class Form1
         Me.DistributedProcessingOptions.Text = "Distributed Data and Media Processing settings"
         Me.DistributedProcessingOptions.UseVisualStyleBackColor = True
         Me.DistributedProcessingOptions.Visible = False
+        '
+        'l_flag
+        '
+        Me.l_flag.AutoSize = True
+        Me.l_flag.Location = New System.Drawing.Point(312, 88)
+        Me.l_flag.Name = "l_flag"
+        Me.l_flag.Size = New System.Drawing.Size(208, 17)
+        Me.l_flag.TabIndex = 19
+        Me.l_flag.Text = "Use Long Short-Term Memory network"
+        Me.l_flag.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -529,4 +541,5 @@ End Sub
     Friend WithEvents SendToDistributedProject As CheckBox
     Friend WithEvents DistributedProcessingOptions As Button
     Friend WithEvents DontCreateTextFile As CheckBox
+    Friend WithEvents l_flag As CheckBox
 End Class

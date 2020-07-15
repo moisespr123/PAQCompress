@@ -3,18 +3,10 @@ Imports System.Net.Http
 
 Public Class DistributedProjectFunctions
     Private Function GenerateCommandLineArguments() As String
-        Dim Flags As String
+        Dim Flags As String = String.Empty
         If Form1.CompressRButton.Checked Then
-            Flags = "-" + Form1.CompressionLevel.Text
             If Form1.PAQSeries.SelectedItem Is "PAQ8PX" Then
-                If Form1.PAQVersion.SelectedIndex > Form1.Flags_enable Then
-                    If Form1.b_flag.Checked Then Flags += "b"
-                    If Form1.e_flag.Checked Then Flags += "e"
-                    If Form1.t_flag.Checked Then Flags += "t"
-                    If Form1.a_flag.Checked Then Flags += "a"
-                    If Form1.s_flag.Checked Then Flags += "s"
-                    If Form1.PAQVersion.SelectedIndex > Form1.f_flag_available Then If Form1.f_flag.Checked Then Flags += "f"
-                End If
+                Flags = Form1.GetPAQ8PXCompressionFlags()
             End If
         Else
             Flags = "-d"
