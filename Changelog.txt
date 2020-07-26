@@ -1,3 +1,6 @@
+v0.3.53
+- added paq8px v189.
+
 v0.3.52
 - Added fp8sk.
 - Added paq8px v188.

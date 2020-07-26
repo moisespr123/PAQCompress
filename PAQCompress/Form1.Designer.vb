@@ -40,6 +40,7 @@ Partial Class Form1
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.CompressionLevel = New System.Windows.Forms.ComboBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.l_flag = New System.Windows.Forms.CheckBox()
         Me.DontCreateTextFile = New System.Windows.Forms.CheckBox()
         Me.f_flag = New System.Windows.Forms.CheckBox()
         Me.s_flag = New System.Windows.Forms.CheckBox()
@@ -63,7 +64,6 @@ Partial Class Form1
         Me.GenerateBatchScriptOnly = New System.Windows.Forms.CheckBox()
         Me.SendToDistributedProject = New System.Windows.Forms.CheckBox()
         Me.DistributedProcessingOptions = New System.Windows.Forms.Button()
-        Me.l_flag = New System.Windows.Forms.CheckBox()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -248,6 +248,16 @@ Partial Class Form1
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "PAQ8PX Additional Options:"
         '
+        'l_flag
+        '
+        Me.l_flag.AutoSize = True
+        Me.l_flag.Location = New System.Drawing.Point(312, 88)
+        Me.l_flag.Name = "l_flag"
+        Me.l_flag.Size = New System.Drawing.Size(208, 17)
+        Me.l_flag.TabIndex = 19
+        Me.l_flag.Text = "Use Long Short-Term Memory network"
+        Me.l_flag.UseVisualStyleBackColor = True
+        '
         'DontCreateTextFile
         '
         Me.DontCreateTextFile.AutoSize = True
@@ -381,7 +391,7 @@ Partial Class Form1
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(167, 13)
         Me.Label3.TabIndex = 21
-        Me.Label3.Text = "v0.3.52 - GUI by: Moisés Cardona"
+        Me.Label3.Text = "v0.3.53 - GUI by: Moisés Cardona"
         '
         'paq_other
         '
@@ -444,16 +454,6 @@ Partial Class Form1
         Me.DistributedProcessingOptions.Text = "Distributed Data and Media Processing settings"
         Me.DistributedProcessingOptions.UseVisualStyleBackColor = True
         Me.DistributedProcessingOptions.Visible = False
-        '
-        'l_flag
-        '
-        Me.l_flag.AutoSize = True
-        Me.l_flag.Location = New System.Drawing.Point(312, 88)
-        Me.l_flag.Name = "l_flag"
-        Me.l_flag.Size = New System.Drawing.Size(208, 17)
-        Me.l_flag.TabIndex = 19
-        Me.l_flag.Text = "Use Long Short-Term Memory network"
-        Me.l_flag.UseVisualStyleBackColor = True
         '
         'Form1
         '
