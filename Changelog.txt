@@ -1,5 +1,9 @@
+v0.3.54
+- Added paq8px v190.
+- Added new R flag for paq8px v190.
+
 v0.3.53
-- added paq8px v189.
+- Added paq8px v189.
 
 v0.3.52
 - Added fp8sk.
