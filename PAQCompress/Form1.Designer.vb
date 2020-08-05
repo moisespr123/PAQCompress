@@ -64,6 +64,7 @@ Partial Class Form1
         Me.GenerateBatchScriptOnly = New System.Windows.Forms.CheckBox()
         Me.SendToDistributedProject = New System.Windows.Forms.CheckBox()
         Me.DistributedProcessingOptions = New System.Windows.Forms.Button()
+        Me.r_flag = New System.Windows.Forms.CheckBox()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -233,6 +234,7 @@ Partial Class Form1
         '
         Me.GroupBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox2.Controls.Add(Me.r_flag)
         Me.GroupBox2.Controls.Add(Me.l_flag)
         Me.GroupBox2.Controls.Add(Me.DontCreateTextFile)
         Me.GroupBox2.Controls.Add(Me.f_flag)
@@ -243,7 +245,7 @@ Partial Class Form1
         Me.GroupBox2.Controls.Add(Me.b_flag)
         Me.GroupBox2.Location = New System.Drawing.Point(12, 231)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(562, 113)
+        Me.GroupBox2.Size = New System.Drawing.Size(562, 141)
         Me.GroupBox2.TabIndex = 15
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "PAQ8PX Additional Options:"
@@ -251,7 +253,7 @@ Partial Class Form1
         'l_flag
         '
         Me.l_flag.AutoSize = True
-        Me.l_flag.Location = New System.Drawing.Point(312, 88)
+        Me.l_flag.Location = New System.Drawing.Point(6, 88)
         Me.l_flag.Name = "l_flag"
         Me.l_flag.Size = New System.Drawing.Size(208, 17)
         Me.l_flag.TabIndex = 19
@@ -261,7 +263,7 @@ Partial Class Form1
         'DontCreateTextFile
         '
         Me.DontCreateTextFile.AutoSize = True
-        Me.DontCreateTextFile.Location = New System.Drawing.Point(6, 88)
+        Me.DontCreateTextFile.Location = New System.Drawing.Point(6, 118)
         Me.DontCreateTextFile.Name = "DontCreateTextFile"
         Me.DontCreateTextFile.Size = New System.Drawing.Size(300, 17)
         Me.DontCreateTextFile.TabIndex = 18
@@ -331,7 +333,7 @@ Partial Class Form1
         'StartButton
         '
         Me.StartButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.StartButton.Location = New System.Drawing.Point(12, 374)
+        Me.StartButton.Location = New System.Drawing.Point(12, 402)
         Me.StartButton.Name = "StartButton"
         Me.StartButton.Size = New System.Drawing.Size(562, 53)
         Me.StartButton.TabIndex = 18
@@ -355,14 +357,14 @@ Partial Class Form1
         Me.Log.BackColor = System.Drawing.SystemColors.Window
         Me.Log.Location = New System.Drawing.Point(580, 25)
         Me.Log.Name = "Log"
-        Me.Log.Size = New System.Drawing.Size(460, 343)
+        Me.Log.Size = New System.Drawing.Size(460, 371)
         Me.Log.TabIndex = 0
         Me.Log.Text = ""
         '
         'SaveLogButton
         '
         Me.SaveLogButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SaveLogButton.Location = New System.Drawing.Point(832, 374)
+        Me.SaveLogButton.Location = New System.Drawing.Point(832, 402)
         Me.SaveLogButton.Name = "SaveLogButton"
         Me.SaveLogButton.Size = New System.Drawing.Size(208, 53)
         Me.SaveLogButton.TabIndex = 20
@@ -372,7 +374,7 @@ Partial Class Form1
         'ClearLogButton
         '
         Me.ClearLogButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.ClearLogButton.Location = New System.Drawing.Point(580, 374)
+        Me.ClearLogButton.Location = New System.Drawing.Point(580, 402)
         Me.ClearLogButton.Name = "ClearLogButton"
         Me.ClearLogButton.Size = New System.Drawing.Size(241, 53)
         Me.ClearLogButton.TabIndex = 19
@@ -387,11 +389,11 @@ Partial Class Form1
         '
         Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(9, 437)
+        Me.Label3.Location = New System.Drawing.Point(9, 465)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(167, 13)
         Me.Label3.TabIndex = 21
-        Me.Label3.Text = "v0.3.53 - GUI by: Moisés Cardona"
+        Me.Label3.Text = "v0.3.54 - GUI by: Moisés Cardona"
         '
         'paq_other
         '
@@ -416,7 +418,7 @@ Partial Class Form1
         '
         Me.ShowCMD.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.ShowCMD.AutoSize = True
-        Me.ShowCMD.Location = New System.Drawing.Point(163, 350)
+        Me.ShowCMD.Location = New System.Drawing.Point(163, 378)
         Me.ShowCMD.Name = "ShowCMD"
         Me.ShowCMD.Size = New System.Drawing.Size(139, 17)
         Me.ShowCMD.TabIndex = 22
@@ -427,7 +429,7 @@ Partial Class Form1
         '
         Me.GenerateBatchScriptOnly.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.GenerateBatchScriptOnly.AutoSize = True
-        Me.GenerateBatchScriptOnly.Location = New System.Drawing.Point(12, 351)
+        Me.GenerateBatchScriptOnly.Location = New System.Drawing.Point(12, 379)
         Me.GenerateBatchScriptOnly.Name = "GenerateBatchScriptOnly"
         Me.GenerateBatchScriptOnly.Size = New System.Drawing.Size(151, 17)
         Me.GenerateBatchScriptOnly.TabIndex = 23
@@ -455,12 +457,22 @@ Partial Class Form1
         Me.DistributedProcessingOptions.UseVisualStyleBackColor = True
         Me.DistributedProcessingOptions.Visible = False
         '
+        'r_flag
+        '
+        Me.r_flag.AutoSize = True
+        Me.r_flag.Location = New System.Drawing.Point(268, 88)
+        Me.r_flag.Name = "r_flag"
+        Me.r_flag.Size = New System.Drawing.Size(265, 17)
+        Me.r_flag.TabIndex = 20
+        Me.r_flag.Text = "Perform initial retraining of the LSTM on text blocks"
+        Me.r_flag.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AllowDrop = True
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1052, 459)
+        Me.ClientSize = New System.Drawing.Size(1052, 487)
         Me.Controls.Add(Me.DistributedProcessingOptions)
         Me.Controls.Add(Me.SendToDistributedProject)
         Me.Controls.Add(Me.GenerateBatchScriptOnly)
@@ -542,4 +554,5 @@ End Sub
     Friend WithEvents DistributedProcessingOptions As Button
     Friend WithEvents DontCreateTextFile As CheckBox
     Friend WithEvents l_flag As CheckBox
+    Friend WithEvents r_flag As CheckBox
 End Class

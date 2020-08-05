@@ -188,7 +188,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("v188")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("v190")>  _
         Public Property PAQVersion() As String
             Get
                 Return CType(Me("PAQVersion"),String)
@@ -291,6 +291,18 @@ Namespace My
             End Get
             Set
                 Me("l_flag") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property r_flag() As Boolean
+            Get
+                Return CType(Me("r_flag"),Boolean)
+            End Get
+            Set
+                Me("r_flag") = value
             End Set
         End Property
     End Class

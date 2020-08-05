@@ -5,10 +5,11 @@
     Private Const paq8px_use_exe_in_folder As Integer = 74
     Private Const paq8px_enable_levels_10_12 = 94
     Private Const paq8px_enable_l_flag = 98
+    Private Const paq8px_enable_r_flag = 100
     Private Const fp8sk_enable_level_9 = 6
     Private Const paq8pxd_add_x_levels As Integer = 28
     Private DistributedPAQCompressors As New Dictionary(Of String, String())() From {{"PAQ8PX", {"v185", "v186", "v186fix1", "v187",
-                                                                                                 "v187fix3", "v187fix5", "v188", "v189"}},
+                                                                                                 "v187fix3", "v187fix5", "v188", "v189", "v190"}},
                                                                                      {"PAQ8PXd", {"v85", "v86"}}}
 
     Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
@@ -29,6 +30,7 @@
         s_flag.Checked = My.Settings.s_flag
         f_flag.Checked = My.Settings.f_flag
         l_flag.Checked = My.Settings.l_flag
+        r_flag.Checked = My.Settings.r_flag
         ShowCMD.Checked = My.Settings.ShowCMD
         GenerateBatchScriptOnly.Checked = My.Settings.OnlyGenerateBatchFile
         DontCreateTextFile.Checked = My.Settings.DontCreateTextFile
@@ -174,7 +176,7 @@
                                       "v168", "v169", "v170", "v171", "v172", "v173", "v174", "v175", "v176", "v177", "v178", "v179", "v179fix1",
                                       "v179fix2", "v179fix3", "v179fix4", "v179fix5", "v180", "v181", "v181fix1", "v182", "v182fix1", "v182fix2",
                                       "v183", "v183fix1", "v184", "v185", "v186", "v186fix1", "v187", "v187fix1", "v187fix2", "v187fix3", "v187fix4", "v187fix5",
-                                      "v188", "v189"})
+                                      "v188", "v189", "v190"})
             PAQVersion.Enabled = True
         End If
         If PAQVersion.Enabled Then
@@ -347,6 +349,11 @@
         Else
             l_flag.Enabled = False
         End If
+        If PAQVersion.SelectedIndex > paq8px_enable_r_flag Then
+            r_flag.Enabled = True
+        Else
+            r_flag.Enabled = False
+        End If
     End Sub
     Private Sub DisableFlagsCheckboxes()
         b_flag.Enabled = False
@@ -356,6 +363,7 @@
         s_flag.Enabled = False
         f_flag.Enabled = False
         l_flag.Enabled = False
+        r_flag.Enabled = False
         DontCreateTextFile.Enabled = False
     End Sub
 
@@ -368,6 +376,7 @@
         If s_flag.Checked Then CompressionFlags += "s"
         If PAQVersion.SelectedIndex > f_flag_available And PAQVersion.SelectedIndex <= f_flag_disable Then If f_flag.Checked Then CompressionFlags += "f"
         If PAQVersion.SelectedIndex > paq8px_enable_l_flag Then If l_flag.Checked Then CompressionFlags += "l"
+        If PAQVersion.SelectedIndex > paq8px_enable_r_flag Then If r_flag.Checked Then CompressionFlags += "r"
         Return CompressionFlags
     End Function
     Private Sub StartButton_Click(sender As Object, e As EventArgs) Handles StartButton.Click
@@ -761,6 +770,11 @@
 
     Private Sub l_flag_CheckedChanged(sender As Object, e As EventArgs) Handles l_flag.CheckedChanged
         My.Settings.l_flag = l_flag.Checked
+        My.Settings.Save()
+    End Sub
+
+    Private Sub r_flag_CheckedChanged(sender As Object, e As EventArgs) Handles r_flag.CheckedChanged
+        My.Settings.r_flag = r_flag.Checked
         My.Settings.Save()
     End Sub
 End Class

@@ -36,7 +36,7 @@
       <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="PAQVersion" Type="System.String" Scope="User">
-      <Value Profile="(Default)">v188</Value>
+      <Value Profile="(Default)">v190</Value>
     </Setting>
     <Setting Name="compiler" Type="System.String" Scope="User">
       <Value Profile="(Default)">jit</Value>
@@ -60,6 +60,9 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="l_flag" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="r_flag" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
