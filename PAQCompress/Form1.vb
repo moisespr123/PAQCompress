@@ -6,10 +6,12 @@
     Private Const paq8px_enable_levels_10_12 = 94
     Private Const paq8px_enable_l_flag = 98
     Private Const paq8px_enable_r_flag = 100
+    Private Const change_r_flag_text = 102
     Private Const fp8sk_enable_level_9 = 6
     Private Const paq8pxd_add_x_levels As Integer = 28
+    Private Const paq8px_nativecpus As Integer = 100
     Private DistributedPAQCompressors As New Dictionary(Of String, String())() From {{"PAQ8PX", {"v185", "v186", "v186fix1", "v187",
-                                                                                                 "v187fix3", "v187fix5", "v188", "v189", "v190"}},
+                                                                                                 "v187fix3", "v187fix5", "v188", "v189", "v193fix2"}},
                                                                                      {"PAQ8PXd", {"v85", "v86"}}}
 
     Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
@@ -31,6 +33,7 @@
         f_flag.Checked = My.Settings.f_flag
         l_flag.Checked = My.Settings.l_flag
         r_flag.Checked = My.Settings.r_flag
+        useNativeCPU.Checked = My.Settings.useNativeCPU
         ShowCMD.Checked = My.Settings.ShowCMD
         GenerateBatchScriptOnly.Checked = My.Settings.OnlyGenerateBatchFile
         DontCreateTextFile.Checked = My.Settings.DontCreateTextFile
@@ -91,6 +94,11 @@
                 Exit For
             End If
         Next
+        If Filename.Contains(".native.") Then
+            useNativeCPU.Checked = True
+        Else
+            useNativeCPU.Checked = False
+        End If
     End Sub
     Private Sub SetPAQVersion(Filename As String, Extension As String, Optional append_v As Boolean = True, Optional split_after_dot As Boolean = True)
         Dim split_paq_version As String() = Filename.Split({Extension}, StringSplitOptions.RemoveEmptyEntries)
@@ -176,7 +184,7 @@
                                       "v168", "v169", "v170", "v171", "v172", "v173", "v174", "v175", "v176", "v177", "v178", "v179", "v179fix1",
                                       "v179fix2", "v179fix3", "v179fix4", "v179fix5", "v180", "v181", "v181fix1", "v182", "v182fix1", "v182fix2",
                                       "v183", "v183fix1", "v184", "v185", "v186", "v186fix1", "v187", "v187fix1", "v187fix2", "v187fix3", "v187fix4", "v187fix5",
-                                      "v188", "v189", "v190"})
+                                      "v188", "v189", "v190", "v191", "v191a", "v192", "v193", "v193fix1", "v193fix2"})
             PAQVersion.Enabled = True
         End If
         If PAQVersion.Enabled Then
@@ -261,7 +269,11 @@
                 If CompressRButton.Checked Then
                     If PAQVersion.Enabled Then
                         If (PAQSeries.SelectedItem Is "PAQ8PX" And PAQVersion.SelectedIndex > Flags_enable) Or PAQSeries.SelectedItem Is "PAQ8PXd" Or PAQSeries.SelectedItem Is "PAQ8PXv" Or PAQSeries.SelectedItem Is "PAQ8SK" Or PAQSeries.SelectedItem Is "FP8sk" Then
-                            OutputName = Item + "." + PAQSeries.SelectedItem.ToString.ToLower + PAQVersion.SelectedItem.ToString().Remove(0, 1)
+                            If useNativeCPU.Checked Then
+                                OutputName = Item + ".native." + PAQSeries.SelectedItem.ToString.ToLower + PAQVersion.SelectedItem.ToString().Remove(0, 1)
+                            Else
+                                OutputName = Item + "." + PAQSeries.SelectedItem.ToString.ToLower + PAQVersion.SelectedItem.ToString().Remove(0, 1)
+                            End If
                         Else
                             OutputName = Item + "." + PAQSeries.SelectedItem.ToString.ToLower + "_" + PAQVersion.SelectedItem.ToString()
                         End If
@@ -324,9 +336,13 @@
                 Else
                     DisableFlagsCheckboxes()
                 End If
-
             Else
                 DisableFlagsCheckboxes()
+            End If
+            If PAQVersion.SelectedIndex > paq8px_nativecpus Then
+                useNativeCPU.Enabled = True
+            Else
+                useNativeCPU.Enabled = False
             End If
         Else
             DisableFlagsCheckboxes()
@@ -354,6 +370,11 @@
         Else
             r_flag.Enabled = False
         End If
+        If PAQVersion.SelectedIndex > change_r_flag_text Then
+            r_flag.Text = "Load LSTM models when appropriate"
+        Else
+            r_flag.Text = "Perform initial retraining of the LSTM on text blocks"
+        End If
     End Sub
     Private Sub DisableFlagsCheckboxes()
         b_flag.Enabled = False
@@ -364,6 +385,8 @@
         f_flag.Enabled = False
         l_flag.Enabled = False
         r_flag.Enabled = False
+        r_flag.Text = "Perform initial retraining of the LSTM on text blocks"
+        useNativeCPU.Enabled = False
         DontCreateTextFile.Enabled = False
     End Sub
 
@@ -474,7 +497,11 @@
                 ElseIf PAQSeries.SelectedItem Is "PAQ8PX" Then
                     If PAQVersion.Items.Contains(PAQVersion.Text) Then
                         If PAQVersion.SelectedIndex > paq8px_use_exe_in_folder Then
-                            CompressorToUse = "Executables/PAQ8PX/" + PAQVersion.Text + "/paq8px_" + PAQVersion.Text + ".exe"
+                            If useNativeCPU.Enabled And useNativeCPU.Checked Then
+                                CompressorToUse = "Executables/PAQ8PX/" + PAQVersion.Text + "/paq8px_" + PAQVersion.Text + "_nativecpu.exe"
+                            Else
+                                CompressorToUse = "Executables/PAQ8PX/" + PAQVersion.Text + "/paq8px_" + PAQVersion.Text + ".exe"
+                            End If
                         Else
                             CompressorToUse = "Executables/PAQ8PX/paq8px_" + PAQVersion.Text + ".exe"
                         End If
@@ -776,5 +803,11 @@
     Private Sub r_flag_CheckedChanged(sender As Object, e As EventArgs) Handles r_flag.CheckedChanged
         My.Settings.r_flag = r_flag.Checked
         My.Settings.Save()
+    End Sub
+
+    Private Sub useNativeCPU_CheckedChanged(sender As Object, e As EventArgs) Handles useNativeCPU.CheckedChanged
+        My.Settings.useNativeCPU = useNativeCPU.Checked
+        My.Settings.Save()
+        AdjustOutputFilename(InputLocation.Text)
     End Sub
 End Class

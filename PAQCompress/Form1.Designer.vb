@@ -40,6 +40,7 @@ Partial Class Form1
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.CompressionLevel = New System.Windows.Forms.ComboBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.r_flag = New System.Windows.Forms.CheckBox()
         Me.l_flag = New System.Windows.Forms.CheckBox()
         Me.DontCreateTextFile = New System.Windows.Forms.CheckBox()
         Me.f_flag = New System.Windows.Forms.CheckBox()
@@ -64,7 +65,7 @@ Partial Class Form1
         Me.GenerateBatchScriptOnly = New System.Windows.Forms.CheckBox()
         Me.SendToDistributedProject = New System.Windows.Forms.CheckBox()
         Me.DistributedProcessingOptions = New System.Windows.Forms.Button()
-        Me.r_flag = New System.Windows.Forms.CheckBox()
+        Me.useNativeCPU = New System.Windows.Forms.CheckBox()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -250,6 +251,16 @@ Partial Class Form1
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "PAQ8PX Additional Options:"
         '
+        'r_flag
+        '
+        Me.r_flag.AutoSize = True
+        Me.r_flag.Location = New System.Drawing.Point(268, 88)
+        Me.r_flag.Name = "r_flag"
+        Me.r_flag.Size = New System.Drawing.Size(265, 17)
+        Me.r_flag.TabIndex = 20
+        Me.r_flag.Text = "Perform initial retraining of the LSTM on text blocks"
+        Me.r_flag.UseVisualStyleBackColor = True
+        '
         'l_flag
         '
         Me.l_flag.AutoSize = True
@@ -391,9 +402,9 @@ Partial Class Form1
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(9, 465)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(167, 13)
+        Me.Label3.Size = New System.Drawing.Size(152, 13)
         Me.Label3.TabIndex = 21
-        Me.Label3.Text = "v0.3.54 - GUI by: Moisés Cardona"
+        Me.Label3.Text = "v0.4 - GUI by: Moisés Cardona"
         '
         'paq_other
         '
@@ -457,15 +468,16 @@ Partial Class Form1
         Me.DistributedProcessingOptions.UseVisualStyleBackColor = True
         Me.DistributedProcessingOptions.Visible = False
         '
-        'r_flag
+        'useNativeCPU
         '
-        Me.r_flag.AutoSize = True
-        Me.r_flag.Location = New System.Drawing.Point(268, 88)
-        Me.r_flag.Name = "r_flag"
-        Me.r_flag.Size = New System.Drawing.Size(265, 17)
-        Me.r_flag.TabIndex = 20
-        Me.r_flag.Text = "Perform initial retraining of the LSTM on text blocks"
-        Me.r_flag.UseVisualStyleBackColor = True
+        Me.useNativeCPU.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.useNativeCPU.AutoSize = True
+        Me.useNativeCPU.Location = New System.Drawing.Point(304, 378)
+        Me.useNativeCPU.Name = "useNativeCPU"
+        Me.useNativeCPU.Size = New System.Drawing.Size(147, 17)
+        Me.useNativeCPU.TabIndex = 26
+        Me.useNativeCPU.Text = "Use AVX2-optimized build"
+        Me.useNativeCPU.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -473,6 +485,7 @@ Partial Class Form1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1052, 487)
+        Me.Controls.Add(Me.useNativeCPU)
         Me.Controls.Add(Me.DistributedProcessingOptions)
         Me.Controls.Add(Me.SendToDistributedProject)
         Me.Controls.Add(Me.GenerateBatchScriptOnly)
@@ -555,4 +568,5 @@ End Sub
     Friend WithEvents DontCreateTextFile As CheckBox
     Friend WithEvents l_flag As CheckBox
     Friend WithEvents r_flag As CheckBox
+    Friend WithEvents useNativeCPU As CheckBox
 End Class
