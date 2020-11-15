@@ -1,9 +1,15 @@
+v0.4.3
+- Added paq8px v197.
+
+v0.4.2
+- Added paq8px v196.
+
 v0.4.1
-- Added paq8px v194 and v195
-- Added paq8pxd v90
+- Added paq8px v194 and v195.
+- Added paq8pxd v90.
 
 v0.4
-- Added new Use AVX2-optimized build" (Native CPU) option to use AVX2-optimized paq8px builds (v190 and up)
+- Added new Use AVX2-optimized build" (Native CPU) option to use AVX2-optimized paq8px builds (v190 and up).
 - Files compressed with "Native CPU" versions will have .native appended to the filename before the paq8px version.
 	- NOTE that native CPU versions must be used to extract the files if initially compressed with a native CPU compressor. 
 	- Some versions may have issues on different CPU architectures.

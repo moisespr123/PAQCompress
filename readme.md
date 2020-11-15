@@ -2,7 +2,7 @@
 
 [PAQCompress](https://moisescardona.me/paqcompress) is a GUI of the powerful PAQ compression software. Originally written in 2009, it has been rewritten to provide a better GUI and include the latest and greatest PAQ versions.
 
-![Screenshot](https://moisescardona.me/wp-content/uploads/2020/08/PAQCompress-v0.3.54.png)
+![Screenshot](https://moisescardona.me/wp-content/uploads/2020/11/PAQCompress-v0.4.3.png)
 
 Supported PAQ versions are: 
 
@@ -19,3 +19,8 @@ Supported PAQ versions are:
 The software appends the PAQ series and version to the output filename and this allows the GUI to select the proper version to use when extracting the file.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+## Support the project
+If you are enjoying this project, consider buying me a coffee! It will keep me energized so that I can continue developing this and other awesome projects.
+
+<a href="https://www.buymeacoffee.com/moisespr"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=moisespr&button_colour=FF5F5F&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00"></a>
