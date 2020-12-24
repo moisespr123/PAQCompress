@@ -41,14 +41,19 @@ Public Class DistributedProjectFunctions
             Using client = New HttpClient()
                 Using formData = New MultipartFormDataContent()
                     If True Then
+                        Dim serverUrl As String = "https://boinc.moisescardona.me/"
+                        If My.Settings.localServer Then
+                            serverUrl = "http://127.0.0.1/test_server/"
+                        End If
                         formData.Add(New StringContent(key), "k")
                         formData.Add(New StreamContent(New FileStream(file, FileMode.Open)), "filedata", Path.GetFileName(file))
                         formData.Add(New StringContent(category), "a")
                         formData.Add(New StringContent(format), "f")
                         formData.Add(New StringContent(GenerateCommandLineArguments()), "c")
                         formData.Add(New StringContent(GetOutputFilename(filename)), "n")
-                        Dim uri As Uri = New Uri("http://boinc.moisescardona.me/media_put.php")
+                        Dim uri As Uri = New Uri(serverUrl + "media_put.php")
                         client.DefaultRequestHeaders.Add("Accept-Language", "en-GB,en-US;q=0.8,en;q=0.6,ru;q=0.4")
+                        client.Timeout = Threading.Timeout.InfiniteTimeSpan
                         Dim response As HttpResponseMessage = client.PostAsync(uri, formData).Result
                         If Not response.IsSuccessStatusCode Then
                             Console.WriteLine("Error")

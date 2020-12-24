@@ -317,6 +317,18 @@ Namespace My
                 Me("useNativeCPU") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property localServer() As Boolean
+            Get
+                Return CType(Me("localServer"),Boolean)
+            End Get
+            Set
+                Me("localServer") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
