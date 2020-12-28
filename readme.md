@@ -2,7 +2,7 @@
 
 [PAQCompress](https://moisescardona.me/paqcompress) is a GUI of the powerful PAQ compression software. Originally written in 2009, it has been rewritten to provide a better GUI and include the latest and greatest PAQ versions.
 
-![Screenshot](https://moisescardona.me/wp-content/uploads/2020/11/PAQCompress-v0.4.3.png)
+![Screenshot](https://moisescardona.me/wp-content/uploads/2020/12/PAQCompress-v0.4.6.png)
 
 Supported PAQ versions are: 
 
