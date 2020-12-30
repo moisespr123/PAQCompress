@@ -11,7 +11,8 @@
     Private Const paq8pxd_add_x_levels As Integer = 28
     Private Const paq8px_nativecpus As Integer = 100
     Private DistributedPAQCompressors As New Dictionary(Of String, String())() From {{"PAQ8PX", {"v185", "v186", "v186fix1", "v187",
-                                                                                                 "v187fix3", "v187fix5", "v188", "v189", "v193fix2", "v198"}},
+                                                                                                 "v187fix3", "v187fix5", "v188", "v189",
+                                                                                                 "v193fix2", "v198", "v199"}},
                                                                                      {"PAQ8PXd", {"v85", "v86"}}}
 
     Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
@@ -33,6 +34,7 @@
         f_flag.Checked = My.Settings.f_flag
         l_flag.Checked = My.Settings.l_flag
         r_flag.Checked = My.Settings.r_flag
+        deleteFileList.Checked = My.Settings.deleteFileList
         useNativeCPU.Checked = My.Settings.useNativeCPU
         ShowCMD.Checked = My.Settings.ShowCMD
         GenerateBatchScriptOnly.Checked = My.Settings.OnlyGenerateBatchFile
@@ -185,7 +187,8 @@
                                       "v168", "v169", "v170", "v171", "v172", "v173", "v174", "v175", "v176", "v177", "v178", "v179", "v179fix1",
                                       "v179fix2", "v179fix3", "v179fix4", "v179fix5", "v180", "v181", "v181fix1", "v182", "v182fix1", "v182fix2",
                                       "v183", "v183fix1", "v184", "v185", "v186", "v186fix1", "v187", "v187fix1", "v187fix2", "v187fix3", "v187fix4", "v187fix5",
-                                      "v188", "v189", "v190", "v191", "v191a", "v192", "v193", "v193fix1", "v193fix2", "v194", "v195", "v196", "v197", "v198"})
+                                      "v188", "v189", "v190", "v191", "v191a", "v192", "v193", "v193fix1", "v193fix2", "v194", "v195", "v196", "v197", "v198",
+                                      "v199"})
             PAQVersion.Enabled = True
         End If
         If PAQVersion.Enabled Then
@@ -355,6 +358,7 @@
         t_flag.Enabled = True
         a_flag.Enabled = True
         s_flag.Enabled = True
+        deleteFileList.Enabled = True
         DontCreateTextFile.Enabled = True
         If PAQVersion.SelectedIndex > f_flag_available And PAQVersion.SelectedIndex <= f_flag_disable Then
             f_flag.Enabled = True
@@ -388,6 +392,7 @@
         r_flag.Enabled = False
         r_flag.Text = "Perform initial retraining of the LSTM on text blocks"
         useNativeCPU.Enabled = False
+        deleteFileList.Enabled = False
         DontCreateTextFile.Enabled = False
     End Sub
 
@@ -406,6 +411,7 @@
     Private Sub StartButton_Click(sender As Object, e As EventArgs) Handles StartButton.Click
         Dim CompressorToUse As String = String.Empty
         Dim CompressionParameters As String = String.Empty
+        Dim textFile As String = String.Empty
         If String.IsNullOrWhiteSpace(InputLocation.Text) Then
             MessageBox.Show("The Input field cannot be empty.")
             Exit Sub
@@ -509,7 +515,7 @@
                         If CompressRButton.Checked Then
                             If PAQVersion.SelectedIndex > Flags_enable Then
                                 Dim CompressionFlags As String = GetPAQ8PXCompressionFlags()
-                                Dim textFile As String = OutputLocation.Text + ".txt"
+                                textFile = OutputLocation.Text + ".txt"
                                 If IO.Directory.Exists(InputLocation.Text) Then
                                     Dim textFileStream As New IO.StreamWriter(textFile, False)
                                     textFileStream.WriteLine()
@@ -546,7 +552,7 @@
                             CompressionParameters = "/C @""" + CompressorToUse + """ " + CompressionParameters + " & pause"
                             CompressorToUse = "cmd.exe"
                         End If
-                        Dim StartCompressionThread = New Threading.Thread(Sub() CompressionThread(CompressorToUse, CompressionParameters, CompressorPath))
+                        Dim StartCompressionThread = New Threading.Thread(Sub() CompressionThread(CompressorToUse, CompressionParameters, CompressorPath, textFile, PAQSeries.SelectedItem))
                         StartCompressionThread.Start()
                     Else
                         Dim OutputPath As String
@@ -566,7 +572,7 @@
             End If
         End If
     End Sub
-    Private Sub CompressionThread(Compressor As String, Params As String, CompressorPath As String)
+    Private Sub CompressionThread(Compressor As String, Params As String, CompressorPath As String, textFile As String, PAQSeries As String)
         Using process As New Process()
             process.StartInfo.WorkingDirectory = CompressorPath
             process.StartInfo.FileName = Compressor
@@ -583,8 +589,13 @@
                 process.BeginErrorReadLine()
             End If
             process.WaitForExit()
+            If deleteFileList.Checked And PAQSeries = "PAQ8PX" Then
+                If IO.File.Exists(textFile) Then
+                    IO.File.Delete(textFile)
+                End If
+            End If
             StartButton.BeginInvoke(Sub() StartButton.Enabled = True)
-            SaveLogButton.BeginInvoke(Sub() SaveLogButton.Enabled = True)
+                SaveLogButton.BeginInvoke(Sub() SaveLogButton.Enabled = True)
         End Using
     End Sub
 
@@ -810,5 +821,10 @@
         My.Settings.useNativeCPU = useNativeCPU.Checked
         My.Settings.Save()
         AdjustOutputFilename(InputLocation.Text)
+    End Sub
+
+    Private Sub deleteFileList_CheckedChanged(sender As Object, e As EventArgs) Handles deleteFileList.CheckedChanged
+        My.Settings.deleteFileList = deleteFileList.Checked
+        My.Settings.Save()
     End Sub
 End Class

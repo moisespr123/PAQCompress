@@ -66,6 +66,7 @@ Partial Class Form1
         Me.SendToDistributedProject = New System.Windows.Forms.CheckBox()
         Me.DistributedProcessingOptions = New System.Windows.Forms.Button()
         Me.useNativeCPU = New System.Windows.Forms.CheckBox()
+        Me.deleteFileList = New System.Windows.Forms.CheckBox()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -235,6 +236,7 @@ Partial Class Form1
         '
         Me.GroupBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.GroupBox2.Controls.Add(Me.deleteFileList)
         Me.GroupBox2.Controls.Add(Me.r_flag)
         Me.GroupBox2.Controls.Add(Me.l_flag)
         Me.GroupBox2.Controls.Add(Me.DontCreateTextFile)
@@ -274,7 +276,7 @@ Partial Class Form1
         'DontCreateTextFile
         '
         Me.DontCreateTextFile.AutoSize = True
-        Me.DontCreateTextFile.Location = New System.Drawing.Point(6, 118)
+        Me.DontCreateTextFile.Location = New System.Drawing.Point(6, 111)
         Me.DontCreateTextFile.Name = "DontCreateTextFile"
         Me.DontCreateTextFile.Size = New System.Drawing.Size(300, 17)
         Me.DontCreateTextFile.TabIndex = 18
@@ -404,7 +406,7 @@ Partial Class Form1
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(161, 13)
         Me.Label3.TabIndex = 21
-        Me.Label3.Text = "v0.4.6 - GUI by: Moisés Cardona"
+        Me.Label3.Text = "v0.4.7 - GUI by: Moisés Cardona"
         '
         'paq_other
         '
@@ -478,6 +480,16 @@ Partial Class Form1
         Me.useNativeCPU.TabIndex = 26
         Me.useNativeCPU.Text = "Use AVX2-optimized build"
         Me.useNativeCPU.UseVisualStyleBackColor = True
+        '
+        'deleteFileList
+        '
+        Me.deleteFileList.AutoSize = True
+        Me.deleteFileList.Location = New System.Drawing.Point(312, 111)
+        Me.deleteFileList.Name = "deleteFileList"
+        Me.deleteFileList.Size = New System.Drawing.Size(95, 17)
+        Me.deleteFileList.TabIndex = 21
+        Me.deleteFileList.Text = "Delete File List"
+        Me.deleteFileList.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -569,4 +581,5 @@ End Sub
     Friend WithEvents l_flag As CheckBox
     Friend WithEvents r_flag As CheckBox
     Friend WithEvents useNativeCPU As CheckBox
+    Friend WithEvents deleteFileList As CheckBox
 End Class

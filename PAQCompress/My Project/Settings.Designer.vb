@@ -188,7 +188,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("v198")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("v199")>  _
         Public Property PAQVersion() As String
             Get
                 Return CType(Me("PAQVersion"),String)
@@ -327,6 +327,18 @@ Namespace My
             End Get
             Set
                 Me("localServer") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property deleteFileList() As Boolean
+            Get
+                Return CType(Me("deleteFileList"),Boolean)
+            End Get
+            Set
+                Me("deleteFileList") = value
             End Set
         End Property
     End Class

@@ -1,3 +1,7 @@
+v0.4.7
+- Added paq8px v199.
+- Added option to delete the File List when compression finish.
+
 v0.4.6
 - Added paq8pxd v92 and v93.
 
