@@ -6,7 +6,7 @@ Public Class DistributedProjectFunctions
         Dim Flags As String = String.Empty
         If Form1.CompressRButton.Checked Then
             If Form1.PAQSeries.SelectedItem Is "PAQ8PX" Then
-                Flags = Form1.GetPAQ8PXCompressionFlags()
+                Flags = Form1.GetPAQ8CompressionFlags()
             End If
         Else
             Flags = "-d"

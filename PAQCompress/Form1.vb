@@ -10,6 +10,7 @@
     Private Const fp8sk_enable_level_9 = 6
     Private Const paq8pxd_add_x_levels As Integer = 28
     Private Const paq8px_nativecpus As Integer = 100
+    Private Const paq8gen_enable_a_flag As Integer = 1 'v2fixa
     Private DistributedPAQCompressors As New Dictionary(Of String, String())() From {{"PAQ8PX", {"v185", "v186", "v186fix1", "v187",
                                                                                                  "v187fix3", "v187fix5", "v188", "v189",
                                                                                                  "v193fix2", "v198", "v200"}},
@@ -74,6 +75,10 @@
                 PAQSeries.SelectedItem = "FP8sk"
                 SetPAQVersion(Filename, ".fp8sk")
                 Exit For
+            ElseIf Filename.Contains(".paq8gen") Then
+                PAQSeries.SelectedItem = "PAQ8gen"
+                SetPAQVersion(Filename, ".paq8gen")
+                Exit For
             ElseIf Filename.Contains(".paq8pxd") Then
                 PAQSeries.SelectedItem = "PAQ8PXd"
                 SetPAQVersion(Filename, ".paq8pxd")
@@ -132,6 +137,9 @@
         If PAQSeries.SelectedItem Is "PAQ8o10t" Or PAQSeries.SelectedItem Is "PAQ8PXPRE" Then
             CompressionLevel.Items.AddRange({"0", "1", "2", "3", "4", "5", "6", "7", "8"})
             PAQVersion.Enabled = False
+        ElseIf PAQSeries.SelectedItem Is "PAQ8gen" Then
+            PAQVersion.Items.AddRange({"v1", "v2", "v2fixa"})
+            CompressionLevel.Items.AddRange({"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"})
         ElseIf PAQSeries.SelectedItem Is "PAQ8KX" Then
             PAQVersion.Items.AddRange({"v1", "v1_alt", "v2", "v2_alt", "v3", "v3_alt", "v4", "v4a", "v4adual2", "v5", "v6", "v7"})
             PAQVersion.Enabled = True
@@ -151,7 +159,7 @@
             PAQVersion.Items.AddRange({"v45", "v46", "v47", "v48", "v49", "v50", "v51", "v52", "v53", "v54", "v55", "v56", "v57", "v58", "v59", "v60",
                                        "v61", "v62", "v63", "v64", "v66", "v67", "v68", "v69f", "v69", "v70", "v71", "v72", "v73", "v74", "v75", "v76",
                                        "v77", "v78", "v79", "v80", "v81", "v82", "v83", "v84", "v85", "v86", "v87", "v88", "v89", "v90", "v91", "v92",
-                                       "v93"})
+                                       "v93", "v94"})
             CompressionLevel.Text = "s5"
             CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15"})
             paq_other.Text = "Threads"
@@ -231,6 +239,8 @@
             Else
                 CheckCompressionLevelAndChange()
             End If
+        ElseIf PAQSeries.SelectedItem Is "PAQ8gen" Then
+            CompressionLevel.Items.AddRange({"9", "10", "11", "12"})
         ElseIf PAQSeries.SelectedItem Is "PAQ8PX" Then
             If PAQVersion.SelectedIndex > Flags_enable Then
                 CompressionLevel.Items.Add("9")
@@ -272,7 +282,8 @@
             If Not SendToDistributedProject.Checked Or OnlyReturn Then
                 If CompressRButton.Checked Then
                     If PAQVersion.Enabled Then
-                        If (PAQSeries.SelectedItem Is "PAQ8PX" And PAQVersion.SelectedIndex > Flags_enable) Or PAQSeries.SelectedItem Is "PAQ8PXd" Or PAQSeries.SelectedItem Is "PAQ8PXv" Or PAQSeries.SelectedItem Is "PAQ8SK" Or PAQSeries.SelectedItem Is "FP8sk" Then
+                        Dim PAQSeriesToCheck As String() = {"PAQ8gen", "PAQ8PXd", "PAQ8PXv", "PAQ8SK", "FP8sk"}
+                        If (PAQSeries.SelectedItem Is "PAQ8PX" And PAQVersion.SelectedIndex > Flags_enable) Or PAQSeriesToCheck.Contains(PAQSeries.SelectedItem.ToString()) Then
                             If useNativeCPU.Checked Then
                                 OutputName = Item + ".native." + PAQSeries.SelectedItem.ToString.ToLower + PAQVersion.SelectedItem.ToString().Remove(0, 1)
                             Else
@@ -333,6 +344,7 @@
         End If
     End Sub
     Private Sub EnableDisableFlags()
+        DisableFlagsCheckboxes()
         If PAQSeries.SelectedItem Is "PAQ8PX" Then
             If CompressRButton.Checked Then
                 If PAQVersion.SelectedIndex > Flags_enable Then
@@ -348,37 +360,52 @@
             Else
                 useNativeCPU.Enabled = False
             End If
+        ElseIf PAQSeries.SelectedItem Is "PAQ8gen" Then
+            If CompressRButton.Checked Then
+                EnableFlagsCheckboxes()
+            Else
+                DisableFlagsCheckboxes()
+            End If
+            useNativeCPU.Enabled = True
         Else
             DisableFlagsCheckboxes()
+            useNativeCPU.Enabled = False
         End If
     End Sub
     Private Sub EnableFlagsCheckboxes()
-        b_flag.Enabled = True
-        e_flag.Enabled = True
-        t_flag.Enabled = True
-        a_flag.Enabled = True
-        s_flag.Enabled = True
-        deleteFileList.Enabled = True
-        DontCreateTextFile.Enabled = True
-        If PAQVersion.SelectedIndex > f_flag_available And PAQVersion.SelectedIndex <= f_flag_disable Then
-            f_flag.Enabled = True
-        Else
-            f_flag.Enabled = False
-        End If
-        If PAQVersion.SelectedIndex > paq8px_enable_l_flag Then
+        If PAQSeries.SelectedItem Is "PAQ8PX" Then
+            b_flag.Enabled = True
+            e_flag.Enabled = True
+            t_flag.Enabled = True
+            a_flag.Enabled = True
+            s_flag.Enabled = True
+            deleteFileList.Enabled = True
+            DontCreateTextFile.Enabled = True
+            If PAQVersion.SelectedIndex > f_flag_available And PAQVersion.SelectedIndex <= f_flag_disable Then
+                f_flag.Enabled = True
+            Else
+                f_flag.Enabled = False
+            End If
+            If PAQVersion.SelectedIndex > paq8px_enable_l_flag Then
+                l_flag.Enabled = True
+            Else
+                l_flag.Enabled = False
+            End If
+            If PAQVersion.SelectedIndex > paq8px_enable_r_flag Then
+                r_flag.Enabled = True
+            Else
+                r_flag.Enabled = False
+            End If
+            If PAQVersion.SelectedIndex > change_r_flag_text Then
+                r_flag.Text = "Load LSTM models when appropriate"
+            Else
+                r_flag.Text = "Perform initial retraining of the LSTM on text blocks"
+            End If
+        ElseIf PAQSeries.SelectedItem Is "PAQ8gen" Then
+            If PAQVersion.SelectedIndex > paq8gen_enable_a_flag Then
+                a_flag.Enabled = True
+            End If
             l_flag.Enabled = True
-        Else
-            l_flag.Enabled = False
-        End If
-        If PAQVersion.SelectedIndex > paq8px_enable_r_flag Then
-            r_flag.Enabled = True
-        Else
-            r_flag.Enabled = False
-        End If
-        If PAQVersion.SelectedIndex > change_r_flag_text Then
-            r_flag.Text = "Load LSTM models when appropriate"
-        Else
-            r_flag.Text = "Perform initial retraining of the LSTM on text blocks"
         End If
     End Sub
     Private Sub DisableFlagsCheckboxes()
@@ -396,16 +423,21 @@
         DontCreateTextFile.Enabled = False
     End Sub
 
-    Public Function GetPAQ8PXCompressionFlags() As String
+    Public Function GetPAQ8CompressionFlags() As String
         Dim CompressionFlags As String = "-" + CompressionLevel.Text
-        If b_flag.Checked Then CompressionFlags += "b"
-        If e_flag.Checked Then CompressionFlags += "e"
-        If t_flag.Checked Then CompressionFlags += "t"
-        If a_flag.Checked Then CompressionFlags += "a"
-        If s_flag.Checked Then CompressionFlags += "s"
-        If PAQVersion.SelectedIndex > f_flag_available And PAQVersion.SelectedIndex <= f_flag_disable Then If f_flag.Checked Then CompressionFlags += "f"
-        If PAQVersion.SelectedIndex > paq8px_enable_l_flag Then If l_flag.Checked Then CompressionFlags += "l"
-        If PAQVersion.SelectedIndex > paq8px_enable_r_flag Then If r_flag.Checked Then CompressionFlags += "r"
+        If PAQSeries.SelectedItem Is "PAQ8PX" Then
+            If b_flag.Checked Then CompressionFlags += "b"
+            If e_flag.Checked Then CompressionFlags += "e"
+            If t_flag.Checked Then CompressionFlags += "t"
+            If a_flag.Checked Then CompressionFlags += "a"
+            If s_flag.Checked Then CompressionFlags += "s"
+            If PAQVersion.SelectedIndex > f_flag_available And PAQVersion.SelectedIndex <= f_flag_disable Then If f_flag.Checked Then CompressionFlags += "f"
+            If PAQVersion.SelectedIndex > paq8px_enable_l_flag Then If l_flag.Checked Then CompressionFlags += "l"
+            If PAQVersion.SelectedIndex > paq8px_enable_r_flag Then If r_flag.Checked Then CompressionFlags += "r"
+        ElseIf PAQSeries.SelectedItem Is "PAQ8gen" Then
+            If l_flag.Checked Then CompressionFlags += "l"
+            If PAQVersion.SelectedIndex > paq8gen_enable_a_flag Then If a_flag.Checked Then CompressionFlags += "a"
+        End If
         Return CompressionFlags
     End Function
     Private Sub StartButton_Click(sender As Object, e As EventArgs) Handles StartButton.Click
@@ -465,11 +497,17 @@
         Else
             If CompressionLevel.Items.Contains(CompressionLevel.Text) Then
                 If PAQSeries.SelectedItem IsNot "PAQ8PX" Then
-                    If PAQSeries.SelectedItem IsNot "PAQ8o10t" And PAQSeries.SelectedItem IsNot "PAQ8PXPRE" And PAQSeries.SelectedItem IsNot "PAQ8PXd" And PAQSeries.SelectedItem IsNot "PAQ8SK" And PAQSeries.SelectedItem IsNot "FP8sk" And PAQSeries.SelectedItem IsNot "PAQ8PXv" And PAQSeries.SelectedItem IsNot "PAQ8P_PC" Then
+                    If Not {"PAQ8o10t", "PAQ8gen", "PAQ8PXPRE", "PAQ8PXd", "PAQ8SK", "FP8sk", "PAQ8PXv", "PAQ8P_PC"}.Contains(PAQSeries.SelectedItem.ToString) Then
                         If PAQVersion.Items.Contains(PAQVersion.Text) Then
                             CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQSeries.Text.ToLower + "_" + PAQVersion.Text + ".exe"
                         Else
                             MessageBox.Show("Select an item from the version dropdown")
+                        End If
+                    ElseIf PAQSeries.SelectedItem Is "PAQ8gen" Then
+                        If useNativeCPU.Enabled And useNativeCPU.Checked Then
+                            CompressorToUse = "Executables/PAQ8gen/" + PAQVersion.Text + "/paq8gen_" + PAQVersion.Text + "_nativecpu.exe"
+                        Else
+                            CompressorToUse = "Executables/PAQ8gen/" + PAQVersion.Text + "/paq8gen_" + PAQVersion.Text + ".exe"
                         End If
                     ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Then
                         CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQVersion.Text + "/" + PAQSeries.Text.ToLower() + "_" + PAQVersion.Text + ".exe"
@@ -495,6 +533,12 @@
                             Else
                                 CompressionParameters = "-" + CompressionLevel.Text + ":" + paq_other_dropbox.Text + " """ + IO.Path.ChangeExtension(OutputLocation.Text, Nothing) + """ """ + InputLocation.Text + """"
                             End If
+                        ElseIf PAQSeries.SelectedItem Is "PAQ8gen" Then
+                            If IO.Directory.Exists(InputLocation.Text) Then
+                                MsgBox("PAQ8gen supports compressing files only.")
+                                Return
+                            End If
+                            CompressionParameters = GetPAQ8CompressionFlags() + " """ + InputLocation.Text + """ """ + OutputLocation.Text + """"
                         Else
                             CompressionParameters = "-" + CompressionLevel.Text + " """ + OutputLocation.Text + """ """ + InputLocation.Text + """"
                         End If
@@ -514,7 +558,7 @@
                         End If
                         If CompressRButton.Checked Then
                             If PAQVersion.SelectedIndex > Flags_enable Then
-                                Dim CompressionFlags As String = GetPAQ8PXCompressionFlags()
+                                Dim CompressionFlags As String = GetPAQ8CompressionFlags()
                                 textFile = OutputLocation.Text + ".txt"
                                 If IO.Directory.Exists(InputLocation.Text) Then
                                     Dim textFileStream As New IO.StreamWriter(textFile, False)
@@ -552,7 +596,7 @@
                             CompressionParameters = "/C @""" + CompressorToUse + """ " + CompressionParameters + " & pause"
                             CompressorToUse = "cmd.exe"
                         End If
-                        Dim StartCompressionThread = New Threading.Thread(Sub() CompressionThread(CompressorToUse, CompressionParameters, CompressorPath, textFile, PAQSeries.SelectedItem))
+                        Dim StartCompressionThread = New Threading.Thread(Sub() CompressionThread(CompressorToUse, CompressionParameters, CompressorPath, textFile, PAQSeries.SelectedItem.ToString()))
                         StartCompressionThread.Start()
                     Else
                         Dim OutputPath As String
@@ -565,7 +609,7 @@
                         MsgBox("Batch file written to the output location.")
                     End If
                 Else
-                    MsgBox("The selected compressor version could not be found. Cannot proceed")
+                    MsgBox("The selected compressor version could not be found. Cannot proceed.")
                 End If
             Else
                 MessageBox.Show("No compressor has been selected. Cannot proceed.")
@@ -595,7 +639,7 @@
                 End If
             End If
             StartButton.BeginInvoke(Sub() StartButton.Enabled = True)
-                SaveLogButton.BeginInvoke(Sub() SaveLogButton.Enabled = True)
+            SaveLogButton.BeginInvoke(Sub() SaveLogButton.Enabled = True)
         End Using
     End Sub
 

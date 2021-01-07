@@ -40,6 +40,7 @@ Partial Class Form1
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.CompressionLevel = New System.Windows.Forms.ComboBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.deleteFileList = New System.Windows.Forms.CheckBox()
         Me.r_flag = New System.Windows.Forms.CheckBox()
         Me.l_flag = New System.Windows.Forms.CheckBox()
         Me.DontCreateTextFile = New System.Windows.Forms.CheckBox()
@@ -66,7 +67,6 @@ Partial Class Form1
         Me.SendToDistributedProject = New System.Windows.Forms.CheckBox()
         Me.DistributedProcessingOptions = New System.Windows.Forms.Button()
         Me.useNativeCPU = New System.Windows.Forms.CheckBox()
-        Me.deleteFileList = New System.Windows.Forms.CheckBox()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -189,7 +189,7 @@ Partial Class Form1
         'PAQSeries
         '
         Me.PAQSeries.FormattingEnabled = True
-        Me.PAQSeries.Items.AddRange(New Object() {"FP8", "FP8sk", "PAQ8KX", "PAQ8o10t", "PAQ8P_PC", "PAQ8PF", "PAQ8PX", "PAQ8PXd", "PAQ8PXPRE", "PAQ8PXv", "PAQ8SK"})
+        Me.PAQSeries.Items.AddRange(New Object() {"FP8", "FP8sk", "PAQ8gen", "PAQ8KX", "PAQ8o10t", "PAQ8P_PC", "PAQ8PF", "PAQ8PX", "PAQ8PXd", "PAQ8PXPRE", "PAQ8PXv", "PAQ8SK"})
         Me.PAQSeries.Location = New System.Drawing.Point(6, 19)
         Me.PAQSeries.Name = "PAQSeries"
         Me.PAQSeries.Size = New System.Drawing.Size(116, 21)
@@ -251,7 +251,17 @@ Partial Class Form1
         Me.GroupBox2.Size = New System.Drawing.Size(562, 141)
         Me.GroupBox2.TabIndex = 15
         Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "PAQ8PX Additional Options:"
+        Me.GroupBox2.Text = "PAQ8PX/PAQ8gen Additional Options:"
+        '
+        'deleteFileList
+        '
+        Me.deleteFileList.AutoSize = True
+        Me.deleteFileList.Location = New System.Drawing.Point(312, 111)
+        Me.deleteFileList.Name = "deleteFileList"
+        Me.deleteFileList.Size = New System.Drawing.Size(95, 17)
+        Me.deleteFileList.TabIndex = 21
+        Me.deleteFileList.Text = "Delete File List"
+        Me.deleteFileList.UseVisualStyleBackColor = True
         '
         'r_flag
         '
@@ -406,7 +416,7 @@ Partial Class Form1
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(161, 13)
         Me.Label3.TabIndex = 21
-        Me.Label3.Text = "v0.4.8 - GUI by: Moisés Cardona"
+        Me.Label3.Text = "v0.5.0 - GUI by: Moisés Cardona"
         '
         'paq_other
         '
@@ -480,16 +490,6 @@ Partial Class Form1
         Me.useNativeCPU.TabIndex = 26
         Me.useNativeCPU.Text = "Use AVX2-optimized build"
         Me.useNativeCPU.UseVisualStyleBackColor = True
-        '
-        'deleteFileList
-        '
-        Me.deleteFileList.AutoSize = True
-        Me.deleteFileList.Location = New System.Drawing.Point(312, 111)
-        Me.deleteFileList.Name = "deleteFileList"
-        Me.deleteFileList.Size = New System.Drawing.Size(95, 17)
-        Me.deleteFileList.TabIndex = 21
-        Me.deleteFileList.Text = "Delete File List"
-        Me.deleteFileList.UseVisualStyleBackColor = True
         '
         'Form1
         '
