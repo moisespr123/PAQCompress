@@ -1,3 +1,7 @@
+v0.5.1
+- Added paq8pxd v95.
+- Added paq8sk v39, v40 and v43.
+
 v0.5.0
 - Added paq8gen v1 and v2.
 - Added paq8pxd v94.

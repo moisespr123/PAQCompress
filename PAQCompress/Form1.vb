@@ -159,7 +159,7 @@
             PAQVersion.Items.AddRange({"v45", "v46", "v47", "v48", "v49", "v50", "v51", "v52", "v53", "v54", "v55", "v56", "v57", "v58", "v59", "v60",
                                        "v61", "v62", "v63", "v64", "v66", "v67", "v68", "v69f", "v69", "v70", "v71", "v72", "v73", "v74", "v75", "v76",
                                        "v77", "v78", "v79", "v80", "v81", "v82", "v83", "v84", "v85", "v86", "v87", "v88", "v89", "v90", "v91", "v92",
-                                       "v93", "v94"})
+                                       "v93", "v94", "v95"})
             CompressionLevel.Text = "s5"
             CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15"})
             paq_other.Text = "Threads"
@@ -169,7 +169,7 @@
             PAQVersion.Enabled = True
         ElseIf PAQSeries.SelectedItem Is "PAQ8SK" Then
             PAQVersion.Items.AddRange({"v2", "v5", "v7", "v9", "v10", "v13", "v14", "v15", "v18", "v19", "v22", "v23", "v25", "v26", "v28", "v29",
-                                      "v30", "v31", "v32"})
+                                      "v30", "v31", "v32", "v39", "v40", "v43"})
             CompressionLevel.Text = "s5"
             CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15",
                                              "x0", "x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8", "x9", "x10", "x11", "x12", "x13", "x14", "x15"})
