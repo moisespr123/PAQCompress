@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Form1
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Form1
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Step1Label = New System.Windows.Forms.Label()
         Me.InputLocation = New System.Windows.Forms.TextBox()
@@ -522,21 +522,21 @@ Partial Class Form1
         Me.Controls.Add(Me.BrowseFile)
         Me.Controls.Add(Me.InputLocation)
         Me.Controls.Add(Me.Step1Label)
-        Me.MaximizeBox = false
+        Me.MaximizeBox = False
         Me.Name = "Form1"
         Me.Text = "PAQCompress"
-        Me.GroupBox3.ResumeLayout(false)
-        Me.GroupBox3.PerformLayout
-        Me.GroupBox4.ResumeLayout(false)
-        Me.GroupBox5.ResumeLayout(false)
-        Me.GroupBox1.ResumeLayout(false)
-        Me.GroupBox2.ResumeLayout(false)
-        Me.GroupBox2.PerformLayout
-        Me.paq_other.ResumeLayout(false)
-        Me.ResumeLayout(false)
-        Me.PerformLayout
+        Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox3.PerformLayout()
+        Me.GroupBox4.ResumeLayout(False)
+        Me.GroupBox5.ResumeLayout(False)
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
+        Me.paq_other.ResumeLayout(False)
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
 
-End Sub
+    End Sub
     Friend WithEvents Step1Label As Label
     Friend WithEvents InputLocation As TextBox
     Friend WithEvents BrowseFile As Button
