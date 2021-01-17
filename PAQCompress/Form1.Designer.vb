@@ -78,59 +78,66 @@ Partial Class Form1
         'Step1Label
         '
         Me.Step1Label.AutoSize = True
-        Me.Step1Label.Location = New System.Drawing.Point(9, 62)
+        Me.Step1Label.Location = New System.Drawing.Point(18, 119)
+        Me.Step1Label.Margin = New System.Windows.Forms.Padding(6, 0, 6, 0)
         Me.Step1Label.Name = "Step1Label"
-        Me.Step1Label.Size = New System.Drawing.Size(223, 13)
+        Me.Step1Label.Size = New System.Drawing.Size(454, 25)
         Me.Step1Label.TabIndex = 3
         Me.Step1Label.Text = "Step 1: Browse for a file or folder to compress:"
         '
         'InputLocation
         '
-        Me.InputLocation.Location = New System.Drawing.Point(12, 78)
+        Me.InputLocation.Location = New System.Drawing.Point(24, 150)
+        Me.InputLocation.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.InputLocation.Name = "InputLocation"
-        Me.InputLocation.Size = New System.Drawing.Size(286, 20)
+        Me.InputLocation.Size = New System.Drawing.Size(568, 31)
         Me.InputLocation.TabIndex = 3
         '
         'BrowseFile
         '
-        Me.BrowseFile.Location = New System.Drawing.Point(304, 76)
+        Me.BrowseFile.Location = New System.Drawing.Point(608, 146)
+        Me.BrowseFile.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.BrowseFile.Name = "BrowseFile"
-        Me.BrowseFile.Size = New System.Drawing.Size(104, 23)
+        Me.BrowseFile.Size = New System.Drawing.Size(208, 44)
         Me.BrowseFile.TabIndex = 4
         Me.BrowseFile.Text = "Browse file"
         Me.BrowseFile.UseVisualStyleBackColor = True
         '
         'BrowseFolder
         '
-        Me.BrowseFolder.Location = New System.Drawing.Point(414, 76)
+        Me.BrowseFolder.Location = New System.Drawing.Point(828, 146)
+        Me.BrowseFolder.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.BrowseFolder.Name = "BrowseFolder"
-        Me.BrowseFolder.Size = New System.Drawing.Size(104, 23)
+        Me.BrowseFolder.Size = New System.Drawing.Size(208, 44)
         Me.BrowseFolder.TabIndex = 5
         Me.BrowseFolder.Text = "Browse folder"
         Me.BrowseFolder.UseVisualStyleBackColor = True
         '
         'BrowseOutput
         '
-        Me.BrowseOutput.Location = New System.Drawing.Point(304, 126)
+        Me.BrowseOutput.Location = New System.Drawing.Point(608, 242)
+        Me.BrowseOutput.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.BrowseOutput.Name = "BrowseOutput"
-        Me.BrowseOutput.Size = New System.Drawing.Size(104, 23)
+        Me.BrowseOutput.Size = New System.Drawing.Size(208, 44)
         Me.BrowseOutput.TabIndex = 7
         Me.BrowseOutput.Text = "Browse"
         Me.BrowseOutput.UseVisualStyleBackColor = True
         '
         'OutputLocation
         '
-        Me.OutputLocation.Location = New System.Drawing.Point(12, 129)
+        Me.OutputLocation.Location = New System.Drawing.Point(24, 248)
+        Me.OutputLocation.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.OutputLocation.Name = "OutputLocation"
-        Me.OutputLocation.Size = New System.Drawing.Size(286, 20)
+        Me.OutputLocation.Size = New System.Drawing.Size(568, 31)
         Me.OutputLocation.TabIndex = 6
         '
         'Step2Label
         '
         Me.Step2Label.AutoSize = True
-        Me.Step2Label.Location = New System.Drawing.Point(9, 112)
+        Me.Step2Label.Location = New System.Drawing.Point(18, 215)
+        Me.Step2Label.Margin = New System.Windows.Forms.Padding(6, 0, 6, 0)
         Me.Step2Label.Name = "Step2Label"
-        Me.Step2Label.Size = New System.Drawing.Size(278, 13)
+        Me.Step2Label.Size = New System.Drawing.Size(564, 25)
         Me.Step2Label.TabIndex = 7
         Me.Step2Label.Text = "Step 2: Browse for a location to store the compressed file:"
         '
@@ -138,9 +145,11 @@ Partial Class Form1
         '
         Me.GroupBox3.Controls.Add(Me.CompressRButton)
         Me.GroupBox3.Controls.Add(Me.ExtractRButton)
-        Me.GroupBox3.Location = New System.Drawing.Point(12, 12)
+        Me.GroupBox3.Location = New System.Drawing.Point(24, 23)
+        Me.GroupBox3.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(160, 47)
+        Me.GroupBox3.Padding = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.GroupBox3.Size = New System.Drawing.Size(320, 90)
         Me.GroupBox3.TabIndex = 0
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Action"
@@ -148,9 +157,10 @@ Partial Class Form1
         'CompressRButton
         '
         Me.CompressRButton.AutoSize = True
-        Me.CompressRButton.Location = New System.Drawing.Point(6, 19)
+        Me.CompressRButton.Location = New System.Drawing.Point(12, 37)
+        Me.CompressRButton.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.CompressRButton.Name = "CompressRButton"
-        Me.CompressRButton.Size = New System.Drawing.Size(71, 17)
+        Me.CompressRButton.Size = New System.Drawing.Size(127, 29)
         Me.CompressRButton.TabIndex = 1
         Me.CompressRButton.TabStop = True
         Me.CompressRButton.Text = "Compress"
@@ -159,9 +169,10 @@ Partial Class Form1
         'ExtractRButton
         '
         Me.ExtractRButton.AutoSize = True
-        Me.ExtractRButton.Location = New System.Drawing.Point(83, 19)
+        Me.ExtractRButton.Location = New System.Drawing.Point(166, 37)
+        Me.ExtractRButton.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.ExtractRButton.Name = "ExtractRButton"
-        Me.ExtractRButton.Size = New System.Drawing.Size(58, 17)
+        Me.ExtractRButton.Size = New System.Drawing.Size(97, 29)
         Me.ExtractRButton.TabIndex = 2
         Me.ExtractRButton.TabStop = True
         Me.ExtractRButton.Text = "Extract"
@@ -170,18 +181,21 @@ Partial Class Form1
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(9, 162)
+        Me.Label1.Location = New System.Drawing.Point(18, 312)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(6, 0, 6, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(243, 13)
+        Me.Label1.Size = New System.Drawing.Size(496, 25)
         Me.Label1.TabIndex = 10
         Me.Label1.Text = "Step 3: PAQ version and Compression Parameters"
         '
         'GroupBox4
         '
         Me.GroupBox4.Controls.Add(Me.PAQSeries)
-        Me.GroupBox4.Location = New System.Drawing.Point(12, 178)
+        Me.GroupBox4.Location = New System.Drawing.Point(24, 342)
+        Me.GroupBox4.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(141, 47)
+        Me.GroupBox4.Padding = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.GroupBox4.Size = New System.Drawing.Size(282, 90)
         Me.GroupBox4.TabIndex = 12
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Series:"
@@ -190,18 +204,21 @@ Partial Class Form1
         '
         Me.PAQSeries.FormattingEnabled = True
         Me.PAQSeries.Items.AddRange(New Object() {"FP8", "FP8sk", "PAQ8gen", "PAQ8KX", "PAQ8o10t", "PAQ8P_PC", "PAQ8PF", "PAQ8PX", "PAQ8PXd", "PAQ8PXPRE", "PAQ8PXv", "PAQ8SK"})
-        Me.PAQSeries.Location = New System.Drawing.Point(6, 19)
+        Me.PAQSeries.Location = New System.Drawing.Point(12, 37)
+        Me.PAQSeries.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.PAQSeries.Name = "PAQSeries"
-        Me.PAQSeries.Size = New System.Drawing.Size(116, 21)
+        Me.PAQSeries.Size = New System.Drawing.Size(228, 33)
         Me.PAQSeries.Sorted = True
         Me.PAQSeries.TabIndex = 8
         '
         'GroupBox5
         '
         Me.GroupBox5.Controls.Add(Me.PAQVersion)
-        Me.GroupBox5.Location = New System.Drawing.Point(157, 178)
+        Me.GroupBox5.Location = New System.Drawing.Point(314, 342)
+        Me.GroupBox5.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(141, 47)
+        Me.GroupBox5.Padding = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.GroupBox5.Size = New System.Drawing.Size(282, 90)
         Me.GroupBox5.TabIndex = 13
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Version:"
@@ -209,17 +226,20 @@ Partial Class Form1
         'PAQVersion
         '
         Me.PAQVersion.FormattingEnabled = True
-        Me.PAQVersion.Location = New System.Drawing.Point(6, 19)
+        Me.PAQVersion.Location = New System.Drawing.Point(12, 37)
+        Me.PAQVersion.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.PAQVersion.Name = "PAQVersion"
-        Me.PAQVersion.Size = New System.Drawing.Size(116, 21)
+        Me.PAQVersion.Size = New System.Drawing.Size(228, 33)
         Me.PAQVersion.TabIndex = 9
         '
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.CompressionLevel)
-        Me.GroupBox1.Location = New System.Drawing.Point(304, 178)
+        Me.GroupBox1.Location = New System.Drawing.Point(608, 342)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(141, 47)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.GroupBox1.Size = New System.Drawing.Size(282, 90)
         Me.GroupBox1.TabIndex = 14
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Compression Level:"
@@ -227,9 +247,10 @@ Partial Class Form1
         'CompressionLevel
         '
         Me.CompressionLevel.FormattingEnabled = True
-        Me.CompressionLevel.Location = New System.Drawing.Point(6, 19)
+        Me.CompressionLevel.Location = New System.Drawing.Point(12, 37)
+        Me.CompressionLevel.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.CompressionLevel.Name = "CompressionLevel"
-        Me.CompressionLevel.Size = New System.Drawing.Size(116, 21)
+        Me.CompressionLevel.Size = New System.Drawing.Size(228, 33)
         Me.CompressionLevel.TabIndex = 10
         '
         'GroupBox2
@@ -246,9 +267,11 @@ Partial Class Form1
         Me.GroupBox2.Controls.Add(Me.t_flag)
         Me.GroupBox2.Controls.Add(Me.e_flag)
         Me.GroupBox2.Controls.Add(Me.b_flag)
-        Me.GroupBox2.Location = New System.Drawing.Point(12, 231)
+        Me.GroupBox2.Location = New System.Drawing.Point(24, 444)
+        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(562, 141)
+        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.GroupBox2.Size = New System.Drawing.Size(1124, 271)
         Me.GroupBox2.TabIndex = 15
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "PAQ8PX/PAQ8gen Additional Options:"
@@ -256,9 +279,10 @@ Partial Class Form1
         'deleteFileList
         '
         Me.deleteFileList.AutoSize = True
-        Me.deleteFileList.Location = New System.Drawing.Point(312, 111)
+        Me.deleteFileList.Location = New System.Drawing.Point(624, 213)
+        Me.deleteFileList.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.deleteFileList.Name = "deleteFileList"
-        Me.deleteFileList.Size = New System.Drawing.Size(95, 17)
+        Me.deleteFileList.Size = New System.Drawing.Size(174, 29)
         Me.deleteFileList.TabIndex = 21
         Me.deleteFileList.Text = "Delete File List"
         Me.deleteFileList.UseVisualStyleBackColor = True
@@ -266,9 +290,10 @@ Partial Class Form1
         'r_flag
         '
         Me.r_flag.AutoSize = True
-        Me.r_flag.Location = New System.Drawing.Point(268, 88)
+        Me.r_flag.Location = New System.Drawing.Point(536, 169)
+        Me.r_flag.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.r_flag.Name = "r_flag"
-        Me.r_flag.Size = New System.Drawing.Size(265, 17)
+        Me.r_flag.Size = New System.Drawing.Size(520, 29)
         Me.r_flag.TabIndex = 20
         Me.r_flag.Text = "Perform initial retraining of the LSTM on text blocks"
         Me.r_flag.UseVisualStyleBackColor = True
@@ -276,9 +301,10 @@ Partial Class Form1
         'l_flag
         '
         Me.l_flag.AutoSize = True
-        Me.l_flag.Location = New System.Drawing.Point(6, 88)
+        Me.l_flag.Location = New System.Drawing.Point(12, 169)
+        Me.l_flag.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.l_flag.Name = "l_flag"
-        Me.l_flag.Size = New System.Drawing.Size(208, 17)
+        Me.l_flag.Size = New System.Drawing.Size(400, 29)
         Me.l_flag.TabIndex = 19
         Me.l_flag.Text = "Use Long Short-Term Memory network"
         Me.l_flag.UseVisualStyleBackColor = True
@@ -286,9 +312,10 @@ Partial Class Form1
         'DontCreateTextFile
         '
         Me.DontCreateTextFile.AutoSize = True
-        Me.DontCreateTextFile.Location = New System.Drawing.Point(6, 111)
+        Me.DontCreateTextFile.Location = New System.Drawing.Point(12, 213)
+        Me.DontCreateTextFile.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.DontCreateTextFile.Name = "DontCreateTextFile"
-        Me.DontCreateTextFile.Size = New System.Drawing.Size(300, 17)
+        Me.DontCreateTextFile.Size = New System.Drawing.Size(597, 29)
         Me.DontCreateTextFile.TabIndex = 18
         Me.DontCreateTextFile.Text = "Do not create the File List (Only for single file compression)"
         Me.DontCreateTextFile.UseVisualStyleBackColor = True
@@ -296,9 +323,10 @@ Partial Class Form1
         'f_flag
         '
         Me.f_flag.AutoSize = True
-        Me.f_flag.Location = New System.Drawing.Point(268, 65)
+        Me.f_flag.Location = New System.Drawing.Point(536, 125)
+        Me.f_flag.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.f_flag.Name = "f_flag"
-        Me.f_flag.Size = New System.Drawing.Size(239, 17)
+        Me.f_flag.Size = New System.Drawing.Size(469, 29)
         Me.f_flag.TabIndex = 17
         Me.f_flag.Text = "Bypass modeling and mixing on long matches"
         Me.f_flag.UseVisualStyleBackColor = True
@@ -306,9 +334,10 @@ Partial Class Form1
         's_flag
         '
         Me.s_flag.AutoSize = True
-        Me.s_flag.Location = New System.Drawing.Point(268, 42)
+        Me.s_flag.Location = New System.Drawing.Point(536, 81)
+        Me.s_flag.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.s_flag.Name = "s_flag"
-        Me.s_flag.Size = New System.Drawing.Size(285, 17)
+        Me.s_flag.Size = New System.Drawing.Size(559, 29)
         Me.s_flag.TabIndex = 16
         Me.s_flag.Text = "Skip the color transform, just reorder the RGB channels"
         Me.s_flag.UseVisualStyleBackColor = True
@@ -316,9 +345,10 @@ Partial Class Form1
         'a_flag
         '
         Me.a_flag.AutoSize = True
-        Me.a_flag.Location = New System.Drawing.Point(268, 19)
+        Me.a_flag.Location = New System.Drawing.Point(536, 37)
+        Me.a_flag.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.a_flag.Name = "a_flag"
-        Me.a_flag.Size = New System.Drawing.Size(129, 17)
+        Me.a_flag.Size = New System.Drawing.Size(241, 29)
         Me.a_flag.TabIndex = 15
         Me.a_flag.Text = "Adaptive learning rate"
         Me.a_flag.UseVisualStyleBackColor = True
@@ -326,9 +356,10 @@ Partial Class Form1
         't_flag
         '
         Me.t_flag.AutoSize = True
-        Me.t_flag.Location = New System.Drawing.Point(6, 65)
+        Me.t_flag.Location = New System.Drawing.Point(12, 125)
+        Me.t_flag.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.t_flag.Name = "t_flag"
-        Me.t_flag.Size = New System.Drawing.Size(258, 17)
+        Me.t_flag.Size = New System.Drawing.Size(511, 29)
         Me.t_flag.TabIndex = 14
         Me.t_flag.Text = "Pre-train main model with word and expression list"
         Me.t_flag.UseVisualStyleBackColor = True
@@ -336,9 +367,10 @@ Partial Class Form1
         'e_flag
         '
         Me.e_flag.AutoSize = True
-        Me.e_flag.Location = New System.Drawing.Point(6, 42)
+        Me.e_flag.Location = New System.Drawing.Point(12, 81)
+        Me.e_flag.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.e_flag.Name = "e_flag"
-        Me.e_flag.Size = New System.Drawing.Size(138, 17)
+        Me.e_flag.Size = New System.Drawing.Size(259, 29)
         Me.e_flag.TabIndex = 13
         Me.e_flag.Text = "Pre-train x86/x64 model"
         Me.e_flag.UseVisualStyleBackColor = True
@@ -346,9 +378,10 @@ Partial Class Form1
         'b_flag
         '
         Me.b_flag.AutoSize = True
-        Me.b_flag.Location = New System.Drawing.Point(6, 19)
+        Me.b_flag.Location = New System.Drawing.Point(12, 37)
+        Me.b_flag.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.b_flag.Name = "b_flag"
-        Me.b_flag.Size = New System.Drawing.Size(227, 17)
+        Me.b_flag.Size = New System.Drawing.Size(438, 29)
         Me.b_flag.TabIndex = 12
         Me.b_flag.Text = "Brute-force detection of DEFLATE streams"
         Me.b_flag.UseVisualStyleBackColor = True
@@ -356,9 +389,10 @@ Partial Class Form1
         'StartButton
         '
         Me.StartButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.StartButton.Location = New System.Drawing.Point(12, 402)
+        Me.StartButton.Location = New System.Drawing.Point(24, 773)
+        Me.StartButton.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.StartButton.Name = "StartButton"
-        Me.StartButton.Size = New System.Drawing.Size(562, 53)
+        Me.StartButton.Size = New System.Drawing.Size(1124, 102)
         Me.StartButton.TabIndex = 18
         Me.StartButton.Text = "Start"
         Me.StartButton.UseVisualStyleBackColor = True
@@ -366,9 +400,10 @@ Partial Class Form1
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(577, 9)
+        Me.Label2.Location = New System.Drawing.Point(1154, 17)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(6, 0, 6, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(28, 13)
+        Me.Label2.Size = New System.Drawing.Size(54, 25)
         Me.Label2.TabIndex = 17
         Me.Label2.Text = "Log:"
         '
@@ -378,18 +413,20 @@ Partial Class Form1
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Log.BackColor = System.Drawing.SystemColors.Window
-        Me.Log.Location = New System.Drawing.Point(580, 25)
+        Me.Log.Location = New System.Drawing.Point(1160, 48)
+        Me.Log.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.Log.Name = "Log"
-        Me.Log.Size = New System.Drawing.Size(460, 371)
+        Me.Log.Size = New System.Drawing.Size(916, 710)
         Me.Log.TabIndex = 0
         Me.Log.Text = ""
         '
         'SaveLogButton
         '
         Me.SaveLogButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SaveLogButton.Location = New System.Drawing.Point(832, 402)
+        Me.SaveLogButton.Location = New System.Drawing.Point(1664, 773)
+        Me.SaveLogButton.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.SaveLogButton.Name = "SaveLogButton"
-        Me.SaveLogButton.Size = New System.Drawing.Size(208, 53)
+        Me.SaveLogButton.Size = New System.Drawing.Size(416, 102)
         Me.SaveLogButton.TabIndex = 20
         Me.SaveLogButton.Text = "Save Log"
         Me.SaveLogButton.UseVisualStyleBackColor = True
@@ -397,9 +434,10 @@ Partial Class Form1
         'ClearLogButton
         '
         Me.ClearLogButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.ClearLogButton.Location = New System.Drawing.Point(580, 402)
+        Me.ClearLogButton.Location = New System.Drawing.Point(1160, 773)
+        Me.ClearLogButton.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.ClearLogButton.Name = "ClearLogButton"
-        Me.ClearLogButton.Size = New System.Drawing.Size(241, 53)
+        Me.ClearLogButton.Size = New System.Drawing.Size(482, 102)
         Me.ClearLogButton.TabIndex = 19
         Me.ClearLogButton.Text = "Clear Log"
         Me.ClearLogButton.UseVisualStyleBackColor = True
@@ -412,18 +450,21 @@ Partial Class Form1
         '
         Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(9, 465)
+        Me.Label3.Location = New System.Drawing.Point(18, 894)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(6, 0, 6, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(161, 13)
+        Me.Label3.Size = New System.Drawing.Size(324, 25)
         Me.Label3.TabIndex = 21
-        Me.Label3.Text = "v0.5.1 - GUI by: Moisés Cardona"
+        Me.Label3.Text = "v0.5.2 - GUI by: Moisés Cardona"
         '
         'paq_other
         '
         Me.paq_other.Controls.Add(Me.paq_other_dropbox)
-        Me.paq_other.Location = New System.Drawing.Point(451, 178)
+        Me.paq_other.Location = New System.Drawing.Point(902, 342)
+        Me.paq_other.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.paq_other.Name = "paq_other"
-        Me.paq_other.Size = New System.Drawing.Size(123, 47)
+        Me.paq_other.Padding = New System.Windows.Forms.Padding(6, 6, 6, 6)
+        Me.paq_other.Size = New System.Drawing.Size(246, 90)
         Me.paq_other.TabIndex = 15
         Me.paq_other.TabStop = False
         Me.paq_other.Text = "Threads"
@@ -432,18 +473,20 @@ Partial Class Form1
         '
         Me.paq_other_dropbox.FormattingEnabled = True
         Me.paq_other_dropbox.Items.AddRange(New Object() {"1", "2", "3", "4", "5", "6", "7", "8", "9"})
-        Me.paq_other_dropbox.Location = New System.Drawing.Point(6, 19)
+        Me.paq_other_dropbox.Location = New System.Drawing.Point(12, 37)
+        Me.paq_other_dropbox.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.paq_other_dropbox.Name = "paq_other_dropbox"
-        Me.paq_other_dropbox.Size = New System.Drawing.Size(108, 21)
+        Me.paq_other_dropbox.Size = New System.Drawing.Size(212, 33)
         Me.paq_other_dropbox.TabIndex = 11
         '
         'ShowCMD
         '
         Me.ShowCMD.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.ShowCMD.AutoSize = True
-        Me.ShowCMD.Location = New System.Drawing.Point(163, 378)
+        Me.ShowCMD.Location = New System.Drawing.Point(326, 731)
+        Me.ShowCMD.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.ShowCMD.Name = "ShowCMD"
-        Me.ShowCMD.Size = New System.Drawing.Size(139, 17)
+        Me.ShowCMD.Size = New System.Drawing.Size(261, 29)
         Me.ShowCMD.TabIndex = 22
         Me.ShowCMD.Text = "Show Command Prompt"
         Me.ShowCMD.UseVisualStyleBackColor = True
@@ -452,9 +495,10 @@ Partial Class Form1
         '
         Me.GenerateBatchScriptOnly.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.GenerateBatchScriptOnly.AutoSize = True
-        Me.GenerateBatchScriptOnly.Location = New System.Drawing.Point(12, 379)
+        Me.GenerateBatchScriptOnly.Location = New System.Drawing.Point(24, 733)
+        Me.GenerateBatchScriptOnly.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.GenerateBatchScriptOnly.Name = "GenerateBatchScriptOnly"
-        Me.GenerateBatchScriptOnly.Size = New System.Drawing.Size(151, 17)
+        Me.GenerateBatchScriptOnly.Size = New System.Drawing.Size(285, 29)
         Me.GenerateBatchScriptOnly.TabIndex = 23
         Me.GenerateBatchScriptOnly.Text = "Only generate Batch script"
         Me.GenerateBatchScriptOnly.UseVisualStyleBackColor = True
@@ -462,9 +506,10 @@ Partial Class Form1
         'SendToDistributedProject
         '
         Me.SendToDistributedProject.AutoSize = True
-        Me.SendToDistributedProject.Location = New System.Drawing.Point(289, 12)
+        Me.SendToDistributedProject.Location = New System.Drawing.Point(578, 23)
+        Me.SendToDistributedProject.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.SendToDistributedProject.Name = "SendToDistributedProject"
-        Me.SendToDistributedProject.Size = New System.Drawing.Size(285, 17)
+        Me.SendToDistributedProject.Size = New System.Drawing.Size(556, 29)
         Me.SendToDistributedProject.TabIndex = 24
         Me.SendToDistributedProject.Text = "Send to Distributed Media and Data Processing project"
         Me.SendToDistributedProject.UseVisualStyleBackColor = True
@@ -472,9 +517,10 @@ Partial Class Form1
         '
         'DistributedProcessingOptions
         '
-        Me.DistributedProcessingOptions.Location = New System.Drawing.Point(289, 31)
+        Me.DistributedProcessingOptions.Location = New System.Drawing.Point(578, 60)
+        Me.DistributedProcessingOptions.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.DistributedProcessingOptions.Name = "DistributedProcessingOptions"
-        Me.DistributedProcessingOptions.Size = New System.Drawing.Size(276, 23)
+        Me.DistributedProcessingOptions.Size = New System.Drawing.Size(552, 44)
         Me.DistributedProcessingOptions.TabIndex = 25
         Me.DistributedProcessingOptions.Text = "Distributed Data and Media Processing settings"
         Me.DistributedProcessingOptions.UseVisualStyleBackColor = True
@@ -484,9 +530,10 @@ Partial Class Form1
         '
         Me.useNativeCPU.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.useNativeCPU.AutoSize = True
-        Me.useNativeCPU.Location = New System.Drawing.Point(304, 378)
+        Me.useNativeCPU.Location = New System.Drawing.Point(608, 731)
+        Me.useNativeCPU.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.useNativeCPU.Name = "useNativeCPU"
-        Me.useNativeCPU.Size = New System.Drawing.Size(147, 17)
+        Me.useNativeCPU.Size = New System.Drawing.Size(280, 29)
         Me.useNativeCPU.TabIndex = 26
         Me.useNativeCPU.Text = "Use AVX2-optimized build"
         Me.useNativeCPU.UseVisualStyleBackColor = True
@@ -494,9 +541,9 @@ Partial Class Form1
         'Form1
         '
         Me.AllowDrop = True
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(12.0!, 25.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1052, 487)
+        Me.ClientSize = New System.Drawing.Size(2104, 937)
         Me.Controls.Add(Me.useNativeCPU)
         Me.Controls.Add(Me.DistributedProcessingOptions)
         Me.Controls.Add(Me.SendToDistributedProject)
@@ -522,6 +569,7 @@ Partial Class Form1
         Me.Controls.Add(Me.BrowseFile)
         Me.Controls.Add(Me.InputLocation)
         Me.Controls.Add(Me.Step1Label)
+        Me.Margin = New System.Windows.Forms.Padding(6, 6, 6, 6)
         Me.MaximizeBox = False
         Me.Name = "Form1"
         Me.Text = "PAQCompress"
