@@ -1,3 +1,8 @@
+v0.5.3
+- Added paq8pxd v96, v97 and v98.
+- Added non-native versions for paq8pxd v90 and newer. Executables were already native versions for these.
+- Fixed a bug when attempting to compress a file with paq8pxpre.
+
 v0.5.2
 - Added paq8px v201.
 

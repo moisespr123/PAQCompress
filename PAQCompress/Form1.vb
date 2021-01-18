@@ -10,6 +10,7 @@
     Private Const fp8sk_enable_level_9 = 6
     Private Const paq8pxd_add_x_levels As Integer = 28
     Private Const paq8px_nativecpus As Integer = 100
+    Private Const paq8pxd_nativecpus As Integer = 44 'Starting on v90.
     Private Const paq8gen_enable_a_flag As Integer = 1 'v2fixa
     Private DistributedPAQCompressors As New Dictionary(Of String, String())() From {{"PAQ8PX", {"v185", "v186", "v186fix1", "v187",
                                                                                                  "v187fix3", "v187fix5", "v188", "v189",
@@ -159,7 +160,7 @@
             PAQVersion.Items.AddRange({"v45", "v46", "v47", "v48", "v49", "v50", "v51", "v52", "v53", "v54", "v55", "v56", "v57", "v58", "v59", "v60",
                                        "v61", "v62", "v63", "v64", "v66", "v67", "v68", "v69f", "v69", "v70", "v71", "v72", "v73", "v74", "v75", "v76",
                                        "v77", "v78", "v79", "v80", "v81", "v82", "v83", "v84", "v85", "v86", "v87", "v88", "v89", "v90", "v91", "v92",
-                                       "v93", "v94", "v95"})
+                                       "v93", "v94", "v95", "v96", "v97", "v98"})
             CompressionLevel.Text = "s5"
             CompressionLevel.Items.AddRange({"s0", "s1", "s2", "s3", "s4", "s5", "s6", "s7", "s8", "s9", "s10", "s11", "s12", "s13", "s14", "s15"})
             paq_other.Text = "Threads"
@@ -360,6 +361,12 @@
             Else
                 useNativeCPU.Enabled = False
             End If
+        ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Then
+            If PAQVersion.SelectedIndex > paq8pxd_nativecpus Then
+                useNativeCPU.Enabled = True
+            Else
+                useNativeCPU.Enabled = False
+        End If
         ElseIf PAQSeries.SelectedItem Is "PAQ8gen" Then
             If CompressRButton.Checked Then
                 EnableFlagsCheckboxes()
@@ -510,7 +517,15 @@
                             CompressorToUse = "Executables/PAQ8gen/" + PAQVersion.Text + "/paq8gen_" + PAQVersion.Text + ".exe"
                         End If
                     ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Then
-                        CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQVersion.Text + "/" + PAQSeries.Text.ToLower() + "_" + PAQVersion.Text + ".exe"
+                        If useNativeCPU.Enabled And useNativeCPU.Checked Then
+                            CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQVersion.Text + "/" + PAQSeries.Text.ToLower() + "_" + PAQVersion.Text + "_mt_nativecpu.exe"
+                        Else
+                            If PAQVersion.SelectedIndex > paq8pxd_nativecpus Then
+                                CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQVersion.Text + "/" + PAQSeries.Text.ToLower() + "_" + PAQVersion.Text + "_mt.exe"
+                            Else
+                                CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQVersion.Text + "/" + PAQSeries.Text.ToLower() + "_" + PAQVersion.Text + ".exe"
+                            End If
+                        End If
                     ElseIf PAQSeries.SelectedItem Is "PAQ8SK" Or PAQSeries.SelectedItem Is "FP8sk" Then
                         CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQSeries.Text.ToLower() + PAQVersion.Text.Remove(0, 1) + ".exe"
                     ElseIf PAQSeries.SelectedItem Is "PAQ8PXv" Then
@@ -521,13 +536,13 @@
                         CompressorToUse = "Executables/" + PAQSeries.Text + "/" + PAQSeries.Text.ToLower + ".exe"
                     End If
                     If CompressRButton.Checked Then
-                        If PAQSeries.SelectedItem Is "PAQ8o10t" Or PAQSeries.SelectedItem Is "PAQ8PXv" Or PAQSeries.SelectedItem Is "FP8sk" Then
+                        If {"PAQ8o10t", "PAQ8PXPRE", "PAQ8PXv", "FP8sk"}.Contains(PAQSeries.SelectedItem.ToString()) Then
                             If InputLocation.Text = IO.Path.ChangeExtension(OutputLocation.Text, Nothing) Then
                                 CompressionParameters = "-" + CompressionLevel.Text + " """ + InputLocation.Text + """"
                             Else
                                 CompressionParameters = "-" + CompressionLevel.Text + " """ + IO.Path.ChangeExtension(OutputLocation.Text, Nothing) + """ """ + InputLocation.Text + """"
                             End If
-                        ElseIf PAQSeries.SelectedItem Is "PAQ8PXd" Or PAQSeries.SelectedItem Is "PAQ8SK" Then
+                        ElseIf {"PAQ8PXd", "PAQ8SK"}.Contains(PAQSeries.SelectedItem.ToString()) Then
                             If InputLocation.Text = IO.Path.ChangeExtension(OutputLocation.Text, Nothing) Then
                                 CompressionParameters = "-" + CompressionLevel.Text + ":" + paq_other_dropbox.Text + " """ + InputLocation.Text + """"
                             Else
