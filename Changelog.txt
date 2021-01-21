@@ -1,3 +1,6 @@
+v0.5.4
+- Added paq8pxd v99.
+
 v0.5.3
 - Added paq8pxd v96, v97 and v98.
 - Added non-native versions for paq8pxd v90 and newer. Executables were already native versions for these.
