@@ -139,7 +139,7 @@
             CompressionLevel.Items.AddRange({"0", "1", "2", "3", "4", "5", "6", "7", "8"})
             PAQVersion.Enabled = False
         ElseIf PAQSeries.SelectedItem Is "PAQ8gen" Then
-            PAQVersion.Items.AddRange({"v1", "v2", "v2fixa", "v3"})
+            PAQVersion.Items.AddRange({"v1", "v2", "v2fixa", "v3", "v4"})
             CompressionLevel.Items.AddRange({"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"})
         ElseIf PAQSeries.SelectedItem Is "PAQ8KX" Then
             PAQVersion.Items.AddRange({"v1", "v1_alt", "v2", "v2_alt", "v3", "v3_alt", "v4", "v4a", "v4adual2", "v5", "v6", "v7"})
