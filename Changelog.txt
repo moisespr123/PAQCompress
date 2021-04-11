@@ -1,3 +1,6 @@
+v0.5.9
+- Added paq8pxd v102.
+
 v0.5.8
 - Added paq8pxd v101.
 
