@@ -17,7 +17,12 @@ Public Class DistributedProjectFunctions
         If Form1.CompressRButton.Checked Then
             Return Form1.AdjustOutputFilename(filename, True)
         Else
-            Return IO.Path.GetFileNameWithoutExtension(filename)
+            If filename.Contains(".native.") Then
+                Return IO.Path.GetFileNameWithoutExtension(IO.Path.GetFileNameWithoutExtension(filename))
+            Else
+                Return IO.Path.GetFileNameWithoutExtension(filename)
+            End If
+
         End If
     End Function
 
