@@ -18,9 +18,9 @@ Public Class DistributedProjectFunctions
             Return Form1.AdjustOutputFilename(filename, True)
         Else
             If filename.Contains(".native.") Then
-                Return IO.Path.GetFileNameWithoutExtension(IO.Path.GetFileNameWithoutExtension(filename))
+                Return Path.GetFileNameWithoutExtension(Path.GetFileNameWithoutExtension(filename))
             Else
-                Return IO.Path.GetFileNameWithoutExtension(filename)
+                Return Path.GetFileNameWithoutExtension(filename)
             End If
 
         End If
@@ -56,7 +56,7 @@ Public Class DistributedProjectFunctions
                         formData.Add(New StringContent(format), "f")
                         formData.Add(New StringContent(GenerateCommandLineArguments()), "c")
                         formData.Add(New StringContent(GetOutputFilename(filename)), "n")
-                        Dim uri As Uri = New Uri(serverUrl + "media_put.php")
+                        Dim uri As New Uri(serverUrl + "media_put.php")
                         client.DefaultRequestHeaders.Add("Accept-Language", "en-GB,en-US;q=0.8,en;q=0.6,ru;q=0.4")
                         client.Timeout = Threading.Timeout.InfiniteTimeSpan
                         Dim response As HttpResponseMessage = client.PostAsync(uri, formData).Result
@@ -64,7 +64,7 @@ Public Class DistributedProjectFunctions
                             Console.WriteLine("Error")
                             Console.WriteLine(response.StatusCode)
                         End If
-                        Dim reader As StreamReader = New StreamReader(response.Content.ReadAsStreamAsync().Result)
+                        Dim reader As New StreamReader(response.Content.ReadAsStreamAsync().Result)
                         Dim result As String = reader.ReadToEnd()
                         Return result
                     End If
