@@ -1,3 +1,6 @@
+v0.5.16
+- Added paq8pxd v105.
+
 v0.5.15
 - Added paq8px v205fix1.
 
