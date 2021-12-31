@@ -8,8 +8,8 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("PAQCompress")> 
-<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyTitle("PAQCompress")>
+<Assembly: AssemblyDescription("PAQ Compressor Graphical User Interface")>
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("PAQCompress")>
 <Assembly: AssemblyCopyright("Copyright ©  2008 - 2021")>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("0.5.17.0")>
-<Assembly: AssemblyFileVersion("0.5.17.0")>
+<Assembly: AssemblyVersion("0.5.18.0")>
+<Assembly: AssemblyFileVersion("0.5.18.0")>
