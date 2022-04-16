@@ -41,7 +41,7 @@ Public Class DistributedProjectFunctions
             End If
         End If
     End Function
-    Public Function Upload(ByVal key As String, ByVal format As String, ByVal filename As String, ByVal category As String, ByVal file As String) As String
+    Public Function Upload(key As String, format As String, filename As String, category As String, file As String) As String
         If CanProcessFile(filename) Then
             Using client = New HttpClient()
                 Using formData = New MultipartFormDataContent()

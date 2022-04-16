@@ -16,7 +16,7 @@
                                                                                                           "v193fix2", "v198", "v201", "v202", "v203", "v204", "v205fix1", "v206"}},
                                                                                               {"PAQ8PXd", {"v85", "v86"}}}
 
-    Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         PAQSeries.SelectedItem = My.Settings.PAQSeries
         PAQVersion.SelectedItem = My.Settings.PAQVersion
         If paq_other.Text = "Threads" Then
@@ -308,22 +308,40 @@
         Return OutputName
     End Function
 
-    Private Function GetDirectoriesAndFiles(ByVal OrigLocation As String, ByVal BaseFolder As IO.DirectoryInfo, Optional ByVal TextFile As IO.StreamWriter = Nothing, Optional FileList As List(Of String) = Nothing) As List(Of String)
-        If TextFile Is Nothing Then
-            For Each FI As IO.FileInfo In BaseFolder.GetFiles()
-                FileList.Add(FI.FullName)
-            Next
-            For Each subF As IO.DirectoryInfo In BaseFolder.GetDirectories()
-                GetDirectoriesAndFiles(OrigLocation, subF, TextFile, FileList)
-            Next
-        Else
-            For Each FI As IO.FileInfo In BaseFolder.GetFiles()
-                TextFile.WriteLine(FI.FullName.Remove(0, OrigLocation.Count + 1))
-            Next
-            For Each subF As IO.DirectoryInfo In BaseFolder.GetDirectories()
-                GetDirectoriesAndFiles(OrigLocation, subF, TextFile)
-            Next
-        End If
+    Private Sub WriteFileList(list As IEnumerable(Of FilesClass), textFile As String)
+        Dim textFileStream As New IO.StreamWriter(textFile, False)
+        textFileStream.WriteLine()
+        For Each item In list
+            If String.IsNullOrEmpty(My.Settings.ExtensionFilterList) Then
+                textFileStream.WriteLine(item.FullPath)
+            Else
+                Dim ExtensionsFilter As String() = My.Settings.ExtensionFilterList.Split(" "c)
+                If My.Settings.ExtensionFilteringMode = 1 Then
+                    If Not ExtensionsFilter.Contains(item.Extension) Then
+                        textFileStream.WriteLine(item.FullPath)
+                    End If
+                Else
+                    If ExtensionsFilter.Contains(item.Extension) Then
+                        textFileStream.WriteLine(item.FullPath)
+                    End If
+                End If
+            End If
+        Next
+        textFileStream.Close()
+    End Sub
+
+
+    Private Function GetDirectoriesAndFiles(OrigLocation As String, BaseFolder As IO.DirectoryInfo, FileList As List(Of FilesClass), Optional AddForFileList As Boolean = True) As List(Of FilesClass)
+        For Each FI As IO.FileInfo In BaseFolder.GetFiles()
+            Dim FilePath As String = FI.FullName
+            If AddForFileList Then
+                FilePath = FilePath.Remove(0, OrigLocation.Count + 1)
+            End If
+            FileList.Add(New FilesClass(FilePath, IO.Path.GetFileName(FI.FullName), IO.Path.GetExtension(FI.FullName)))
+        Next
+        For Each subF As IO.DirectoryInfo In BaseFolder.GetDirectories()
+            GetDirectoriesAndFiles(OrigLocation, subF, FileList, AddForFileList)
+        Next
         Return FileList
     End Function
     Private Sub CheckCompressionLevelAndChange()
@@ -450,6 +468,17 @@
         End If
         Return CompressionFlags
     End Function
+
+    Private Function SortFileList(FileList As FilesClass) As String
+        If My.Settings.FileListSortMethod = 1 Then
+            Return FileList.FullPath
+        ElseIf My.Settings.FileListSortMethod = 2 Then
+            Return FileList.FileName
+        Else
+            Return FileList.Extension
+        End If
+    End Function
+
     Private Sub StartButton_Click(sender As Object, e As EventArgs) Handles StartButton.Click
         Dim CompressorToUse As String = String.Empty
         Dim CompressionParameters As String = String.Empty
@@ -480,10 +509,9 @@
             Dim DistributedProject As New DistributedProjectFunctions
             If IO.Directory.Exists(InputLocation.Text) Then
                 Dim TwoGBExceeded As Boolean = False
-                Dim Files As List(Of String) = GetDirectoriesAndFiles(IO.Path.GetDirectoryName(InputLocation.Text), New IO.DirectoryInfo(InputLocation.Text), Nothing, New List(Of String))
-                For Each file As String In Files
-                    If New IO.FileInfo(file).Length <= Integer.MaxValue Then
-                        DistributedProject.Upload(UserKey, PAQSeries.Text.ToLower() + "_" + PAQVersion.Text.ToLower(), IO.Path.GetFileName(file), Category, file)
+                For Each file As FilesClass In GetDirectoriesAndFiles(IO.Path.GetDirectoryName(InputLocation.Text), New IO.DirectoryInfo(InputLocation.Text), New List(Of FilesClass))
+                    If New IO.FileInfo(file.FullPath).Length <= Integer.MaxValue Then
+                        DistributedProject.Upload(UserKey, PAQSeries.Text.ToLower() + "_" + PAQVersion.Text.ToLower(), file.FileName, Category, file.FullPath)
                     Else
                         TwoGBExceeded = True
                     End If
@@ -579,10 +607,7 @@
                                 Dim CompressionFlags As String = GetPAQ8CompressionFlags()
                                 textFile = OutputLocation.Text + ".txt"
                                 If IO.Directory.Exists(InputLocation.Text) Then
-                                    Dim textFileStream As New IO.StreamWriter(textFile, False)
-                                    textFileStream.WriteLine()
-                                    GetDirectoriesAndFiles(IO.Path.GetDirectoryName(InputLocation.Text), New IO.DirectoryInfo(InputLocation.Text), textFileStream)
-                                    textFileStream.Close()
+                                    WriteFileList(GetDirectoriesAndFiles(IO.Path.GetDirectoryName(InputLocation.Text), New IO.DirectoryInfo(InputLocation.Text), New List(Of FilesClass), True).OrderBy(Function(p) SortFileList(p)), textFile)
                                     CompressionParameters = CompressionFlags + " ""@" + textFile + """ """ + OutputLocation.Text + """"
                                 Else
                                     If DontCreateTextFile.Checked Then
@@ -888,5 +913,9 @@
     Private Sub deleteFileList_CheckedChanged(sender As Object, e As EventArgs) Handles deleteFileList.CheckedChanged
         My.Settings.deleteFileList = deleteFileList.Checked
         My.Settings.Save()
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        FileListOptions.ShowDialog()
     End Sub
 End Class

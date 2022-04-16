@@ -67,6 +67,7 @@ Partial Class Form1
         Me.SendToDistributedProject = New System.Windows.Forms.CheckBox()
         Me.DistributedProcessingOptions = New System.Windows.Forms.Button()
         Me.useNativeCPU = New System.Windows.Forms.CheckBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox5.SuspendLayout()
@@ -414,9 +415,9 @@ Partial Class Form1
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(9, 465)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(167, 13)
+        Me.Label3.Size = New System.Drawing.Size(161, 13)
         Me.Label3.TabIndex = 21
-        Me.Label3.Text = "v0.5.18 - GUI by: Moisés Cardona"
+        Me.Label3.Text = "v0.6.0 - GUI by: Moisés Cardona"
         '
         'paq_other
         '
@@ -491,12 +492,23 @@ Partial Class Form1
         Me.useNativeCPU.Text = "Use AVX2-optimized build"
         Me.useNativeCPU.UseVisualStyleBackColor = True
         '
+        'Button1
+        '
+        Me.Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Button1.Location = New System.Drawing.Point(457, 375)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(108, 23)
+        Me.Button1.TabIndex = 27
+        Me.Button1.Text = "File List Options"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AllowDrop = True
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1052, 487)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.useNativeCPU)
         Me.Controls.Add(Me.DistributedProcessingOptions)
         Me.Controls.Add(Me.SendToDistributedProject)
@@ -582,4 +594,5 @@ Partial Class Form1
     Friend WithEvents r_flag As CheckBox
     Friend WithEvents useNativeCPU As CheckBox
     Friend WithEvents deleteFileList As CheckBox
+    Friend WithEvents Button1 As Button
 End Class
