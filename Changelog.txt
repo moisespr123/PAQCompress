@@ -1,6 +1,6 @@
 v0.6.0
 - Added new File List sorting option.
-- Added new File Exension filtering.
+- Added new File Extension filtering.
 
 v0.5.18
 - Added paq8px v206.
