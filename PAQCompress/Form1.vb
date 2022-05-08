@@ -509,7 +509,7 @@
             Dim DistributedProject As New DistributedProjectFunctions
             If IO.Directory.Exists(InputLocation.Text) Then
                 Dim TwoGBExceeded As Boolean = False
-                For Each file As FilesClass In GetDirectoriesAndFiles(IO.Path.GetDirectoryName(InputLocation.Text), New IO.DirectoryInfo(InputLocation.Text), New List(Of FilesClass))
+                For Each file As FilesClass In GetDirectoriesAndFiles(IO.Path.GetDirectoryName(InputLocation.Text), New IO.DirectoryInfo(InputLocation.Text), New List(Of FilesClass), False)
                     If New IO.FileInfo(file.FullPath).Length <= Integer.MaxValue Then
                         DistributedProject.Upload(UserKey, PAQSeries.Text.ToLower() + "_" + PAQVersion.Text.ToLower(), file.FileName, Category, file.FullPath)
                     Else
